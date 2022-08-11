@@ -1,0 +1,15 @@
+[build-system]
+requires = [
+    "cython",
+    "epicscorelibs",
+    "setuptools",
+    "setuptools_dso",
+    "wheel",
+]
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+testpaths = [
+    "epicsmacrolib/tests",
+]
+asyncio_mode = "auto"

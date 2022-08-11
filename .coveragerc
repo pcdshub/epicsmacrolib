@@ -1,0 +1,11 @@
+[run]
+source =
+    epicsmacrolib
+[report]
+omit =
+    #versioning
+    .*version.*
+    *_version.py
+    #tests
+    *test*
+    epicsmacrolib/tests/*
