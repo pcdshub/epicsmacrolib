@@ -1,0 +1,1 @@
+#define errlogMessage printf

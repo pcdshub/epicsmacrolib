@@ -4,12 +4,16 @@ import sys
 from distutils.core import setup
 from distutils.extension import Extension
 from os import path
+import pathlib
 
 import versioneer
 from setuptools import Extension, find_packages, setup
 from setuptools.command.build_ext import build_ext
 
 min_version = (3, 7)
+
+print("setup.py imported!")
+print("setup.py imported!", file=sys.stderr)
 
 if sys.version_info < min_version:
     error = """
@@ -52,12 +56,12 @@ if os.environ.get("CONDA_BUILD_STATE") == "RENDER":
     epicscorelibs = None
 else:
     try:
-        import epicscorelibs
-        import epicscorelibs.path
+        # import epicscorelibs
+        # import epicscorelibs.path
         from Cython.Build import cythonize
     except (ImportError, ModuleNotFoundError, Exception) as ex:
         print(f"""\
-Sorry, the following are required to build `whatrecord`. Please install these first:
+Sorry, the following are required to build `epicsmacrolib`. Please install these first:
     epicscorelibs
     cython
 {type(ex).__name__}: {ex}
@@ -78,22 +82,24 @@ def no_cythonize(extensions, **_ignore):
                 sfile = f"{path}{ext}"
             sources.append(sfile)
         extension.sources[:] = sources
+        print("extension.sources", extension.sources)
     return extensions
 
 
 def get_extensions():
     """Get the list of Cython extensions to add."""
+    SRC_DIR = pathlib.Path("src")
     ext_options = dict(
-        include_dirs=[
-            epicscorelibs.path.base_path,
-            epicscorelibs.path.include_path,
-            "include",
-        ],
-        libraries=["Com", "dbCore"],
-        library_dirs=[epicscorelibs.path.lib_path],
+        include_dirs=["./src"],
+        libraries=[],
+        library_dirs=["./src"],
         language="c++",
     )
 
+    macro_lib_sources = list(
+        str(path)
+        for path in SRC_DIR.glob("*.c")
+    )
     extensions = [
         Extension(
             "epicsmacrolib.iocsh",
@@ -102,7 +108,7 @@ def get_extensions():
         ),
         Extension(
             "epicsmacrolib._macro",
-            ["epicsmacrolib/_macro.pyx"],
+            ["epicsmacrolib/_macro.pyx"] + macro_lib_sources,
             **ext_options,
         ),
     ]
@@ -120,31 +126,24 @@ with open("requirements.txt") as fp:
         line for line in fp.read().splitlines() if line and not line.startswith("#")
     ]
 
+# if epicscorelibs is not None:
+#     install_requires.append("epicscorelibs=={epicscorelibs.__version__}")
+
 with open("README.rst", encoding="utf-8") as fp:
     readme = fp.read()
 
 
-class BuildExt(build_ext):
-    def run(self):
-        super().run()
-        for lib in ["Com", "ca", "dbCore"]:
-            to = os.path.join(self.build_lib, "_whatrecord")
-            from_ = epicscorelibs.path.get_lib(lib)
-            print(f"Copying {from_} to {to}...")
-            shutil.copy2(from_, to)
-
-
 setup(
-    name='epicsmacrolib',
+    name="epicsmacrolib",
     version=versioneer.get_version(),
     cmdclass=versioneer.get_cmdclass(),
-    license='BSD',
-    author='SLAC National Accelerator Laboratory',
-    packages=find_packages(exclude=['docs', 'tests']),
-    description='epics-base compliant macro tools',
+    license="BSD",
+    author="SLAC National Accelerator Laboratory",
+    packages=find_packages(exclude=["docs", "tests"]),
+    description="epics-base compliant macro tools",
     long_description=readme,
     long_description_content_type="text/x-rst",
-    url='https://github.com/pcdshub/epicsmacrolib',  # noqa
+    url="https://github.com/pcdshub/epicsmacrolib",  # noqa
     entry_points={
         "console_scripts": [
             "epicsmacrolib=epicsmacrolib.bin.main:main",
@@ -152,7 +151,7 @@ setup(
     },
     include_package_data=True,
     package_data={
-        'epicsmacrolib': [
+        "epicsmacrolib": [
             # When adding files here, remember to update MANIFEST.in as well,
             # or else they will not be included in the distribution on PyPI!
             # 'path/to/data_file',
@@ -160,10 +159,10 @@ setup(
     },
     install_requires=requirements,
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
-        'Natural Language :: English',
-        'Programming Language :: Python :: 3',
+        "Development Status :: 2 - Pre-Alpha",
+        "Natural Language :: English",
+        "Programming Language :: Python :: 3",
     ],
-    ext_modules=get_extensions() if epicscorelibs is not None else [],
+    ext_modules=get_extensions(),  #  if epicscorelibs is not None else [],
 )
 

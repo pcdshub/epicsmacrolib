@@ -4,8 +4,8 @@ import contextlib
 import os
 from typing import Dict, Optional, Union
 
-cimport epicscorelibs
-cimport epicscorelibs.Com
+# cimport epicscorelibs
+# cimport epicscorelibs.Com
 from libc.stdlib cimport free, malloc
 
 

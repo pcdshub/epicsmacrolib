@@ -1,11 +1,12 @@
 [build-system]
 requires = [
     "cython",
-    "epicscorelibs",
+#     "epicscorelibs",
     "setuptools",
-    "setuptools_dso",
+#     "setuptools_dso",
     "wheel",
 ]
+# build-backend = "epicsmacrolib_build:main"
 
 [tool.pytest.ini_options]
 minversion = "6.0"

@@ -4,17 +4,14 @@
 {
     "distutils": {
         "include_dirs": [
-            "/private/var/folders/9t/8vhvhgv55mjgfd84rczmr811793f3f/T/pip-build-env-jrr8ro8w/overlay/lib/python3.10/site-packages/epicscorelibs",
-            "/private/var/folders/9t/8vhvhgv55mjgfd84rczmr811793f3f/T/pip-build-env-jrr8ro8w/overlay/lib/python3.10/site-packages/epicscorelibs/include",
-            "include"
+            "/Users/klauer/Repos/epicsmacrolib/src"
         ],
         "language": "c++",
         "libraries": [
-            "Com",
-            "dbCore"
+            "maclib"
         ],
         "library_dirs": [
-            "/private/var/folders/9t/8vhvhgv55mjgfd84rczmr811793f3f/T/pip-build-env-jrr8ro8w/overlay/lib/python3.10/site-packages/epicscorelibs/lib"
+            "/Users/klauer/Repos/epicsmacrolib/src"
         ],
         "name": "epicsmacrolib.iocsh",
         "sources": [

@@ -1,1 +1,0 @@
-#define LIBCOM_API

@@ -5,21 +5,21 @@
     "distutils": {
         "depends": [],
         "include_dirs": [
-            "/private/var/folders/9t/8vhvhgv55mjgfd84rczmr811793f3f/T/pip-build-env-tfu7r06w/overlay/lib/python3.10/site-packages/epicscorelibs",
-            "/private/var/folders/9t/8vhvhgv55mjgfd84rczmr811793f3f/T/pip-build-env-tfu7r06w/overlay/lib/python3.10/site-packages/epicscorelibs/include",
-            "include"
+            "./src"
         ],
         "language": "c++",
-        "libraries": [
-            "Com",
-            "dbCore"
-        ],
         "library_dirs": [
-            "/private/var/folders/9t/8vhvhgv55mjgfd84rczmr811793f3f/T/pip-build-env-tfu7r06w/overlay/lib/python3.10/site-packages/epicscorelibs/lib"
+            "./src"
         ],
         "name": "epicsmacrolib._macro",
         "sources": [
-            "epicsmacrolib/_macro.pyx"
+            "epicsmacrolib/_macro.pyx",
+            "src/macUtil.c",
+            "src/ellLib.c",
+            "src/errlog.c",
+            "src/osdAssert.c",
+            "src/macEnv.c",
+            "src/macCore.c"
         ]
     },
     "module_name": "epicsmacrolib._macro"
@@ -781,17 +781,6 @@ static CYTHON_INLINE float __PYX_NAN() {
 #define __PYX_HAVE__epicsmacrolib___macro
 #define __PYX_HAVE_API__epicsmacrolib___macro
 /* Early includes */
-#include <epicsTypes.h>
-#include <epicsTime.h>
-#include <errSymTbl.h>
-#include <errlog.h>
-#include <iocsh.h>
-#include <iocshRegisterCommon.h>
-#include <epicsFindSymbol.h>
-#include <epicsExit.h>
-#include <initHooks.h>
-#include <alarm.h>
-#include <epicsMutex.h>
 #include <string.h>
 #include <stdlib.h>
 #include <ellLib.h>
@@ -1755,10 +1744,6 @@ static int __Pyx_check_binary_version(void);
 static int __Pyx_InitStrings(__Pyx_StringTabEntry *t);
 
 static int __pyx_f_13epicsmacrolib_6_macro_13_MacroContext_add_macro(struct __pyx_obj_13epicsmacrolib_6_macro__MacroContext *__pyx_v_self, PyObject *__pyx_v_key, PyObject *__pyx_v_value); /* proto*/
-
-/* Module declarations from 'epicscorelibs.Com' */
-
-/* Module declarations from 'epicscorelibs' */
 
 /* Module declarations from 'libc.string' */
 
@@ -7577,7 +7562,7 @@ if (!__Pyx_RefNanny) {
  * import os
  * from typing import Dict, Optional, Union             # <<<<<<<<<<<<<<
  * 
- * cimport epicscorelibs
+ * # cimport epicscorelibs
  */
   __pyx_t_1 = PyList_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 5, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
