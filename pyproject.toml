@@ -10,4 +10,3 @@ minversion = "6.0"
 testpaths = [
     "epicsmacrolib/tests",
 ]
-asyncio_mode = "auto"
