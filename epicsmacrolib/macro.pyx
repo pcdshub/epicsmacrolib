@@ -1,10 +1,19 @@
 # cython: language_level=3
 
 import contextlib
+import dataclasses
 import os
 from typing import Dict, Optional, Union
 
 from libc.stdlib cimport free, malloc
+
+
+@dataclasses.dataclass(frozen=True)
+class MacroEntry:
+    name: str
+    rawval: str
+    value: str
+    type: str
 
 
 cdef extern from "<ellLib.h>" nogil:
@@ -71,8 +80,6 @@ cdef class _MacroContext:
         use_environment=True,
         show_warnings=False,
         string_encoding: str = "latin-1",
-        macro_string: Optional[str] = None,
-        macros: Optional[Dict[str, str]] = None,
     ):
         cdef const char **env_pairs = ["", "environ", NULL, NULL]
 
@@ -82,12 +89,6 @@ cdef class _MacroContext:
         self.show_warnings = show_warnings
         self.string_encoding = string_encoding
         self.use_environment = bool(use_environment)
-
-        if macros:
-            self.define(**macros)
-
-        if macro_string:
-            self.define_from_string(macro_string)
 
     @property
     def show_warnings(self):
@@ -107,15 +108,13 @@ cdef class _MacroContext:
             macDeleteHandle(self.handle)
             self.handle = NULL
 
-    @contextlib.contextmanager
-    def scoped(self, **macros):
-        """A context manager to define macros (as kwargs) in a given scope."""
+    def _push_scope(self):
         macPushScope(self.handle)
-        self.define(**macros)
-        yield
+
+    def _pop_scope(self):
         macPopScope(self.handle)
 
-    def definitions_to_dict(self, defn: Union[str, bytes], string_encoding: str = "") -> Dict[str, str]:
+    def _definitions_to_dict(self, defn: Union[str, bytes], string_encoding: str = "") -> Dict[str, str]:
         """Convert a definition string of the form ``A=value_a,B=value_a`` to a dictionary."""
         cdef char **pairs = NULL
         cdef int count
@@ -138,31 +137,25 @@ cdef class _MacroContext:
         free(pairs)
         return result
 
-    def define_from_string(self, macro_string):
-        """Define macros with the standard VAR=VALUE syntax."""
-        definitions = self.definitions_to_dict(macro_string)
-        self.define(**definitions)
-        return definitions
-
     def define(self, **macros):
         """Use kwargs to define macros."""
         for key, value in macros.items():
-            self.add_macro(
+            self._add_encoded_macro(
                 str(key).encode(self.string_encoding),
                 str(value).encode(self.string_encoding)
             )
 
-    cdef int add_macro(self, key: bytes, value: bytes):
+    cdef int _add_encoded_macro(self, key: bytes, value: bytes):
         cdef char** pairs = [key, value, NULL];
         return macInstallMacros(self.handle, pairs)
 
-    def get_macro_details(self) -> Dict[str, str]:
+    def get_macro_details(self) -> Dict[str, MacroEntry]:
         """
-        Get a dictionary of full macro details.
+        Get a dictionary of all MacroEntry items.
 
         This represents the internal state of the MAC_ENTRY nodes.
 
-        Included keys: name, rawval, value, type.
+        Entry attributes include: name, rawval, value, type.
         """
         encoding = self.string_encoding
         result = {}
@@ -170,21 +163,14 @@ cdef class _MacroContext:
         while entry != NULL:
             if entry.name:
                 name = (entry.name or b"").decode(encoding)
-                result[name] = {
-                    "name": name,
-                    "rawval": (entry.rawval or b"").decode(encoding),
-                    "value": (entry.value or b"").decode(encoding),
-                    "type": (entry.type or b"").decode(encoding),
-                }
+                result[name] = MacroEntry(
+                    name=name,
+                    rawval=(entry.rawval or b"").decode(encoding),
+                    value=(entry.value or b"").decode(encoding),
+                    type=(entry.type or b"").decode(encoding),
+                )
             entry = <MAC_ENTRY*>entry.node.next
         return result
-
-    def get_macros(self) -> Dict[str, str]:
-        """Get macros as a dictionary."""
-        return dict(
-            (macro["name"], macro["value"])
-            for macro in self.get_macro_details().values()
-        )
 
     def __len__(self):
         cdef MAC_ENTRY* entry = <MAC_ENTRY*>self.handle.list.node.next
@@ -224,7 +210,7 @@ cdef class _MacroContext:
     def __setitem__(self, item, value):
         self.define(**{item: value})
 
-    def expand_with_length(
+    def _expand_with_length(
         self, value: str, max_length: int = 1024, *, empty_on_failure: bool = False
     ) -> str:
         """
@@ -244,7 +230,7 @@ cdef class _MacroContext:
         finally:
             free(buf)
 
-    def expand(self, value: str, *, empty_on_failure: bool = False) -> str:
+    def _expand(self, value: str, *, empty_on_failure: bool = False) -> str:
         """Expand a string, using the implicit buffer length of 1024 used in EPICS."""
         assert len(value) < 1024, "For large strings, use `expand_with_length`"
         cdef char buf[1024]
@@ -254,10 +240,3 @@ cdef class _MacroContext:
             if empty_on_failure:
                 return ""
         return buf.decode(self.string_encoding)
-
-    def expand_by_line(self, contents: str, *, delimiter: str = "\n"):
-        """Expand a multi-line string, line-by-line."""
-        return delimiter.join(
-            self.expand(line)
-            for line in contents.splitlines()
-        )
