@@ -26,4 +26,4 @@ env:
     - PIP_EXTRAS="./"
 
 import:
-  - pcdshub/pcds-ci-helpers:travis/shared_configs/standard-python-conda.yml
+  - klauer/pcds-ci-helpers:travis/shared_configs/standard-python-conda.yml@ref_pytest-cov
