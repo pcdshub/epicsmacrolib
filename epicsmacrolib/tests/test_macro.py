@@ -271,3 +271,39 @@ def test_python_niceties():
     }
 
     assert set(ctx) == {"B", "C"}
+
+
+def test_readme_example():
+    from epicsmacrolib import MacroContext
+
+    ctx = MacroContext(use_environment=True)
+    ctx.define(TEST="A")
+    print(ctx.expand("TEST=$(TEST) SHELL=$(SHELL)"))
+    # TEST=A SHELL=/bin/bash
+
+    ctx = MacroContext(use_environment=False)
+    ctx.define_from_string("A=5,B=6")
+    ctx.define(C="7")
+    print(ctx.expand("$(A) $(B) ${C} ${D=5} ${E}"))
+    # -> 5 6 7 5 $(E)
+
+    ctx = MacroContext(use_environment=False, show_warnings=True)
+    ctx.define_from_string("A=5,B=6")
+    ctx.define(C="7")
+    print(ctx.expand("$(A) $(B) ${C} ${D=5} ${E}"))
+    # -> 5 6 7 5 $(E,undefined)
+
+    ctx.define_from_string("A=5,B=$(B)")
+    print(ctx.expand("$(A) $(B)"))
+    # -> 5 $(B,recursive)
+
+    with ctx.scoped(A="10", B="0"):
+        print(ctx.expand("$(A)"))
+        # -> 10
+        with ctx.scoped(A="0"):
+            print(ctx.expand("$(A)"))
+            # -> 0
+        print(ctx.expand("$(A)"))
+        # -> 10
+
+

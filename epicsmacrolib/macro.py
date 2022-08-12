@@ -43,8 +43,8 @@ class MacroContext(_MacroContext, collections.abc.MutableMapping):
 
     def __init__(
         self,
-        use_environment=True,
-        show_warnings=False,
+        use_environment: bool = True,
+        show_warnings: bool = False,
         string_encoding: str = "latin-1",
         macro_string: Optional[str] = None,
         macros: Optional[Dict[str, str]] = None,
@@ -62,7 +62,7 @@ class MacroContext(_MacroContext, collections.abc.MutableMapping):
             self.define_from_string(macro_string)
 
     @contextlib.contextmanager
-    def scoped(self, **macros):
+    def scoped(self, **macros: str):
         """A context manager to define macros (as kwargs) in a given scope."""
         self._push_scope()
         try:
@@ -104,7 +104,7 @@ class MacroContext(_MacroContext, collections.abc.MutableMapping):
         self.define(**definitions)
         return definitions
 
-    def define(self, **macros: Dict[str, str]) -> Dict[str, str]:
+    def define(self, **macros: str) -> Dict[str, str]:
         """Use kwargs to define macros."""
         return super().define(**macros)
 
