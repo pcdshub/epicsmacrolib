@@ -2,6 +2,7 @@ include AUTHORS.rst
 include CONTRIBUTING.rst
 include LICENSE
 include README.rst
+include pyproject.toml
 include requirements.txt
 
 recursive-exclude * __pycache__
@@ -10,6 +11,14 @@ recursive-exclude * *.py[co]
 recursive-include docs *.rst conf.py Makefile make.bat
 
 include versioneer.py
+
+include src/*.h
+include src/*.c
+include src/LICENSE
+include src/macLibNOTES
+include src/macLibREADME
+include src/LICENSE
+include src/README
 
 # If including data files in the package, add a single file/glob:
 #
