@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-#ifndef _H_ERRLOG
-#define _H_ERRLOG
+#ifndef _H_COMAPI
+#define _H_COMAPI
 
 #if defined(_WIN32) || defined(__CYGWIN__)
 
@@ -39,7 +39,8 @@
 #define TRUE 1
 #define FALSE 0
 
+// Not using dbmf allocations; malloc/free are good enough for us
 #define dbmfMalloc malloc
 #define dbmfFree free
 
-#endif /* $guard */
+#endif
