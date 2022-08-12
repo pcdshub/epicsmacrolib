@@ -89,9 +89,8 @@ def get_extensions():
         ),
     ]
 
-    CYTHONIZE = bool(int(os.getenv("CYTHONIZE", "0")))
-
-    if CYTHONIZE:
+    should_cythonize = bool(int(os.getenv("CYTHONIZE", "0")))
+    if should_cythonize:
         from Cython.Build import cythonize
         compiler_directives = {"language_level": 3, "embedsignature": True}
         return cythonize(extensions, compiler_directives=compiler_directives)

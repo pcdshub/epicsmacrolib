@@ -10,6 +10,8 @@ Welcome to epicsmacrolib's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   examples
+
 .. toctree::
    :maxdepth: 1
    :caption: Links
