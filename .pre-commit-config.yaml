@@ -4,7 +4,7 @@ exclude: |
     (?x)^(
         versioneer.py|
         docs/source/conf.py|
-        epicsmaclib/_version.py|
+        epicsmacrolib/_version.py|
     )$
 
 repos:
