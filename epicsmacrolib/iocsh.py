@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from typing import cast, Any, Dict, List, Optional, TypedDict
+from typing import Dict, List, Optional, TypedDict, cast
 
 from _epicsmacrolib.iocsh import split_iocsh_line as _split_iocsh_line
 
@@ -52,12 +52,13 @@ def split_iocsh_line(
         ifs=ifs,
         num_redirects=num_redirects,
     )
+    split = IocshSplit(argv=res["argv"], redirects=None, error=res["error"])
+
     redirects = res["redirects"]
-    split = IocshSplit(**res)
     if redirects is not None:
         redirects = cast(Dict[int, _IocshRedirect], redirects)
         split.redirects = {
-            idx: IocshRedirect(**redirect) 
+            idx: IocshRedirect(**redirect)
             for idx, redirect in redirects.items()
         }
     return split

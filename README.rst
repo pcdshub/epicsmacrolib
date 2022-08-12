@@ -88,4 +88,3 @@ Examples
     #     redirects={1: IocshRedirect(fileno=1, name="output_filename", mode="w")},
     #     error=None,
     # )
-

@@ -281,4 +281,3 @@ epicsStdCall macInstallMacros(
     /* return number of macros defined */
     return n;
 }
-

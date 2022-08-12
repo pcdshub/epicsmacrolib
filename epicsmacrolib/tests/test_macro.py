@@ -305,5 +305,3 @@ def test_readme_example():
             # -> 0
         print(ctx.expand("$(A)"))
         # -> 10
-
-

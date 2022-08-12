@@ -1,14 +1,11 @@
 import os
-import shutil
-import sys
-from distutils.core import setup
-from distutils.extension import Extension
-from os import path
 import pathlib
+import sys
+from os import path
+
+from setuptools import Extension, find_packages, setup
 
 import versioneer
-from setuptools import Extension, find_packages, setup
-from setuptools.command.build_ext import build_ext
 
 min_version = (3, 7)
 
@@ -54,21 +51,6 @@ if git_requirements:
     print("\n".join(f"* {r}" for r in git_requirements))
     print()
 
-if os.environ.get("CONDA_BUILD_STATE") == "RENDER":
-    ...
-else:
-    try:
-        from Cython.Build import cythonize
-    except (ImportError, ModuleNotFoundError, Exception) as ex:
-        print(
-            f"""\
-Sorry, the following are required to build `epicsmacrolib`. Please install these first:
-    cython
-{type(ex).__name__}: {ex}
-""",
-            file=sys.stderr,
-        )
-        raise
 
 # https://cython.readthedocs.io/en/latest/src/userguide/source_files_and_compilation.html#distributing-cython-modules
 def no_cythonize(extensions, **_ignore):
@@ -107,9 +89,10 @@ def get_extensions():
         ),
     ]
 
-    CYTHONIZE = bool(int(os.getenv("CYTHONIZE", "1")))
+    CYTHONIZE = bool(int(os.getenv("CYTHONIZE", "0")))
 
     if CYTHONIZE:
+        from Cython.Build import cythonize
         compiler_directives = {"language_level": 3, "embedsignature": True}
         return cythonize(extensions, compiler_directives=compiler_directives)
     return no_cythonize(extensions)

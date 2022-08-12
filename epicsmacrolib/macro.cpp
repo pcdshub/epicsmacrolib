@@ -1005,8 +1005,8 @@ struct __pyx_t_14_epicsmacrolib_5macro_MAC_ENTRY;
 typedef struct __pyx_t_14_epicsmacrolib_5macro_MAC_ENTRY __pyx_t_14_epicsmacrolib_5macro_MAC_ENTRY;
 
 /* "epicsmacrolib/macro.pyx":29
- * 
- * 
+ *
+ *
  * ctypedef struct MAC_ENTRY:             # <<<<<<<<<<<<<<
  *     # prev and next pointers
  *     ELLNODE     node
@@ -1025,8 +1025,8 @@ struct __pyx_t_14_epicsmacrolib_5macro_MAC_ENTRY {
 };
 
 /* "epicsmacrolib/macro.pyx":72
- * 
- * 
+ *
+ *
  * cdef class _MacroContext:             # <<<<<<<<<<<<<<
  *     cdef MAC_HANDLE *handle
  *     _show_warnings: bool
@@ -1043,7 +1043,7 @@ struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext {
 
 /* "epicsmacrolib/macro.pyx":184
  *         return count
- * 
+ *
  *     def __iter__(self):             # <<<<<<<<<<<<<<
  *         cdef MAC_ENTRY* entry = <MAC_ENTRY*>self.handle.list.node.next
  *         if self.use_environment:
@@ -1057,8 +1057,8 @@ struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct____iter__ {
 
 
 /* "epicsmacrolib/macro.pyx":72
- * 
- * 
+ *
+ *
  * cdef class _MacroContext:             # <<<<<<<<<<<<<<
  *     cdef MAC_HANDLE *handle
  *     _show_warnings: bool
@@ -1822,7 +1822,7 @@ static PyObject *__pyx_tuple__5;
 
 /* "epicsmacrolib/macro.pyx":78
  *     cdef int use_environment
- * 
+ *
  *     def __init__(             # <<<<<<<<<<<<<<
  *         self,
  *         use_environment=True,
@@ -1927,7 +1927,7 @@ static int __pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_1__init__(PyObject *
 
   /* "epicsmacrolib/macro.pyx":78
  *     cdef int use_environment
- * 
+ *
  *     def __init__(             # <<<<<<<<<<<<<<
  *         self,
  *         use_environment=True,
@@ -1959,7 +1959,7 @@ static int __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext___init__(struct __py
  *         string_encoding: str = "latin-1",
  *     ):
  *         cdef const char **env_pairs = ["", "environ", NULL, NULL]             # <<<<<<<<<<<<<<
- * 
+ *
  *         if macCreateHandle(&self.handle, env_pairs if use_environment else NULL):
  */
   __pyx_t_1[0] = ((char const *)"");
@@ -1970,10 +1970,10 @@ static int __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext___init__(struct __py
 
   /* "epicsmacrolib/macro.pyx":86
  *         cdef const char **env_pairs = ["", "environ", NULL, NULL]
- * 
+ *
  *         if macCreateHandle(&self.handle, env_pairs if use_environment else NULL):             # <<<<<<<<<<<<<<
  *             raise RuntimeError("Failed to initialize the handle")
- * 
+ *
  */
   __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_v_use_environment); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 86, __pyx_L1_error)
   if (__pyx_t_3) {
@@ -1985,10 +1985,10 @@ static int __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext___init__(struct __py
   if (unlikely(__pyx_t_3)) {
 
     /* "epicsmacrolib/macro.pyx":87
- * 
+ *
  *         if macCreateHandle(&self.handle, env_pairs if use_environment else NULL):
  *             raise RuntimeError("Failed to initialize the handle")             # <<<<<<<<<<<<<<
- * 
+ *
  *         self.show_warnings = show_warnings
  */
     __pyx_t_4 = __Pyx_PyObject_Call(__pyx_builtin_RuntimeError, __pyx_tuple_, NULL); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 87, __pyx_L1_error)
@@ -1999,16 +1999,16 @@ static int __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext___init__(struct __py
 
     /* "epicsmacrolib/macro.pyx":86
  *         cdef const char **env_pairs = ["", "environ", NULL, NULL]
- * 
+ *
  *         if macCreateHandle(&self.handle, env_pairs if use_environment else NULL):             # <<<<<<<<<<<<<<
  *             raise RuntimeError("Failed to initialize the handle")
- * 
+ *
  */
   }
 
   /* "epicsmacrolib/macro.pyx":89
  *             raise RuntimeError("Failed to initialize the handle")
- * 
+ *
  *         self.show_warnings = show_warnings             # <<<<<<<<<<<<<<
  *         self.string_encoding = string_encoding
  *         self.use_environment = bool(use_environment)
@@ -2016,11 +2016,11 @@ static int __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext___init__(struct __py
   if (__Pyx_PyObject_SetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_show_warnings, __pyx_v_show_warnings) < 0) __PYX_ERR(0, 89, __pyx_L1_error)
 
   /* "epicsmacrolib/macro.pyx":90
- * 
+ *
  *         self.show_warnings = show_warnings
  *         self.string_encoding = string_encoding             # <<<<<<<<<<<<<<
  *         self.use_environment = bool(use_environment)
- * 
+ *
  */
   __Pyx_INCREF(__pyx_v_string_encoding);
   __Pyx_GIVEREF(__pyx_v_string_encoding);
@@ -2032,7 +2032,7 @@ static int __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext___init__(struct __py
  *         self.show_warnings = show_warnings
  *         self.string_encoding = string_encoding
  *         self.use_environment = bool(use_environment)             # <<<<<<<<<<<<<<
- * 
+ *
  *     @property
  */
   __pyx_t_3 = __Pyx_PyObject_IsTrue(__pyx_v_use_environment); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 91, __pyx_L1_error)
@@ -2040,7 +2040,7 @@ static int __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext___init__(struct __py
 
   /* "epicsmacrolib/macro.pyx":78
  *     cdef int use_environment
- * 
+ *
  *     def __init__(             # <<<<<<<<<<<<<<
  *         self,
  *         use_environment=True,
@@ -2059,11 +2059,11 @@ static int __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext___init__(struct __py
 }
 
 /* "epicsmacrolib/macro.pyx":94
- * 
+ *
  *     @property
  *     def show_warnings(self):             # <<<<<<<<<<<<<<
  *         return self._show_warnings
- * 
+ *
  */
 
 /* Python wrapper */
@@ -2088,7 +2088,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_13show_warning
  *     @property
  *     def show_warnings(self):
  *         return self._show_warnings             # <<<<<<<<<<<<<<
- * 
+ *
  *     @show_warnings.setter
  */
   __Pyx_XDECREF(__pyx_r);
@@ -2097,11 +2097,11 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_13show_warning
   goto __pyx_L0;
 
   /* "epicsmacrolib/macro.pyx":94
- * 
+ *
  *     @property
  *     def show_warnings(self):             # <<<<<<<<<<<<<<
  *         return self._show_warnings
- * 
+ *
  */
 
   /* function exit code */
@@ -2112,7 +2112,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_13show_warning
 }
 
 /* "epicsmacrolib/macro.pyx":98
- * 
+ *
  *     @show_warnings.setter
  *     def show_warnings(self, value: bool):             # <<<<<<<<<<<<<<
  *         self._show_warnings = bool(value)
@@ -2164,7 +2164,7 @@ static int __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_13show_warnings_2__s
  *         self._show_warnings = bool(value)
  *         suppress = not self._show_warnings             # <<<<<<<<<<<<<<
  *         macSuppressWarning(self.handle, suppress)
- * 
+ *
  */
   __pyx_t_1 = __Pyx_PyObject_IsTrue(__pyx_v_self->_show_warnings); if (unlikely(__pyx_t_1 < 0)) __PYX_ERR(0, 100, __pyx_L1_error)
   __pyx_v_suppress = (!__pyx_t_1);
@@ -2173,13 +2173,13 @@ static int __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_13show_warnings_2__s
  *         self._show_warnings = bool(value)
  *         suppress = not self._show_warnings
  *         macSuppressWarning(self.handle, suppress)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __cinit__(self):
  */
   macSuppressWarning(__pyx_v_self->handle, __pyx_v_suppress);
 
   /* "epicsmacrolib/macro.pyx":98
- * 
+ *
  *     @show_warnings.setter
  *     def show_warnings(self, value: bool):             # <<<<<<<<<<<<<<
  *         self._show_warnings = bool(value)
@@ -2200,10 +2200,10 @@ static int __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_13show_warnings_2__s
 
 /* "epicsmacrolib/macro.pyx":103
  *         macSuppressWarning(self.handle, suppress)
- * 
+ *
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
  *         self.handle = NULL
- * 
+ *
  */
 
 /* Python wrapper */
@@ -2228,20 +2228,20 @@ static int __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_2__cinit__(struct __
   __Pyx_RefNannySetupContext("__cinit__", 0);
 
   /* "epicsmacrolib/macro.pyx":104
- * 
+ *
  *     def __cinit__(self):
  *         self.handle = NULL             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __dealloc__(self):
  */
   __pyx_v_self->handle = NULL;
 
   /* "epicsmacrolib/macro.pyx":103
  *         macSuppressWarning(self.handle, suppress)
- * 
+ *
  *     def __cinit__(self):             # <<<<<<<<<<<<<<
  *         self.handle = NULL
- * 
+ *
  */
 
   /* function exit code */
@@ -2252,7 +2252,7 @@ static int __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_2__cinit__(struct __
 
 /* "epicsmacrolib/macro.pyx":106
  *         self.handle = NULL
- * 
+ *
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
  *         if self.handle is not NULL:
  *             macDeleteHandle(self.handle)
@@ -2275,7 +2275,7 @@ static void __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_4__dealloc__(struct
   __Pyx_RefNannySetupContext("__dealloc__", 0);
 
   /* "epicsmacrolib/macro.pyx":107
- * 
+ *
  *     def __dealloc__(self):
  *         if self.handle is not NULL:             # <<<<<<<<<<<<<<
  *             macDeleteHandle(self.handle)
@@ -2289,7 +2289,7 @@ static void __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_4__dealloc__(struct
  *         if self.handle is not NULL:
  *             macDeleteHandle(self.handle)             # <<<<<<<<<<<<<<
  *             self.handle = NULL
- * 
+ *
  */
     (void)(macDeleteHandle(__pyx_v_self->handle));
 
@@ -2297,13 +2297,13 @@ static void __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_4__dealloc__(struct
  *         if self.handle is not NULL:
  *             macDeleteHandle(self.handle)
  *             self.handle = NULL             # <<<<<<<<<<<<<<
- * 
+ *
  *     def _push_scope(self):
  */
     __pyx_v_self->handle = NULL;
 
     /* "epicsmacrolib/macro.pyx":107
- * 
+ *
  *     def __dealloc__(self):
  *         if self.handle is not NULL:             # <<<<<<<<<<<<<<
  *             macDeleteHandle(self.handle)
@@ -2313,7 +2313,7 @@ static void __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_4__dealloc__(struct
 
   /* "epicsmacrolib/macro.pyx":106
  *         self.handle = NULL
- * 
+ *
  *     def __dealloc__(self):             # <<<<<<<<<<<<<<
  *         if self.handle is not NULL:
  *             macDeleteHandle(self.handle)
@@ -2325,10 +2325,10 @@ static void __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_4__dealloc__(struct
 
 /* "epicsmacrolib/macro.pyx":111
  *             self.handle = NULL
- * 
+ *
  *     def _push_scope(self):             # <<<<<<<<<<<<<<
  *         macPushScope(self.handle)
- * 
+ *
  */
 
 /* Python wrapper */
@@ -2351,20 +2351,20 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_6_push_scope(s
   __Pyx_RefNannySetupContext("_push_scope", 0);
 
   /* "epicsmacrolib/macro.pyx":112
- * 
+ *
  *     def _push_scope(self):
  *         macPushScope(self.handle)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def _pop_scope(self):
  */
   macPushScope(__pyx_v_self->handle);
 
   /* "epicsmacrolib/macro.pyx":111
  *             self.handle = NULL
- * 
+ *
  *     def _push_scope(self):             # <<<<<<<<<<<<<<
  *         macPushScope(self.handle)
- * 
+ *
  */
 
   /* function exit code */
@@ -2376,10 +2376,10 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_6_push_scope(s
 
 /* "epicsmacrolib/macro.pyx":114
  *         macPushScope(self.handle)
- * 
+ *
  *     def _pop_scope(self):             # <<<<<<<<<<<<<<
  *         macPopScope(self.handle)
- * 
+ *
  */
 
 /* Python wrapper */
@@ -2402,20 +2402,20 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_8_pop_scope(st
   __Pyx_RefNannySetupContext("_pop_scope", 0);
 
   /* "epicsmacrolib/macro.pyx":115
- * 
+ *
  *     def _pop_scope(self):
  *         macPopScope(self.handle)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def _definitions_to_dict(self, defn: Union[str, bytes], string_encoding: str = "") -> Dict[str, str]:
  */
   macPopScope(__pyx_v_self->handle);
 
   /* "epicsmacrolib/macro.pyx":114
  *         macPushScope(self.handle)
- * 
+ *
  *     def _pop_scope(self):             # <<<<<<<<<<<<<<
  *         macPopScope(self.handle)
- * 
+ *
  */
 
   /* function exit code */
@@ -2427,7 +2427,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_8_pop_scope(st
 
 /* "epicsmacrolib/macro.pyx":117
  *         macPopScope(self.handle)
- * 
+ *
  *     def _definitions_to_dict(self, defn: Union[str, bytes], string_encoding: str = "") -> Dict[str, str]:             # <<<<<<<<<<<<<<
  *         """Convert a definition string of the form ``A=value_a,B=value_a`` to a dictionary."""
  *         cdef char **pairs = NULL
@@ -2539,15 +2539,15 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_10_definitions
  *         """Convert a definition string of the form ``A=value_a,B=value_a`` to a dictionary."""
  *         cdef char **pairs = NULL             # <<<<<<<<<<<<<<
  *         cdef int count
- * 
+ *
  */
   __pyx_v_pairs = NULL;
 
   /* "epicsmacrolib/macro.pyx":122
  *         cdef int count
- * 
+ *
  *         string_encoding = string_encoding or self.string_encoding             # <<<<<<<<<<<<<<
- * 
+ *
  *         if not isinstance(defn, bytes):
  */
   __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_string_encoding); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 122, __pyx_L1_error)
@@ -2565,20 +2565,20 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_10_definitions
 
   /* "epicsmacrolib/macro.pyx":124
  *         string_encoding = string_encoding or self.string_encoding
- * 
+ *
  *         if not isinstance(defn, bytes):             # <<<<<<<<<<<<<<
  *             defn = defn.encode(string_encoding)
- * 
+ *
  */
-  __pyx_t_2 = PyBytes_Check(__pyx_v_defn); 
+  __pyx_t_2 = PyBytes_Check(__pyx_v_defn);
   __pyx_t_3 = ((!(__pyx_t_2 != 0)) != 0);
   if (__pyx_t_3) {
 
     /* "epicsmacrolib/macro.pyx":125
- * 
+ *
  *         if not isinstance(defn, bytes):
  *             defn = defn.encode(string_encoding)             # <<<<<<<<<<<<<<
- * 
+ *
  *         count = macParseDefns(self.handle, defn, &pairs)
  */
     __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_defn, __pyx_n_s_encode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 125, __pyx_L1_error)
@@ -2603,16 +2603,16 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_10_definitions
 
     /* "epicsmacrolib/macro.pyx":124
  *         string_encoding = string_encoding or self.string_encoding
- * 
+ *
  *         if not isinstance(defn, bytes):             # <<<<<<<<<<<<<<
  *             defn = defn.encode(string_encoding)
- * 
+ *
  */
   }
 
   /* "epicsmacrolib/macro.pyx":127
  *             defn = defn.encode(string_encoding)
- * 
+ *
  *         count = macParseDefns(self.handle, defn, &pairs)             # <<<<<<<<<<<<<<
  *         if pairs == NULL or count <= 0:
  *             return {}
@@ -2621,11 +2621,11 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_10_definitions
   __pyx_v_count = macParseDefns(__pyx_v_self->handle, __pyx_t_6, (&__pyx_v_pairs));
 
   /* "epicsmacrolib/macro.pyx":128
- * 
+ *
  *         count = macParseDefns(self.handle, defn, &pairs)
  *         if pairs == NULL or count <= 0:             # <<<<<<<<<<<<<<
  *             return {}
- * 
+ *
  */
   __pyx_t_2 = ((__pyx_v_pairs == NULL) != 0);
   if (!__pyx_t_2) {
@@ -2642,7 +2642,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_10_definitions
  *         count = macParseDefns(self.handle, defn, &pairs)
  *         if pairs == NULL or count <= 0:
  *             return {}             # <<<<<<<<<<<<<<
- * 
+ *
  *         result = {}
  */
     __Pyx_XDECREF(__pyx_r);
@@ -2653,17 +2653,17 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_10_definitions
     goto __pyx_L0;
 
     /* "epicsmacrolib/macro.pyx":128
- * 
+ *
  *         count = macParseDefns(self.handle, defn, &pairs)
  *         if pairs == NULL or count <= 0:             # <<<<<<<<<<<<<<
  *             return {}
- * 
+ *
  */
   }
 
   /* "epicsmacrolib/macro.pyx":131
  *             return {}
- * 
+ *
  *         result = {}             # <<<<<<<<<<<<<<
  *         for idx in range(count):
  *             variable = (pairs[2 * idx] or b'').decode(string_encoding)
@@ -2674,7 +2674,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_10_definitions
   __pyx_t_1 = 0;
 
   /* "epicsmacrolib/macro.pyx":132
- * 
+ *
  *         result = {}
  *         for idx in range(count):             # <<<<<<<<<<<<<<
  *             variable = (pairs[2 * idx] or b'').decode(string_encoding)
@@ -2776,7 +2776,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_10_definitions
  *             variable = (pairs[2 * idx] or b'').decode(string_encoding)
  *             value = (pairs[2 * idx + 1] or b'').decode(string_encoding)             # <<<<<<<<<<<<<<
  *             result[variable] = value
- * 
+ *
  */
     __pyx_t_5 = PyNumber_Multiply(__pyx_int_2, __pyx_v_idx); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 134, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
@@ -2821,13 +2821,13 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_10_definitions
  *             variable = (pairs[2 * idx] or b'').decode(string_encoding)
  *             value = (pairs[2 * idx + 1] or b'').decode(string_encoding)
  *             result[variable] = value             # <<<<<<<<<<<<<<
- * 
+ *
  *         free(pairs)
  */
     if (unlikely(PyDict_SetItem(__pyx_v_result, __pyx_v_variable, __pyx_v_value) < 0)) __PYX_ERR(0, 135, __pyx_L1_error)
 
     /* "epicsmacrolib/macro.pyx":132
- * 
+ *
  *         result = {}
  *         for idx in range(count):             # <<<<<<<<<<<<<<
  *             variable = (pairs[2 * idx] or b'').decode(string_encoding)
@@ -2838,18 +2838,18 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_10_definitions
 
   /* "epicsmacrolib/macro.pyx":137
  *             result[variable] = value
- * 
+ *
  *         free(pairs)             # <<<<<<<<<<<<<<
  *         return result
- * 
+ *
  */
   free(__pyx_v_pairs);
 
   /* "epicsmacrolib/macro.pyx":138
- * 
+ *
  *         free(pairs)
  *         return result             # <<<<<<<<<<<<<<
- * 
+ *
  *     def define(self, **macros):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -2859,7 +2859,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_10_definitions
 
   /* "epicsmacrolib/macro.pyx":117
  *         macPopScope(self.handle)
- * 
+ *
  *     def _definitions_to_dict(self, defn: Union[str, bytes], string_encoding: str = "") -> Dict[str, str]:             # <<<<<<<<<<<<<<
  *         """Convert a definition string of the form ``A=value_a,B=value_a`` to a dictionary."""
  *         cdef char **pairs = NULL
@@ -2888,7 +2888,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_10_definitions
 
 /* "epicsmacrolib/macro.pyx":140
  *         return result
- * 
+ *
  *     def define(self, **macros):             # <<<<<<<<<<<<<<
  *         """Use kwargs to define macros."""
  *         for key, value in macros.items():
@@ -2992,7 +2992,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_12define(struc
  *                 str(key).encode(self.string_encoding),
  *                 str(value).encode(self.string_encoding)             # <<<<<<<<<<<<<<
  *             )
- * 
+ *
  */
     __pyx_t_5 = __Pyx_PyObject_CallOneArg(((PyObject *)(&PyUnicode_Type)), __pyx_v_value); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 145, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_5);
@@ -3031,7 +3031,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_12define(struc
 
   /* "epicsmacrolib/macro.pyx":140
  *         return result
- * 
+ *
  *     def define(self, **macros):             # <<<<<<<<<<<<<<
  *         """Use kwargs to define macros."""
  *         for key, value in macros.items():
@@ -3058,7 +3058,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_12define(struc
 
 /* "epicsmacrolib/macro.pyx":148
  *             )
- * 
+ *
  *     cdef int _add_encoded_macro(self, key: bytes, value: bytes):             # <<<<<<<<<<<<<<
  *         cdef char** pairs = [key, value, NULL];
  *         return macInstallMacros(self.handle, pairs)
@@ -3077,11 +3077,11 @@ static int __pyx_f_14_epicsmacrolib_5macro_13_MacroContext__add_encoded_macro(st
   __Pyx_RefNannySetupContext("_add_encoded_macro", 0);
 
   /* "epicsmacrolib/macro.pyx":149
- * 
+ *
  *     cdef int _add_encoded_macro(self, key: bytes, value: bytes):
  *         cdef char** pairs = [key, value, NULL];             # <<<<<<<<<<<<<<
  *         return macInstallMacros(self.handle, pairs)
- * 
+ *
  */
   if (unlikely(__pyx_v_key == Py_None)) {
     PyErr_SetString(PyExc_TypeError, "expected bytes, NoneType found");
@@ -3102,7 +3102,7 @@ static int __pyx_f_14_epicsmacrolib_5macro_13_MacroContext__add_encoded_macro(st
  *     cdef int _add_encoded_macro(self, key: bytes, value: bytes):
  *         cdef char** pairs = [key, value, NULL];
  *         return macInstallMacros(self.handle, pairs)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def get_macro_details(self) -> Dict[str, MacroEntry]:
  */
   __pyx_r = macInstallMacros(__pyx_v_self->handle, __pyx_v_pairs);
@@ -3110,7 +3110,7 @@ static int __pyx_f_14_epicsmacrolib_5macro_13_MacroContext__add_encoded_macro(st
 
   /* "epicsmacrolib/macro.pyx":148
  *             )
- * 
+ *
  *     cdef int _add_encoded_macro(self, key: bytes, value: bytes):             # <<<<<<<<<<<<<<
  *         cdef char** pairs = [key, value, NULL];
  *         return macInstallMacros(self.handle, pairs)
@@ -3127,7 +3127,7 @@ static int __pyx_f_14_epicsmacrolib_5macro_13_MacroContext__add_encoded_macro(st
 
 /* "epicsmacrolib/macro.pyx":152
  *         return macInstallMacros(self.handle, pairs)
- * 
+ *
  *     def get_macro_details(self) -> Dict[str, MacroEntry]:             # <<<<<<<<<<<<<<
  *         """
  *         Get a dictionary of all MacroEntry items.
@@ -3424,7 +3424,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_14get_macro_de
  *                 )
  *             entry = <MAC_ENTRY*>entry.node.next             # <<<<<<<<<<<<<<
  *         return result
- * 
+ *
  */
     __pyx_v_entry = ((__pyx_t_14_epicsmacrolib_5macro_MAC_ENTRY *)__pyx_v_entry->node.next);
   }
@@ -3433,7 +3433,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_14get_macro_de
  *                 )
  *             entry = <MAC_ENTRY*>entry.node.next
  *         return result             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __len__(self):
  */
   __Pyx_XDECREF(__pyx_r);
@@ -3443,7 +3443,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_14get_macro_de
 
   /* "epicsmacrolib/macro.pyx":152
  *         return macInstallMacros(self.handle, pairs)
- * 
+ *
  *     def get_macro_details(self) -> Dict[str, MacroEntry]:             # <<<<<<<<<<<<<<
  *         """
  *         Get a dictionary of all MacroEntry items.
@@ -3469,7 +3469,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_14get_macro_de
 
 /* "epicsmacrolib/macro.pyx":175
  *         return result
- * 
+ *
  *     def __len__(self):             # <<<<<<<<<<<<<<
  *         cdef MAC_ENTRY* entry = <MAC_ENTRY*>self.handle.list.node.next
  *         cdef int count = 0
@@ -3497,7 +3497,7 @@ static Py_ssize_t __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_16__len__(str
   __Pyx_RefNannySetupContext("__len__", 0);
 
   /* "epicsmacrolib/macro.pyx":176
- * 
+ *
  *     def __len__(self):
  *         cdef MAC_ENTRY* entry = <MAC_ENTRY*>self.handle.list.node.next             # <<<<<<<<<<<<<<
  *         cdef int count = 0
@@ -3558,7 +3558,7 @@ static Py_ssize_t __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_16__len__(str
  *                 count += 1
  *             entry = <MAC_ENTRY*>entry.node.next             # <<<<<<<<<<<<<<
  *         return count
- * 
+ *
  */
     __pyx_v_entry = ((__pyx_t_14_epicsmacrolib_5macro_MAC_ENTRY *)__pyx_v_entry->node.next);
   }
@@ -3567,7 +3567,7 @@ static Py_ssize_t __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_16__len__(str
  *                 count += 1
  *             entry = <MAC_ENTRY*>entry.node.next
  *         return count             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __iter__(self):
  */
   __pyx_r = __pyx_v_count;
@@ -3575,7 +3575,7 @@ static Py_ssize_t __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_16__len__(str
 
   /* "epicsmacrolib/macro.pyx":175
  *         return result
- * 
+ *
  *     def __len__(self):             # <<<<<<<<<<<<<<
  *         cdef MAC_ENTRY* entry = <MAC_ENTRY*>self.handle.list.node.next
  *         cdef int count = 0
@@ -3590,7 +3590,7 @@ static PyObject *__pyx_gb_14_epicsmacrolib_5macro_13_MacroContext_20generator(__
 
 /* "epicsmacrolib/macro.pyx":184
  *         return count
- * 
+ *
  *     def __iter__(self):             # <<<<<<<<<<<<<<
  *         cdef MAC_ENTRY* entry = <MAC_ENTRY*>self.handle.list.node.next
  *         if self.use_environment:
@@ -3670,7 +3670,7 @@ static PyObject *__pyx_gb_14_epicsmacrolib_5macro_13_MacroContext_20generator(__
   if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 184, __pyx_L1_error)
 
   /* "epicsmacrolib/macro.pyx":185
- * 
+ *
  *     def __iter__(self):
  *         cdef MAC_ENTRY* entry = <MAC_ENTRY*>self.handle.list.node.next             # <<<<<<<<<<<<<<
  *         if self.use_environment:
@@ -3755,7 +3755,7 @@ static PyObject *__pyx_gb_14_epicsmacrolib_5macro_13_MacroContext_20generator(__
  *             if entry.name:
  *                 yield (entry.name or b"").decode(self.string_encoding)             # <<<<<<<<<<<<<<
  *             entry = <MAC_ENTRY*>entry.node.next
- * 
+ *
  */
       if (!__pyx_cur_scope->__pyx_v_entry->name) {
       } else {
@@ -3810,7 +3810,7 @@ static PyObject *__pyx_gb_14_epicsmacrolib_5macro_13_MacroContext_20generator(__
  *             if entry.name:
  *                 yield (entry.name or b"").decode(self.string_encoding)
  *             entry = <MAC_ENTRY*>entry.node.next             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __getitem__(self, item):
  */
     __pyx_cur_scope->__pyx_v_entry = ((__pyx_t_14_epicsmacrolib_5macro_MAC_ENTRY *)__pyx_cur_scope->__pyx_v_entry->node.next);
@@ -3819,7 +3819,7 @@ static PyObject *__pyx_gb_14_epicsmacrolib_5macro_13_MacroContext_20generator(__
 
   /* "epicsmacrolib/macro.pyx":184
  *         return count
- * 
+ *
  *     def __iter__(self):             # <<<<<<<<<<<<<<
  *         cdef MAC_ENTRY* entry = <MAC_ENTRY*>self.handle.list.node.next
  *         if self.use_environment:
@@ -3846,7 +3846,7 @@ static PyObject *__pyx_gb_14_epicsmacrolib_5macro_13_MacroContext_20generator(__
 
 /* "epicsmacrolib/macro.pyx":193
  *             entry = <MAC_ENTRY*>entry.node.next
- * 
+ *
  *     def __getitem__(self, item):             # <<<<<<<<<<<<<<
  *         encoding = self.string_encoding
  *         # Start at the end for scoping
@@ -3885,7 +3885,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_21__getitem__(
   __Pyx_RefNannySetupContext("__getitem__", 0);
 
   /* "epicsmacrolib/macro.pyx":194
- * 
+ *
  *     def __getitem__(self, item):
  *         encoding = self.string_encoding             # <<<<<<<<<<<<<<
  *         # Start at the end for scoping
@@ -3900,14 +3900,14 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_21__getitem__(
  *         encoding = self.string_encoding
  *         # Start at the end for scoping
  *         cdef MAC_ENTRY* entry = <MAC_ENTRY*>self.handle.list.node.previous             # <<<<<<<<<<<<<<
- * 
+ *
  *         while entry != NULL:
  */
   __pyx_v_entry = ((__pyx_t_14_epicsmacrolib_5macro_MAC_ENTRY *)__pyx_v_self->handle->list.node.previous);
 
   /* "epicsmacrolib/macro.pyx":198
  *         cdef MAC_ENTRY* entry = <MAC_ENTRY*>self.handle.list.node.previous
- * 
+ *
  *         while entry != NULL:             # <<<<<<<<<<<<<<
  *             if entry.name:
  *                 name = (entry.name or b"").decode(encoding)
@@ -3917,7 +3917,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_21__getitem__(
     if (!__pyx_t_2) break;
 
     /* "epicsmacrolib/macro.pyx":199
- * 
+ *
  *         while entry != NULL:
  *             if entry.name:             # <<<<<<<<<<<<<<
  *                 name = (entry.name or b"").decode(encoding)
@@ -3982,7 +3982,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_21__getitem__(
  *                 if name == item:
  *                     return self.expand((entry.rawval or b"").decode(encoding))             # <<<<<<<<<<<<<<
  *             entry = <MAC_ENTRY*>entry.node.previous
- * 
+ *
  */
         __Pyx_XDECREF(__pyx_r);
         __pyx_t_4 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_expand); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 202, __pyx_L1_error)
@@ -4046,7 +4046,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_21__getitem__(
       }
 
       /* "epicsmacrolib/macro.pyx":199
- * 
+ *
  *         while entry != NULL:
  *             if entry.name:             # <<<<<<<<<<<<<<
  *                 name = (entry.name or b"").decode(encoding)
@@ -4058,7 +4058,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_21__getitem__(
  *                 if name == item:
  *                     return self.expand((entry.rawval or b"").decode(encoding))
  *             entry = <MAC_ENTRY*>entry.node.previous             # <<<<<<<<<<<<<<
- * 
+ *
  *         if self.use_environment and item in os.environ:
  */
     __pyx_v_entry = ((__pyx_t_14_epicsmacrolib_5macro_MAC_ENTRY *)__pyx_v_entry->node.previous);
@@ -4066,10 +4066,10 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_21__getitem__(
 
   /* "epicsmacrolib/macro.pyx":205
  *             entry = <MAC_ENTRY*>entry.node.previous
- * 
+ *
  *         if self.use_environment and item in os.environ:             # <<<<<<<<<<<<<<
  *             return os.environ[item]
- * 
+ *
  */
   __pyx_t_7 = (__pyx_v_self->use_environment != 0);
   if (__pyx_t_7) {
@@ -4090,10 +4090,10 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_21__getitem__(
   if (__pyx_t_2) {
 
     /* "epicsmacrolib/macro.pyx":206
- * 
+ *
  *         if self.use_environment and item in os.environ:
  *             return os.environ[item]             # <<<<<<<<<<<<<<
- * 
+ *
  *         raise KeyError(item)
  */
     __Pyx_XDECREF(__pyx_r);
@@ -4111,18 +4111,18 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_21__getitem__(
 
     /* "epicsmacrolib/macro.pyx":205
  *             entry = <MAC_ENTRY*>entry.node.previous
- * 
+ *
  *         if self.use_environment and item in os.environ:             # <<<<<<<<<<<<<<
  *             return os.environ[item]
- * 
+ *
  */
   }
 
   /* "epicsmacrolib/macro.pyx":208
  *             return os.environ[item]
- * 
+ *
  *         raise KeyError(item)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def __setitem__(self, item, value):
  */
   __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_builtin_KeyError, __pyx_v_item); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 208, __pyx_L1_error)
@@ -4133,7 +4133,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_21__getitem__(
 
   /* "epicsmacrolib/macro.pyx":193
  *             entry = <MAC_ENTRY*>entry.node.next
- * 
+ *
  *     def __getitem__(self, item):             # <<<<<<<<<<<<<<
  *         encoding = self.string_encoding
  *         # Start at the end for scoping
@@ -4158,10 +4158,10 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_21__getitem__(
 
 /* "epicsmacrolib/macro.pyx":210
  *         raise KeyError(item)
- * 
+ *
  *     def __setitem__(self, item, value):             # <<<<<<<<<<<<<<
  *         self.define(**{item: value})
- * 
+ *
  */
 
 /* Python wrapper */
@@ -4189,10 +4189,10 @@ static int __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_23__setitem__(struct
   __Pyx_RefNannySetupContext("__setitem__", 0);
 
   /* "epicsmacrolib/macro.pyx":211
- * 
+ *
  *     def __setitem__(self, item, value):
  *         self.define(**{item: value})             # <<<<<<<<<<<<<<
- * 
+ *
  *     def _expand_with_length(
  */
   __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_define); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 211, __pyx_L1_error)
@@ -4212,10 +4212,10 @@ static int __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_23__setitem__(struct
 
   /* "epicsmacrolib/macro.pyx":210
  *         raise KeyError(item)
- * 
+ *
  *     def __setitem__(self, item, value):             # <<<<<<<<<<<<<<
  *         self.define(**{item: value})
- * 
+ *
  */
 
   /* function exit code */
@@ -4234,7 +4234,7 @@ static int __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_23__setitem__(struct
 
 /* "epicsmacrolib/macro.pyx":213
  *         self.define(**{item: value})
- * 
+ *
  *     def _expand_with_length(             # <<<<<<<<<<<<<<
  *         self, value: str, max_length: int = 1024, *, empty_on_failure: bool = False
  *     ) -> str:
@@ -4259,7 +4259,7 @@ static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_26_expand_with
     values[1] = ((PyObject *)__pyx_int_1024);
 
     /* "epicsmacrolib/macro.pyx":214
- * 
+ *
  *     def _expand_with_length(
  *         self, value: str, max_length: int = 1024, *, empty_on_failure: bool = False             # <<<<<<<<<<<<<<
  *     ) -> str:
@@ -4323,7 +4323,7 @@ static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_26_expand_with
 
   /* "epicsmacrolib/macro.pyx":213
  *         self.define(**{item: value})
- * 
+ *
  *     def _expand_with_length(             # <<<<<<<<<<<<<<
  *         self, value: str, max_length: int = 1024, *, empty_on_failure: bool = False
  *     ) -> str:
@@ -4542,7 +4542,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_25_expand_with
  *             return buf.decode(self.string_encoding)
  *         finally:
  *             free(buf)             # <<<<<<<<<<<<<<
- * 
+ *
  *     def _expand(self, value: str, *, empty_on_failure: bool = False) -> str:
  */
   /*finally:*/ {
@@ -4592,7 +4592,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_25_expand_with
 
   /* "epicsmacrolib/macro.pyx":213
  *         self.define(**{item: value})
- * 
+ *
  *     def _expand_with_length(             # <<<<<<<<<<<<<<
  *         self, value: str, max_length: int = 1024, *, empty_on_failure: bool = False
  *     ) -> str:
@@ -4613,7 +4613,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_25_expand_with
 
 /* "epicsmacrolib/macro.pyx":233
  *             free(buf)
- * 
+ *
  *     def _expand(self, value: str, *, empty_on_failure: bool = False) -> str:             # <<<<<<<<<<<<<<
  *         """Expand a string, using the implicit buffer length of 1024 used in EPICS."""
  *         assert len(value) < 1024, "For large strings, use `expand_with_length`"
@@ -4823,7 +4823,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_27_expand(stru
 
   /* "epicsmacrolib/macro.pyx":233
  *             free(buf)
- * 
+ *
  *     def _expand(self, value: str, *, empty_on_failure: bool = False) -> str:             # <<<<<<<<<<<<<<
  *         """Expand a string, using the implicit buffer length of 1024 used in EPICS."""
  *         assert len(value) < 1024, "For large strings, use `expand_with_length`"
@@ -4847,7 +4847,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_27_expand(stru
  *     _show_warnings: bool
  *     cdef public str string_encoding             # <<<<<<<<<<<<<<
  *     cdef int use_environment
- * 
+ *
  */
 
 /* Python wrapper */
@@ -5516,10 +5516,10 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
   /* "epicsmacrolib/macro.pyx":87
- * 
+ *
  *         if macCreateHandle(&self.handle, env_pairs if use_environment else NULL):
  *             raise RuntimeError("Failed to initialize the handle")             # <<<<<<<<<<<<<<
- * 
+ *
  *         self.show_warnings = show_warnings
  */
   __pyx_tuple_ = PyTuple_Pack(1, __pyx_kp_u_Failed_to_initialize_the_handle); if (unlikely(!__pyx_tuple_)) __PYX_ERR(0, 87, __pyx_L1_error)
@@ -5870,7 +5870,7 @@ if (!__Pyx_RefNanny) {
 
   /* "epicsmacrolib/macro.pyx":3
  * # cython: language_level=3
- * 
+ *
  * import contextlib             # <<<<<<<<<<<<<<
  * import dataclasses
  * import os
@@ -5881,7 +5881,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
 
   /* "epicsmacrolib/macro.pyx":4
- * 
+ *
  * import contextlib
  * import dataclasses             # <<<<<<<<<<<<<<
  * import os
@@ -5897,7 +5897,7 @@ if (!__Pyx_RefNanny) {
  * import dataclasses
  * import os             # <<<<<<<<<<<<<<
  * from typing import Dict, Optional, Union
- * 
+ *
  */
   __pyx_t_1 = __Pyx_Import(__pyx_n_s_os, 0, 0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 5, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -5908,7 +5908,7 @@ if (!__Pyx_RefNanny) {
  * import dataclasses
  * import os
  * from typing import Dict, Optional, Union             # <<<<<<<<<<<<<<
- * 
+ *
  * from libc.stdlib cimport free, malloc
  */
   __pyx_t_1 = PyList_New(3); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 6, __pyx_L1_error)
@@ -5940,7 +5940,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
 
   /* "epicsmacrolib/macro.pyx":12
- * 
+ *
  * @dataclasses.dataclass(frozen=True)
  * class MacroEntry:             # <<<<<<<<<<<<<<
  *     name: str
@@ -5950,8 +5950,8 @@ if (!__Pyx_RefNanny) {
   __Pyx_GOTREF(__pyx_t_2);
 
   /* "epicsmacrolib/macro.pyx":11
- * 
- * 
+ *
+ *
  * @dataclasses.dataclass(frozen=True)             # <<<<<<<<<<<<<<
  * class MacroEntry:
  *     name: str
@@ -5970,7 +5970,7 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
   /* "epicsmacrolib/macro.pyx":12
- * 
+ *
  * @dataclasses.dataclass(frozen=True)
  * class MacroEntry:             # <<<<<<<<<<<<<<
  *     name: str
@@ -6000,7 +6000,7 @@ if (!__Pyx_RefNanny) {
 
   /* "epicsmacrolib/macro.pyx":1
  * # cython: language_level=3             # <<<<<<<<<<<<<<
- * 
+ *
  * import contextlib
  */
   __pyx_t_2 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 1, __pyx_L1_error)
@@ -6840,8 +6840,8 @@ static PyObject* __Pyx_PyInt_AddObjC(PyObject *op1, PyObject *op2, CYTHON_UNUSED
                 llx = lla + llb;
             return PyLong_FromLongLong(llx);
 #endif
-        
-        
+
+
     }
     #endif
     if (PyFloat_CheckExact(op1)) {

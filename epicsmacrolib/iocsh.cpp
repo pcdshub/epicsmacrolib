@@ -925,7 +925,7 @@ static const char *__pyx_f[] = {
 struct __pyx_opt_args_14_epicsmacrolib_5iocsh_split_iocsh_line;
 
 /* "epicsmacrolib/iocsh.pyx":13
- * 
+ *
  * cpdef split_iocsh_line(
  *     input_line: str,             # <<<<<<<<<<<<<<
  *     string_encoding: str = 'latin-1',
@@ -1452,8 +1452,8 @@ static PyObject *__pyx_codeobj__5;
 /* Late includes */
 
 /* "epicsmacrolib/iocsh.pyx":6
- * 
- * 
+ *
+ *
  * def _get_redirect(redirects: dict, idx: int) -> dict:             # <<<<<<<<<<<<<<
  *     if idx not in redirects:
  *         redirects[idx] = dict(fileno=idx, name="", mode="")
@@ -1542,7 +1542,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5iocsh__get_redirect(CYTHON_UNUSED Py
   __Pyx_RefNannySetupContext("_get_redirect", 0);
 
   /* "epicsmacrolib/iocsh.pyx":7
- * 
+ *
  * def _get_redirect(redirects: dict, idx: int) -> dict:
  *     if idx not in redirects:             # <<<<<<<<<<<<<<
  *         redirects[idx] = dict(fileno=idx, name="", mode="")
@@ -1561,7 +1561,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5iocsh__get_redirect(CYTHON_UNUSED Py
  *     if idx not in redirects:
  *         redirects[idx] = dict(fileno=idx, name="", mode="")             # <<<<<<<<<<<<<<
  *     return redirects[idx]
- * 
+ *
  */
     __pyx_t_3 = __Pyx_PyDict_NewPresized(3); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 8, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_3);
@@ -1576,7 +1576,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5iocsh__get_redirect(CYTHON_UNUSED Py
     __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
     /* "epicsmacrolib/iocsh.pyx":7
- * 
+ *
  * def _get_redirect(redirects: dict, idx: int) -> dict:
  *     if idx not in redirects:             # <<<<<<<<<<<<<<
  *         redirects[idx] = dict(fileno=idx, name="", mode="")
@@ -1588,8 +1588,8 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5iocsh__get_redirect(CYTHON_UNUSED Py
  *     if idx not in redirects:
  *         redirects[idx] = dict(fileno=idx, name="", mode="")
  *     return redirects[idx]             # <<<<<<<<<<<<<<
- * 
- * 
+ *
+ *
  */
   __Pyx_XDECREF(__pyx_r);
   if (unlikely(__pyx_v_redirects == Py_None)) {
@@ -1604,8 +1604,8 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5iocsh__get_redirect(CYTHON_UNUSED Py
   goto __pyx_L0;
 
   /* "epicsmacrolib/iocsh.pyx":6
- * 
- * 
+ *
+ *
  * def _get_redirect(redirects: dict, idx: int) -> dict:             # <<<<<<<<<<<<<<
  *     if idx not in redirects:
  *         redirects[idx] = dict(fileno=idx, name="", mode="")
@@ -1623,8 +1623,8 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5iocsh__get_redirect(CYTHON_UNUSED Py
 }
 
 /* "epicsmacrolib/iocsh.pyx":12
- * 
- * 
+ *
+ *
  * cpdef split_iocsh_line(             # <<<<<<<<<<<<<<
  *     input_line: str,
  *     string_encoding: str = 'latin-1',
@@ -1767,7 +1767,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
  *     cdef char c
  *     cdef object redirect = None             # <<<<<<<<<<<<<<
  *     cdef list word_starts = []
- * 
+ *
  */
   __Pyx_INCREF(Py_None);
   __pyx_v_redirect = Py_None;
@@ -1776,7 +1776,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
  *     cdef char c
  *     cdef object redirect = None
  *     cdef list word_starts = []             # <<<<<<<<<<<<<<
- * 
+ *
  *     cdef bytearray input_line_bytes = bytearray(input_line.encode(string_encoding))
  */
   __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 45, __pyx_L1_error)
@@ -1786,10 +1786,10 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
 
   /* "epicsmacrolib/iocsh.pyx":47
  *     cdef list word_starts = []
- * 
+ *
  *     cdef bytearray input_line_bytes = bytearray(input_line.encode(string_encoding))             # <<<<<<<<<<<<<<
  *     input_line_bytes.append(0)
- * 
+ *
  */
   __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_input_line, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 47, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
@@ -1815,10 +1815,10 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
   __pyx_t_2 = 0;
 
   /* "epicsmacrolib/iocsh.pyx":48
- * 
+ *
  *     cdef bytearray input_line_bytes = bytearray(input_line.encode(string_encoding))
  *     input_line_bytes.append(0)             # <<<<<<<<<<<<<<
- * 
+ *
  *     # Implicit access to underlying buffer of ``input_line_bytes``;
  */
   __pyx_t_4 = __Pyx_PyByteArray_Append(__pyx_v_input_line_bytes, 0); if (unlikely(__pyx_t_4 == ((int)-1))) __PYX_ERR(0, 48, __pyx_L1_error)
@@ -1827,7 +1827,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
  *     # modify line, modify input_line_bytes.  No additional allocation
  *     # or free required here.
  *     cdef char *line = input_line_bytes             # <<<<<<<<<<<<<<
- * 
+ *
  *     while idx < len(input_line_bytes) - 1:
  */
   __pyx_t_5 = __Pyx_PyObject_AsWritableString(__pyx_v_input_line_bytes); if (unlikely((!__pyx_t_5) && PyErr_Occurred())) __PYX_ERR(0, 53, __pyx_L1_error)
@@ -1835,7 +1835,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
 
   /* "epicsmacrolib/iocsh.pyx":55
  *     cdef char *line = input_line_bytes
- * 
+ *
  *     while idx < len(input_line_bytes) - 1:             # <<<<<<<<<<<<<<
  *         c = line[idx]
  *         sep = (quote == EOF and not backslash and c in ifs)
@@ -1846,7 +1846,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
     if (!__pyx_t_7) break;
 
     /* "epicsmacrolib/iocsh.pyx":56
- * 
+ *
  *     while idx < len(input_line_bytes) - 1:
  *         c = line[idx]             # <<<<<<<<<<<<<<
  *         sep = (quote == EOF and not backslash and c in ifs)
@@ -1859,7 +1859,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
  *         c = line[idx]
  *         sep = (quote == EOF and not backslash and c in ifs)             # <<<<<<<<<<<<<<
  *         idx += 1
- * 
+ *
  */
     __pyx_t_7 = (__pyx_v_quote == __pyx_v_EOF);
     if (__pyx_t_7) {
@@ -1896,14 +1896,14 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
  *         c = line[idx]
  *         sep = (quote == EOF and not backslash and c in ifs)
  *         idx += 1             # <<<<<<<<<<<<<<
- * 
+ *
  *         if quote == EOF and not backslash:
  */
     __pyx_v_idx = (__pyx_v_idx + 1);
 
     /* "epicsmacrolib/iocsh.pyx":60
  *         idx += 1
- * 
+ *
  *         if quote == EOF and not backslash:             # <<<<<<<<<<<<<<
  *             if c == b'\\':
  *                 backslash = 1
@@ -1920,7 +1920,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
     if (__pyx_t_7) {
 
       /* "epicsmacrolib/iocsh.pyx":61
- * 
+ *
  *         if quote == EOF and not backslash:
  *             if c == b'\\':             # <<<<<<<<<<<<<<
  *                 backslash = 1
@@ -1948,7 +1948,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
         goto __pyx_L3_continue;
 
         /* "epicsmacrolib/iocsh.pyx":61
- * 
+ *
  *         if quote == EOF and not backslash:
  *             if c == b'\\':             # <<<<<<<<<<<<<<
  *                 backslash = 1
@@ -1971,7 +1971,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
  *             if c == b'<':
  *                 if redirect:             # <<<<<<<<<<<<<<
  *                     break
- * 
+ *
  */
         __pyx_t_7 = __Pyx_PyObject_IsTrue(__pyx_v_redirect); if (unlikely(__pyx_t_7 < 0)) __PYX_ERR(0, 65, __pyx_L1_error)
         if (__pyx_t_7) {
@@ -1980,7 +1980,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
  *             if c == b'<':
  *                 if redirect:
  *                     break             # <<<<<<<<<<<<<<
- * 
+ *
  *                 redirect = _get_redirect(redirects, 0)
  */
           goto __pyx_L4_break;
@@ -1990,13 +1990,13 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
  *             if c == b'<':
  *                 if redirect:             # <<<<<<<<<<<<<<
  *                     break
- * 
+ *
  */
         }
 
         /* "epicsmacrolib/iocsh.pyx":68
  *                     break
- * 
+ *
  *                 redirect = _get_redirect(redirects, 0)             # <<<<<<<<<<<<<<
  *                 sep = 1
  *                 redirect["mode"] = "r"
@@ -2052,11 +2052,11 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
         __pyx_t_2 = 0;
 
         /* "epicsmacrolib/iocsh.pyx":69
- * 
+ *
  *                 redirect = _get_redirect(redirects, 0)
  *                 sep = 1             # <<<<<<<<<<<<<<
  *                 redirect["mode"] = "r"
- * 
+ *
  */
         __Pyx_INCREF(__pyx_int_1);
         __Pyx_DECREF_SET(__pyx_v_sep, __pyx_int_1);
@@ -2065,7 +2065,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
  *                 redirect = _get_redirect(redirects, 0)
  *                 sep = 1
  *                 redirect["mode"] = "r"             # <<<<<<<<<<<<<<
- * 
+ *
  *             if b'1' <= c <= b'9' and line[idx] == b'>':
  */
         if (unlikely(PyObject_SetItem(__pyx_v_redirect, __pyx_n_u_mode, __pyx_n_u_r) < 0)) __PYX_ERR(0, 70, __pyx_L1_error)
@@ -2081,7 +2081,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
 
       /* "epicsmacrolib/iocsh.pyx":72
  *                 redirect["mode"] = "r"
- * 
+ *
  *             if b'1' <= c <= b'9' and line[idx] == b'>':             # <<<<<<<<<<<<<<
  *                 redirectFd = c - ord(b'0')
  *                 c = b'>'
@@ -2102,7 +2102,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
       if (__pyx_t_7) {
 
         /* "epicsmacrolib/iocsh.pyx":73
- * 
+ *
  *             if b'1' <= c <= b'9' and line[idx] == b'>':
  *                 redirectFd = c - ord(b'0')             # <<<<<<<<<<<<<<
  *                 c = b'>'
@@ -2115,7 +2115,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
  *                 redirectFd = c - ord(b'0')
  *                 c = b'>'             # <<<<<<<<<<<<<<
  *                 idx += 1
- * 
+ *
  */
         __pyx_v_c = '>';
 
@@ -2123,14 +2123,14 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
  *                 redirectFd = c - ord(b'0')
  *                 c = b'>'
  *                 idx += 1             # <<<<<<<<<<<<<<
- * 
+ *
  *             if c == b'>':
  */
         __pyx_v_idx = (__pyx_v_idx + 1);
 
         /* "epicsmacrolib/iocsh.pyx":72
  *                 redirect["mode"] = "r"
- * 
+ *
  *             if b'1' <= c <= b'9' and line[idx] == b'>':             # <<<<<<<<<<<<<<
  *                 redirectFd = c - ord(b'0')
  *                 c = b'>'
@@ -2139,7 +2139,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
 
       /* "epicsmacrolib/iocsh.pyx":77
  *                 idx += 1
- * 
+ *
  *             if c == b'>':             # <<<<<<<<<<<<<<
  *                 if redirect:
  *                     break
@@ -2148,7 +2148,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
       if (__pyx_t_7) {
 
         /* "epicsmacrolib/iocsh.pyx":78
- * 
+ *
  *             if c == b'>':
  *                 if redirect:             # <<<<<<<<<<<<<<
  *                     break
@@ -2167,7 +2167,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
           goto __pyx_L4_break;
 
           /* "epicsmacrolib/iocsh.pyx":78
- * 
+ *
  *             if c == b'>':
  *                 if redirect:             # <<<<<<<<<<<<<<
  *                     break
@@ -2378,7 +2378,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
  *                     redirect["mode"] = "a"
  *                 else:
  *                     redirect["mode"] = "w"             # <<<<<<<<<<<<<<
- * 
+ *
  *         if inword:
  */
         /*else*/ {
@@ -2388,7 +2388,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
 
         /* "epicsmacrolib/iocsh.pyx":77
  *                 idx += 1
- * 
+ *
  *             if c == b'>':             # <<<<<<<<<<<<<<
  *                 if redirect:
  *                     break
@@ -2397,7 +2397,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
 
       /* "epicsmacrolib/iocsh.pyx":60
  *         idx += 1
- * 
+ *
  *         if quote == EOF and not backslash:             # <<<<<<<<<<<<<<
  *             if c == b'\\':
  *                 backslash = 1
@@ -2406,7 +2406,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
 
     /* "epicsmacrolib/iocsh.pyx":91
  *                     redirect["mode"] = "w"
- * 
+ *
  *         if inword:             # <<<<<<<<<<<<<<
  *             if c == quote:
  *                 quote = EOF
@@ -2415,7 +2415,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
     if (__pyx_t_7) {
 
       /* "epicsmacrolib/iocsh.pyx":92
- * 
+ *
  *         if inword:
  *             if c == quote:             # <<<<<<<<<<<<<<
  *                 quote = EOF
@@ -2434,7 +2434,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
         __pyx_v_quote = __pyx_v_EOF;
 
         /* "epicsmacrolib/iocsh.pyx":92
- * 
+ *
  *         if inword:
  *             if c == quote:             # <<<<<<<<<<<<<<
  *                 quote = EOF
@@ -2599,7 +2599,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
 
       /* "epicsmacrolib/iocsh.pyx":91
  *                     redirect["mode"] = "w"
- * 
+ *
  *         if inword:             # <<<<<<<<<<<<<<
  *             if c == quote:
  *                 quote = EOF
@@ -2792,7 +2792,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
  *                 idx_out += 1
  *             inword = 1             # <<<<<<<<<<<<<<
  *         backslash = 0
- * 
+ *
  */
       __pyx_v_inword = 1;
 
@@ -2810,7 +2810,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
  *                 idx_out += 1
  *             inword = 1
  *         backslash = 0             # <<<<<<<<<<<<<<
- * 
+ *
  *     if inword and idx_out < len(input_line_bytes):
  */
     __pyx_v_backslash = 0;
@@ -2820,7 +2820,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
 
   /* "epicsmacrolib/iocsh.pyx":123
  *         backslash = 0
- * 
+ *
  *     if inword and idx_out < len(input_line_bytes):             # <<<<<<<<<<<<<<
  *         line[idx_out] = 0
  *         idx_out += 1
@@ -2838,11 +2838,11 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
   if (__pyx_t_11) {
 
     /* "epicsmacrolib/iocsh.pyx":124
- * 
+ *
  *     if inword and idx_out < len(input_line_bytes):
  *         line[idx_out] = 0             # <<<<<<<<<<<<<<
  *         idx_out += 1
- * 
+ *
  */
     (__pyx_v_line[__pyx_v_idx_out]) = 0;
 
@@ -2850,14 +2850,14 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
  *     if inword and idx_out < len(input_line_bytes):
  *         line[idx_out] = 0
  *         idx_out += 1             # <<<<<<<<<<<<<<
- * 
+ *
  *     # Python-only as we're not dealing with pointers to the string;
  */
     __pyx_v_idx_out = (__pyx_v_idx_out + 1);
 
     /* "epicsmacrolib/iocsh.pyx":123
  *         backslash = 0
- * 
+ *
  *     if inword and idx_out < len(input_line_bytes):             # <<<<<<<<<<<<<<
  *         line[idx_out] = 0
  *         idx_out += 1
@@ -2894,7 +2894,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
  */
     __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_v__redir, __pyx_n_u_name); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 130, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_11 = PyInt_Check(__pyx_t_2); 
+    __pyx_t_11 = PyInt_Check(__pyx_t_2);
     __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
     __pyx_t_7 = (__pyx_t_11 != 0);
     if (__pyx_t_7) {
@@ -2950,7 +2950,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
  *             _redir["name"] = str(&line[offset], string_encoding)
  *         elif not _redir["name"]:             # <<<<<<<<<<<<<<
  *             error = f"Illegal redirection. ({_redir})"
- * 
+ *
  */
     __pyx_t_2 = __Pyx_PyObject_Dict_GetItem(__pyx_v__redir, __pyx_n_u_name); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 133, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_2);
@@ -2963,7 +2963,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
  *             _redir["name"] = str(&line[offset], string_encoding)
  *         elif not _redir["name"]:
  *             error = f"Illegal redirection. ({_redir})"             # <<<<<<<<<<<<<<
- * 
+ *
  *     error = None
  */
       __pyx_t_2 = PyTuple_New(3); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 134, __pyx_L1_error)
@@ -2996,7 +2996,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
  *             _redir["name"] = str(&line[offset], string_encoding)
  *         elif not _redir["name"]:             # <<<<<<<<<<<<<<
  *             error = f"Illegal redirection. ({_redir})"
- * 
+ *
  */
     }
     __pyx_L37:;
@@ -3005,7 +3005,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
 
   /* "epicsmacrolib/iocsh.pyx":136
  *             error = f"Illegal redirection. ({_redir})"
- * 
+ *
  *     error = None             # <<<<<<<<<<<<<<
  *     if redirect is not None:
  *         error = f"Illegal redirection. ({redirect})"
@@ -3014,7 +3014,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
   __Pyx_XDECREF_SET(__pyx_v_error, ((PyObject*)Py_None));
 
   /* "epicsmacrolib/iocsh.pyx":137
- * 
+ *
  *     error = None
  *     if redirect is not None:             # <<<<<<<<<<<<<<
  *         error = f"Illegal redirection. ({redirect})"
@@ -3057,7 +3057,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
     __pyx_t_12 = 0;
 
     /* "epicsmacrolib/iocsh.pyx":137
- * 
+ *
  *     error = None
  *     if redirect is not None:             # <<<<<<<<<<<<<<
  *         error = f"Illegal redirection. ({redirect})"
@@ -3132,7 +3132,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
  *             error = f"Unbalanced quote. ({quote})"
  *         elif backslash:             # <<<<<<<<<<<<<<
  *             error = "Trailing backslash."
- * 
+ *
  */
     __pyx_t_7 = (__pyx_v_backslash != 0);
     if (__pyx_t_7) {
@@ -3141,7 +3141,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
  *             error = f"Unbalanced quote. ({quote})"
  *         elif backslash:
  *             error = "Trailing backslash."             # <<<<<<<<<<<<<<
- * 
+ *
  *     return dict(
  */
       __Pyx_INCREF(__pyx_kp_u_Trailing_backslash);
@@ -3152,7 +3152,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
  *             error = f"Unbalanced quote. ({quote})"
  *         elif backslash:             # <<<<<<<<<<<<<<
  *             error = "Trailing backslash."
- * 
+ *
  */
     }
     __pyx_L39:;
@@ -3169,7 +3169,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
 
   /* "epicsmacrolib/iocsh.pyx":145
  *             error = "Trailing backslash."
- * 
+ *
  *     return dict(             # <<<<<<<<<<<<<<
  *         argv=[
  *             str(&line[word_start], string_encoding)
@@ -3177,7 +3177,7 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
   __Pyx_XDECREF(__pyx_r);
 
   /* "epicsmacrolib/iocsh.pyx":146
- * 
+ *
  *     return dict(
  *         argv=[             # <<<<<<<<<<<<<<
  *             str(&line[word_start], string_encoding)
@@ -3272,8 +3272,8 @@ static PyObject *__pyx_f_14_epicsmacrolib_5iocsh_split_iocsh_line(PyObject *__py
   goto __pyx_L0;
 
   /* "epicsmacrolib/iocsh.pyx":12
- * 
- * 
+ *
+ *
  * cpdef split_iocsh_line(             # <<<<<<<<<<<<<<
  *     input_line: str,
  *     string_encoding: str = 'latin-1',
@@ -3527,8 +3527,8 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_RefNannySetupContext("__Pyx_InitCachedConstants", 0);
 
   /* "epicsmacrolib/iocsh.pyx":6
- * 
- * 
+ *
+ *
  * def _get_redirect(redirects: dict, idx: int) -> dict:             # <<<<<<<<<<<<<<
  *     if idx not in redirects:
  *         redirects[idx] = dict(fileno=idx, name="", mode="")
@@ -3819,8 +3819,8 @@ if (!__Pyx_RefNanny) {
   #endif
 
   /* "epicsmacrolib/iocsh.pyx":6
- * 
- * 
+ *
+ *
  * def _get_redirect(redirects: dict, idx: int) -> dict:             # <<<<<<<<<<<<<<
  *     if idx not in redirects:
  *         redirects[idx] = dict(fileno=idx, name="", mode="")

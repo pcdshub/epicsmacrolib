@@ -166,10 +166,10 @@ d) char *macEnvExpand( char *src );
 
 e) char *macDefExpand( char *src, MAC_HANDLE *macros );
 
-   This operates in the same manner as macEnvExpand, but takes an 
-   optional macro handle that can contain a set of macro definitions. 
-   These macros are appended to the set of macros from environment 
-   variables when expanding the string. 
+   This operates in the same manner as macEnvExpand, but takes an
+   optional macro handle that can contain a set of macro definitions.
+   These macros are appended to the set of macros from environment
+   variables when expanding the string.
 
 f) long macReportMacros( MAC_HANDLE *handle );
 

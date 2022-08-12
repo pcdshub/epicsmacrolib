@@ -136,7 +136,7 @@ class MacroContext(_MacroContext, collections.abc.MutableMapping):
         Expand (interpolate) a string, replacing macros with values.
 
         By default, use the implicit buffer length of 1024 used in EPICS.
-        
+
         Note that EPICS performs string interpolation line-by-line and not on a
         full-file basis.  See also ``expand_by_line``.
 
