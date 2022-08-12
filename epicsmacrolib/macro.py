@@ -1,7 +1,7 @@
 import collections.abc
 from typing import Dict
 
-from ._macro import _MacroContext
+from _epicsmacrolib.macro import _MacroContext
 
 
 class MacroContext(_MacroContext, collections.abc.MutableMapping):

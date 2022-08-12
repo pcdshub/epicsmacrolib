@@ -102,13 +102,13 @@ def get_extensions():
     )
     extensions = [
         Extension(
-            "epicsmacrolib.iocsh",
+            "_epicsmacrolib.iocsh",
             ["epicsmacrolib/iocsh.pyx"],
             **ext_options
         ),
         Extension(
-            "epicsmacrolib._macro",
-            ["epicsmacrolib/_macro.pyx"] + macro_lib_sources,
+            "_epicsmacrolib.macro",
+            ["epicsmacrolib/macro.pyx"] + macro_lib_sources,
             **ext_options,
         ),
     ]

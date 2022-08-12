@@ -1,0 +1,4 @@
+Several files in this directory are vendored from epics-base.
+
+See the file ``LICENSE`` for the appropriate license.
+See ``Makefile`` for where they come from on GitHub.

@@ -1,11 +1,11 @@
 # cython: language_level=3
+# This probably doesn't belong in epicsmacrolib, but I'm including it here
+# as it's the other cython component from whatrecord
 
-from .common import IocshRedirect, IocshSplit
 
-
-def _get_redirect(redirects: dict, idx: int) -> IocshRedirect:
+def _get_redirect(redirects: dict, idx: int) -> dict:
     if idx not in redirects:
-        redirects[idx] = IocshRedirect(fileno=idx, name="", mode="")
+        redirects[idx] = dict(fileno=idx, name="", mode="")
     return redirects[idx]
 
 
@@ -67,7 +67,7 @@ cpdef split_iocsh_line(
 
                 redirect = _get_redirect(redirects, 0)
                 sep = 1
-                redirect.mode = "r"
+                redirect["mode"] = "r"
 
             if b'1' <= c <= b'9' and line[idx] == b'>':
                 redirectFd = c - ord(b'0')
@@ -84,9 +84,9 @@ cpdef split_iocsh_line(
                 sep = 1
                 if line[idx] == b'>':
                     idx += 1
-                    redirect.mode = "a"
+                    redirect["mode"] = "a"
                 else:
-                    redirect.mode = "w"
+                    redirect["mode"] = "w"
 
         if inword:
             if c == quote:
@@ -108,9 +108,9 @@ cpdef split_iocsh_line(
             if (c == b'"' or c == b'\'') and not backslash:
                 quote = c
             if redirect:
-                if redirect.name:
+                if redirect["name"]:
                     break
-                redirect.name = idx_out
+                redirect["name"] = idx_out
                 redirect = None
             else:
                 word_starts.append(idx_out)
@@ -127,10 +127,10 @@ cpdef split_iocsh_line(
     # Python-only as we're not dealing with pointers to the string;
     # fix up redirect names by looking back at ``line``
     for _redir in redirects.values():
-        if isinstance(_redir.name, int):
-            offset = _redir.name
-            _redir.name = str(&line[offset], string_encoding)
-        elif not _redir.name:
+        if isinstance(_redir["name"], int):
+            offset = _redir["name"]
+            _redir["name"] = str(&line[offset], string_encoding)
+        elif not _redir["name"]:
             error = f"Illegal redirection. ({_redir})"
 
     error = None
@@ -142,7 +142,7 @@ cpdef split_iocsh_line(
         elif backslash:
             error = "Trailing backslash."
 
-    return IocshSplit(
+    return dict(
         argv=[
             str(&line[word_start], string_encoding)
             for word_start in word_starts

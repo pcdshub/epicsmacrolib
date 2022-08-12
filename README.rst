@@ -9,34 +9,19 @@ epicsmacrolib
         :target: https://pypi.python.org/pypi/epicsmacrolib
 
 
-epics-base compliant macro tools
+epics-base compliant macro tools.
 
-Documentation
--------------
+---------
+What?
+---------
 
-Sphinx-generated documentation for this project can be found here:
-https://pcdshub.github.io/epicsmacrolib/
+Do you want epics-base compliant macro expansion, with all of its idiosyncracies?
 
+No? I didn't think so. This is a really boring project and you probably don't need it.
 
-Requirements
-------------
+---------
+Then why?
+---------
 
-Describe the project requirements (i.e. Python version, packages and how to install them)
-
-Installation
-------------
-
-Describe the installation procedure
-
-Running the Tests
------------------
-::
-
-  $ python run_tests.py
-
-Directory Structure
--------------------
-
-This repo is based the PCDS python cookiecutter. See the following github page for more info:
-
-- `cookiecutter-pcds-python <https://github.com/pcdshub/cookiecutter-pcds-python>`_
+This will be the future of the macro and IOC shell splitting tools in ``whatrecord``,
+removing its reliance on Cython and epicscorelibs.
