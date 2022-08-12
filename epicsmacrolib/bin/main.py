@@ -14,7 +14,7 @@ import epicsmacrolib
 DESCRIPTION = __doc__
 
 
-MODULES = ("help", )
+MODULES = ("help", "expand")
 
 
 def _try_import(module):

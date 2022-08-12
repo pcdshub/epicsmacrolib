@@ -88,3 +88,13 @@ Examples
     #     redirects={1: IocshRedirect(fileno=1, name="output_filename", mode="w")},
     #     error=None,
     # )
+
+
+--------
+License
+--------
+
+The Python portions of this code is under a BSD-3 clause license
+(``LicenseRef-BSD-3-Clause-SLAC``, see ``LICENSE``).
+Portions of epics-base have been vendored in ``src`` under its original license
+(see ``src/LICENSE``).
