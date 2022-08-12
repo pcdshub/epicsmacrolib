@@ -12,9 +12,6 @@ from setuptools.command.build_ext import build_ext
 
 min_version = (3, 7)
 
-print("setup.py imported!")
-print("setup.py imported!", file=sys.stderr)
-
 if sys.version_info < min_version:
     error = """
 epicsmacrolib does not support Python {0}.{1}.
@@ -26,7 +23,9 @@ This may be due to an out-of-date pip. Make sure you have pip >= 9.0.1.
 Upgrade pip like so:
 
 pip install --upgrade pip
-""".format(*sys.version_info[:2], *min_version)
+""".format(
+        *sys.version_info[:2], *min_version
+    )
     sys.exit(error)
 
 
@@ -36,36 +35,39 @@ if sys.platform == "darwin":
 
 here = path.abspath(path.dirname(__file__))
 
-with open(path.join(here, 'README.rst'), encoding='utf-8') as readme_file:
+with open(path.join(here, "README.rst"), encoding="utf-8") as readme_file:
     readme = readme_file.read()
 
-with open(path.join(here, 'requirements.txt')) as requirements_file:
+with open(path.join(here, "requirements.txt")) as requirements_file:
     # Parse requirements.txt, ignoring any commented-out lines.
-    requirements = [line for line in requirements_file.read().splitlines()
-                    if not line.startswith('#')]
+    requirements = [
+        line
+        for line in requirements_file.read().splitlines()
+        if not line.startswith("#")
+    ]
 
 
-git_requirements = [r for r in requirements if r.startswith('git+')]
+git_requirements = [r for r in requirements if r.startswith("git+")]
 if git_requirements:
-    print('User must install the following packages manually:')
+    print("User must install the following packages manually:")
     print()
-    print("\n".join(f'* {r}' for r in git_requirements))
+    print("\n".join(f"* {r}" for r in git_requirements))
     print()
 
 if os.environ.get("CONDA_BUILD_STATE") == "RENDER":
-    epicscorelibs = None
+    ...
 else:
     try:
-        # import epicscorelibs
-        # import epicscorelibs.path
         from Cython.Build import cythonize
     except (ImportError, ModuleNotFoundError, Exception) as ex:
-        print(f"""\
+        print(
+            f"""\
 Sorry, the following are required to build `epicsmacrolib`. Please install these first:
-    epicscorelibs
     cython
 {type(ex).__name__}: {ex}
-""", file=sys.stderr)
+""",
+            file=sys.stderr,
+        )
         raise
 
 # https://cython.readthedocs.io/en/latest/src/userguide/source_files_and_compilation.html#distributing-cython-modules
@@ -82,7 +84,6 @@ def no_cythonize(extensions, **_ignore):
                 sfile = f"{path}{ext}"
             sources.append(sfile)
         extension.sources[:] = sources
-        print("extension.sources", extension.sources)
     return extensions
 
 
@@ -96,16 +97,9 @@ def get_extensions():
         language="c++",
     )
 
-    macro_lib_sources = list(
-        str(path)
-        for path in SRC_DIR.glob("*.c")
-    )
+    macro_lib_sources = list(str(path) for path in SRC_DIR.glob("*.c"))
     extensions = [
-        Extension(
-            "_epicsmacrolib.iocsh",
-            ["epicsmacrolib/iocsh.pyx"],
-            **ext_options
-        ),
+        Extension("_epicsmacrolib.iocsh", ["epicsmacrolib/iocsh.pyx"], **ext_options),
         Extension(
             "_epicsmacrolib.macro",
             ["epicsmacrolib/macro.pyx"] + macro_lib_sources,
@@ -125,9 +119,6 @@ with open("requirements.txt") as fp:
     install_requires = [
         line for line in fp.read().splitlines() if line and not line.startswith("#")
     ]
-
-# if epicscorelibs is not None:
-#     install_requires.append("epicscorelibs=={epicscorelibs.__version__}")
 
 with open("README.rst", encoding="utf-8") as fp:
     readme = fp.read()
@@ -163,6 +154,5 @@ setup(
         "Natural Language :: English",
         "Programming Language :: Python :: 3",
     ],
-    ext_modules=get_extensions(),  #  if epicscorelibs is not None else [],
+    ext_modules=get_extensions(),
 )
-
