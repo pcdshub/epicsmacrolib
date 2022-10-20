@@ -1,3 +1,4 @@
+import dataclasses
 import os
 
 import pytest
@@ -305,3 +306,6 @@ def test_readme_example():
             # -> 0
         print(ctx.expand("$(A)"))
         # -> 10
+
+    for key, info in ctx.get_macro_details().items():
+        print(key, info, dataclasses.asdict(info))

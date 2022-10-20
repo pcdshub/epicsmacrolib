@@ -7,13 +7,16 @@ from typing import Dict, Optional, Union
 
 from libc.stdlib cimport free, malloc
 
-
-@dataclasses.dataclass(frozen=True)
-class MacroEntry:
-    name: str
-    rawval: str
-    value: str
-    type: str
+MacroEntry = dataclasses.make_dataclass(
+    "MacroEntry",
+    [
+        ("name", str),
+        ("rawval", str),
+        ("value", str),
+        ("type", str),
+    ],
+    frozen=True,
+)
 
 
 cdef extern from "<ellLib.h>" nogil:
@@ -73,7 +76,7 @@ cdef class _MacroContext:
     cdef MAC_HANDLE *handle
     _show_warnings: bool
     cdef public str string_encoding
-    cdef int use_environment
+    cdef public int use_environment
 
     def __init__(
         self,
