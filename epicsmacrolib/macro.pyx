@@ -186,12 +186,12 @@ cdef class _MacroContext:
 
     def __iter__(self):
         cdef MAC_ENTRY* entry = <MAC_ENTRY*>self.handle.list.node.next
-        if self.use_environment:
-            yield from os.environ
         while entry != NULL:
             if entry.name:
                 yield (entry.name or b"").decode(self.string_encoding)
             entry = <MAC_ENTRY*>entry.node.next
+        if self.use_environment:
+            yield from os.environ
 
     def __getitem__(self, item):
         encoding = self.string_encoding
@@ -202,7 +202,11 @@ cdef class _MacroContext:
             if entry.name:
                 name = (entry.name or b"").decode(encoding)
                 if name == item:
-                    return self.expand((entry.rawval or b"").decode(encoding))
+                    raw = entry.rawval or b""
+                    return self.expand(
+                        raw,
+                        max_length=max((1024, len(entry.rawval * 2)))
+                    )
             entry = <MAC_ENTRY*>entry.node.previous
 
         if self.use_environment and item in os.environ:
@@ -235,7 +239,6 @@ cdef class _MacroContext:
 
     def _expand(self, value: str, *, empty_on_failure: bool = False) -> str:
         """Expand a string, using the implicit buffer length of 1024 used in EPICS."""
-        assert len(value) < 1024, "For large strings, use `expand_with_length`"
         cdef char buf[1024]
         #         n = macExpandString(handle, str, dest, destCapacity);
         # return < 0? return NULL...
