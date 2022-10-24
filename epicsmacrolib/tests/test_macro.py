@@ -7,6 +7,7 @@ from .. import MacroContext
 
 
 def test_env():
+    test_keys = "ABCDE"
     os.environ["C"] = "3"
     os.environ["D"] = "4"
     os.environ["E"] = "5"
@@ -20,7 +21,8 @@ def test_env():
     assert ctx["D"] == "4"
     assert ctx["E"] == "15"
 
-    assert set(list(ctx.items())[-6:]) == {
+    items = [(key, value) for key, value in ctx.items() if key in test_keys]
+    assert set(items) == {
         ("A", "1"),
         ("B", "2"),
         ("C", "3"),

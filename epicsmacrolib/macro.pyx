@@ -175,23 +175,27 @@ cdef class _MacroContext:
             entry = <MAC_ENTRY*>entry.node.next
         return result
 
-    def __len__(self):
+    def _get_defined_names(self):
         cdef MAC_ENTRY* entry = <MAC_ENTRY*>self.handle.list.node.next
-        cdef int count = 0
+        cdef list names = []
         while entry != NULL:
             if entry.name:
-                count += 1
+                string_name = entry.name.decode(self.string_encoding)
+                if string_name not in names:
+                    names.append(string_name)
             entry = <MAC_ENTRY*>entry.node.next
-        return count
+        return names
+
+    def __len__(self):
+        return len(self._get_defined_names())
 
     def __iter__(self):
-        cdef MAC_ENTRY* entry = <MAC_ENTRY*>self.handle.list.node.next
-        while entry != NULL:
-            if entry.name:
-                yield (entry.name or b"").decode(self.string_encoding)
-            entry = <MAC_ENTRY*>entry.node.next
+        names = self._get_defined_names()
+        yield from names
         if self.use_environment:
-            yield from os.environ
+            for name in os.environ:
+                if name not in names:
+                    yield name
 
     def __getitem__(self, item):
         encoding = self.string_encoding
@@ -202,9 +206,9 @@ cdef class _MacroContext:
             if entry.name:
                 name = (entry.name or b"").decode(encoding)
                 if name == item:
-                    raw = entry.rawval or b""
+                    string_value = (entry.rawval or b"").decode(self.string_encoding)
                     return self.expand(
-                        raw,
+                        string_value,
                         max_length=max((1024, len(entry.rawval * 2)))
                     )
             entry = <MAC_ENTRY*>entry.node.previous
