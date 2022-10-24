@@ -935,7 +935,8 @@ static const char *__pyx_f[] = {
 
 /*--- Type declarations ---*/
 struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext;
-struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct____iter__;
+struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names;
+struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__;
 struct __pyx_t_14_epicsmacrolib_5macro_MAC_ENTRY;
 typedef struct __pyx_t_14_epicsmacrolib_5macro_MAC_ENTRY __pyx_t_14_epicsmacrolib_5macro_MAC_ENTRY;
 
@@ -976,21 +977,34 @@ struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext {
 };
 
 
-/* "epicsmacrolib/macro.pyx":192
- *         return len(self._get_defined_names())
+/* "epicsmacrolib/macro.pyx":190
+ *         return names
  *
- *     def __iter__(self):             # <<<<<<<<<<<<<<
- *         names = self._get_defined_names()
- *         print("Names", names)
+ *     def _get_unique_names(self):             # <<<<<<<<<<<<<<
+ *         defined_names = self._get_defined_names()
+ *         yield from defined_names
  */
-struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct____iter__ {
+struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names {
   PyObject_HEAD
+  PyObject *__pyx_v_defined_names;
   PyObject *__pyx_v_name;
-  PyObject *__pyx_v_names;
   struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self;
   PyObject *__pyx_t_0;
   Py_ssize_t __pyx_t_1;
   PyObject *(*__pyx_t_2)(PyObject *);
+};
+
+
+/* "epicsmacrolib/macro.pyx":202
+ *         return len(list(self._get_unique_names()))
+ *
+ *     def __iter__(self):             # <<<<<<<<<<<<<<
+ *         yield from self._get_unique_names()
+ *
+ */
+struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__ {
+  PyObject_HEAD
+  struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self;
 };
 
 
@@ -1310,6 +1324,12 @@ static PyObject *__Pyx__GetModuleGlobalName(PyObject *name, PY_UINT64_T *dict_ve
 static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name);
 #endif
 
+/* pyfrozenset_new.proto */
+static CYTHON_INLINE PyObject* __Pyx_PyFrozenSet_New(PyObject* it);
+
+/* PySetContains.proto */
+static CYTHON_INLINE int __Pyx_PySet_ContainsTF(PyObject* key, PyObject* set, int eq);
+
 /* PySequenceContains.proto */
 static CYTHON_INLINE int __Pyx_PySequence_ContainsTF(PyObject* item, PyObject* seq, int eq) {
     int result = PySequence_Contains(seq, item);
@@ -1592,7 +1612,8 @@ static int __pyx_f_14_epicsmacrolib_5macro_13_MacroContext__add_encoded_macro(st
 
 /* Module declarations from '_epicsmacrolib.macro' */
 static PyTypeObject *__pyx_ptype_14_epicsmacrolib_5macro__MacroContext = 0;
-static PyTypeObject *__pyx_ptype_14_epicsmacrolib_5macro___pyx_scope_struct____iter__ = 0;
+static PyTypeObject *__pyx_ptype_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names = 0;
+static PyTypeObject *__pyx_ptype_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__ = 0;
 #define __Pyx_MODULE_NAME "_epicsmacrolib.macro"
 extern int __pyx_module_is_main__epicsmacrolib__macro;
 int __pyx_module_is_main__epicsmacrolib__macro = 0;
@@ -1600,13 +1621,11 @@ int __pyx_module_is_main__epicsmacrolib__macro = 0;
 /* Implementation of '_epicsmacrolib.macro' */
 static PyObject *__pyx_builtin_RuntimeError;
 static PyObject *__pyx_builtin_range;
-static PyObject *__pyx_builtin_print;
 static PyObject *__pyx_builtin_KeyError;
 static PyObject *__pyx_builtin_MemoryError;
 static PyObject *__pyx_builtin_TypeError;
 static const char __pyx_k__2[] = "";
 static const char __pyx_k_os[] = "os";
-static const char __pyx_k_env[] = "env";
 static const char __pyx_k_Dict[] = "Dict";
 static const char __pyx_k_args[] = "args";
 static const char __pyx_k_defn[] = "defn";
@@ -1616,12 +1635,11 @@ static const char __pyx_k_name[] = "name";
 static const char __pyx_k_send[] = "send";
 static const char __pyx_k_test[] = "__test__";
 static const char __pyx_k_type[] = "type";
-static const char __pyx_k_Names[] = "Names";
 static const char __pyx_k_Union[] = "Union";
 static const char __pyx_k_close[] = "close";
 static const char __pyx_k_items[] = "items";
-static const char __pyx_k_print[] = "print";
 static const char __pyx_k_range[] = "range";
+static const char __pyx_k_scope[] = "<scope>";
 static const char __pyx_k_throw[] = "throw";
 static const char __pyx_k_value[] = "value";
 static const char __pyx_k_decode[] = "decode";
@@ -1657,11 +1675,13 @@ static const char __pyx_k_setstate_cython[] = "__setstate_cython__";
 static const char __pyx_k_string_encoding[] = "string_encoding";
 static const char __pyx_k_use_environment[] = "use_environment";
 static const char __pyx_k_empty_on_failure[] = "empty_on_failure";
+static const char __pyx_k_get_unique_names[] = "_get_unique_names";
 static const char __pyx_k_get_defined_names[] = "_get_defined_names";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";
 static const char __pyx_k_MacroContext___iter[] = "_MacroContext.__iter__";
 static const char __pyx_k_epicsmacrolib_macro[] = "_epicsmacrolib.macro";
 static const char __pyx_k_Failed_to_allocate_buffer[] = "Failed to allocate buffer";
+static const char __pyx_k_MacroContext__get_unique_names[] = "_MacroContext._get_unique_names";
 static const char __pyx_k_Failed_to_initialize_the_handle[] = "Failed to initialize the handle";
 static const char __pyx_k_no_default___reduce___due_to_non[] = "no default __reduce__ due to non-trivial __cinit__";
 static PyObject *__pyx_n_s_Dict;
@@ -1670,10 +1690,10 @@ static PyObject *__pyx_kp_u_Failed_to_initialize_the_handle;
 static PyObject *__pyx_n_s_KeyError;
 static PyObject *__pyx_n_s_MacroContext;
 static PyObject *__pyx_n_s_MacroContext___iter;
+static PyObject *__pyx_n_s_MacroContext__get_unique_names;
 static PyObject *__pyx_n_s_MacroEntry;
 static PyObject *__pyx_n_u_MacroEntry;
 static PyObject *__pyx_n_s_MemoryError;
-static PyObject *__pyx_n_u_Names;
 static PyObject *__pyx_n_s_Optional;
 static PyObject *__pyx_n_s_RuntimeError;
 static PyObject *__pyx_n_s_TypeError;
@@ -1690,12 +1710,12 @@ static PyObject *__pyx_n_s_define;
 static PyObject *__pyx_n_s_defn;
 static PyObject *__pyx_n_s_empty_on_failure;
 static PyObject *__pyx_n_s_encode;
-static PyObject *__pyx_n_u_env;
 static PyObject *__pyx_n_s_environ;
 static PyObject *__pyx_n_s_epicsmacrolib_macro;
 static PyObject *__pyx_n_s_expand;
 static PyObject *__pyx_n_s_frozen;
 static PyObject *__pyx_n_s_get_defined_names;
+static PyObject *__pyx_n_s_get_unique_names;
 static PyObject *__pyx_n_s_getstate;
 static PyObject *__pyx_n_s_import;
 static PyObject *__pyx_n_s_items;
@@ -1709,7 +1729,6 @@ static PyObject *__pyx_n_u_name;
 static PyObject *__pyx_n_s_name_2;
 static PyObject *__pyx_kp_s_no_default___reduce___due_to_non;
 static PyObject *__pyx_n_s_os;
-static PyObject *__pyx_n_s_print;
 static PyObject *__pyx_n_s_pyx_vtable;
 static PyObject *__pyx_n_s_range;
 static PyObject *__pyx_n_s_rawval;
@@ -1717,6 +1736,7 @@ static PyObject *__pyx_n_u_rawval;
 static PyObject *__pyx_n_s_reduce;
 static PyObject *__pyx_n_s_reduce_cython;
 static PyObject *__pyx_n_s_reduce_ex;
+static PyObject *__pyx_kp_b_scope;
 static PyObject *__pyx_n_s_send;
 static PyObject *__pyx_n_s_setstate;
 static PyObject *__pyx_n_s_setstate_cython;
@@ -1741,21 +1761,23 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_10_definitions
 static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_12define(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self, PyObject *__pyx_v_macros); /* proto */
 static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_14get_macro_details(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_16_get_defined_names(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self); /* proto */
-static Py_ssize_t __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_18__len__(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_20__iter__(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_23__getitem__(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self, PyObject *__pyx_v_item); /* proto */
-static int __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_25__setitem__(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self, PyObject *__pyx_v_item, PyObject *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_27_expand_with_length(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self, PyObject *__pyx_v_value, PyObject *__pyx_v_max_length, PyObject *__pyx_v_empty_on_failure); /* proto */
-static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_29_expand(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self, PyObject *__pyx_v_value, PyObject *__pyx_v_empty_on_failure); /* proto */
+static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_18_get_unique_names(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self); /* proto */
+static Py_ssize_t __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_21__len__(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_23__iter__(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_26__getitem__(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self, PyObject *__pyx_v_item); /* proto */
+static int __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_28__setitem__(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self, PyObject *__pyx_v_item, PyObject *__pyx_v_value); /* proto */
+static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_30_expand_with_length(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self, PyObject *__pyx_v_value, PyObject *__pyx_v_max_length, PyObject *__pyx_v_empty_on_failure); /* proto */
+static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_32_expand(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self, PyObject *__pyx_v_value, PyObject *__pyx_v_empty_on_failure); /* proto */
 static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_15string_encoding___get__(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self); /* proto */
 static int __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_15string_encoding_2__set__(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
 static int __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_15string_encoding_4__del__(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_15use_environment___get__(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self); /* proto */
 static int __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_15use_environment_2__set__(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self, PyObject *__pyx_v_value); /* proto */
-static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_31__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self); /* proto */
-static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_33__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
+static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_34__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self); /* proto */
+static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_36__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_tp_new_14_epicsmacrolib_5macro__MacroContext(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
-static PyObject *__pyx_tp_new_14_epicsmacrolib_5macro___pyx_scope_struct____iter__(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
+static PyObject *__pyx_tp_new_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
+static PyObject *__pyx_tp_new_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
 static PyObject *__pyx_int_0;
 static PyObject *__pyx_int_1;
 static PyObject *__pyx_int_2;
@@ -3438,15 +3460,17 @@ static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_17_get_defined
 static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_16_get_defined_names(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self) {
   __pyx_t_14_epicsmacrolib_5macro_MAC_ENTRY *__pyx_v_entry;
   PyObject *__pyx_v_names = 0;
+  PyObject *__pyx_v_ignored_names = 0;
   PyObject *__pyx_v_string_name = NULL;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
   int __pyx_t_2;
-  PyObject *__pyx_t_3 = NULL;
-  PyObject *__pyx_t_4 = NULL;
-  int __pyx_t_5;
-  int __pyx_t_6;
+  int __pyx_t_3;
+  int __pyx_t_4;
+  PyObject *__pyx_t_5 = NULL;
+  PyObject *__pyx_t_6 = NULL;
+  int __pyx_t_7;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -3457,7 +3481,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_16_get_defined
  *     def _get_defined_names(self):
  *         cdef MAC_ENTRY* entry = <MAC_ENTRY*>self.handle.list.node.next             # <<<<<<<<<<<<<<
  *         cdef list names = []
- *         while entry != NULL:
+ *         cdef set ignored_names = {b"", b"<scope>"}
  */
   __pyx_v_entry = ((__pyx_t_14_epicsmacrolib_5macro_MAC_ENTRY *)__pyx_v_self->handle->list.node.next);
 
@@ -3465,8 +3489,8 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_16_get_defined
  *     def _get_defined_names(self):
  *         cdef MAC_ENTRY* entry = <MAC_ENTRY*>self.handle.list.node.next
  *         cdef list names = []             # <<<<<<<<<<<<<<
+ *         cdef set ignored_names = {b"", b"<scope>"}
  *         while entry != NULL:
- *             if entry.name:
  */
   __pyx_t_1 = PyList_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 180, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -3476,76 +3500,102 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_16_get_defined
   /* "epicsmacrolib/macro.pyx":181
  *         cdef MAC_ENTRY* entry = <MAC_ENTRY*>self.handle.list.node.next
  *         cdef list names = []
+ *         cdef set ignored_names = {b"", b"<scope>"}             # <<<<<<<<<<<<<<
+ *         while entry != NULL:
+ *             if entry.name != NULL and entry.name not in ignored_names:
+ */
+  __pyx_t_1 = PySet_New(0); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 181, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  if (PySet_Add(__pyx_t_1, __pyx_kp_b__2) < 0) __PYX_ERR(0, 181, __pyx_L1_error)
+  if (PySet_Add(__pyx_t_1, __pyx_kp_b_scope) < 0) __PYX_ERR(0, 181, __pyx_L1_error)
+  __pyx_v_ignored_names = ((PyObject*)__pyx_t_1);
+  __pyx_t_1 = 0;
+
+  /* "epicsmacrolib/macro.pyx":182
+ *         cdef list names = []
+ *         cdef set ignored_names = {b"", b"<scope>"}
  *         while entry != NULL:             # <<<<<<<<<<<<<<
- *             if entry.name:
+ *             if entry.name != NULL and entry.name not in ignored_names:
  *                 string_name = entry.name.decode(self.string_encoding)
  */
   while (1) {
     __pyx_t_2 = ((__pyx_v_entry != NULL) != 0);
     if (!__pyx_t_2) break;
 
-    /* "epicsmacrolib/macro.pyx":182
- *         cdef list names = []
+    /* "epicsmacrolib/macro.pyx":183
+ *         cdef set ignored_names = {b"", b"<scope>"}
  *         while entry != NULL:
- *             if entry.name:             # <<<<<<<<<<<<<<
+ *             if entry.name != NULL and entry.name not in ignored_names:             # <<<<<<<<<<<<<<
  *                 string_name = entry.name.decode(self.string_encoding)
  *                 if string_name not in names:
  */
-    __pyx_t_2 = (__pyx_v_entry->name != 0);
+    __pyx_t_3 = ((__pyx_v_entry->name != NULL) != 0);
+    if (__pyx_t_3) {
+    } else {
+      __pyx_t_2 = __pyx_t_3;
+      goto __pyx_L6_bool_binop_done;
+    }
+    __pyx_t_1 = __Pyx_PyBytes_FromString(__pyx_v_entry->name); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 183, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_3 = (__Pyx_PySet_ContainsTF(__pyx_t_1, __pyx_v_ignored_names, Py_NE)); if (unlikely(__pyx_t_3 < 0)) __PYX_ERR(0, 183, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    __pyx_t_4 = (__pyx_t_3 != 0);
+    __pyx_t_2 = __pyx_t_4;
+    __pyx_L6_bool_binop_done:;
     if (__pyx_t_2) {
 
-      /* "epicsmacrolib/macro.pyx":183
+      /* "epicsmacrolib/macro.pyx":184
  *         while entry != NULL:
- *             if entry.name:
+ *             if entry.name != NULL and entry.name not in ignored_names:
  *                 string_name = entry.name.decode(self.string_encoding)             # <<<<<<<<<<<<<<
  *                 if string_name not in names:
  *                     names.append(string_name)
  */
-      __pyx_t_3 = __Pyx_PyBytes_FromString(__pyx_v_entry->name); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 183, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_3);
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_decode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 183, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_4);
-      __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-      __pyx_t_3 = NULL;
-      if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
-        __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_4);
-        if (likely(__pyx_t_3)) {
-          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_4);
-          __Pyx_INCREF(__pyx_t_3);
+      __pyx_t_5 = __Pyx_PyBytes_FromString(__pyx_v_entry->name); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 184, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_5);
+      __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_5, __pyx_n_s_decode); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 184, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_6);
+      __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
+      __pyx_t_5 = NULL;
+      if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_6))) {
+        __pyx_t_5 = PyMethod_GET_SELF(__pyx_t_6);
+        if (likely(__pyx_t_5)) {
+          PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_6);
+          __Pyx_INCREF(__pyx_t_5);
           __Pyx_INCREF(function);
-          __Pyx_DECREF_SET(__pyx_t_4, function);
+          __Pyx_DECREF_SET(__pyx_t_6, function);
         }
       }
-      __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_3, __pyx_v_self->string_encoding) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_self->string_encoding);
-      __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 183, __pyx_L1_error)
+      __pyx_t_1 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_6, __pyx_t_5, __pyx_v_self->string_encoding) : __Pyx_PyObject_CallOneArg(__pyx_t_6, __pyx_v_self->string_encoding);
+      __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 184, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
-      __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
+      __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
       __Pyx_XDECREF_SET(__pyx_v_string_name, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "epicsmacrolib/macro.pyx":184
- *             if entry.name:
+      /* "epicsmacrolib/macro.pyx":185
+ *             if entry.name != NULL and entry.name not in ignored_names:
  *                 string_name = entry.name.decode(self.string_encoding)
  *                 if string_name not in names:             # <<<<<<<<<<<<<<
  *                     names.append(string_name)
  *             entry = <MAC_ENTRY*>entry.node.next
  */
-      __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_v_string_name, __pyx_v_names, Py_NE)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 184, __pyx_L1_error)
-      __pyx_t_5 = (__pyx_t_2 != 0);
-      if (__pyx_t_5) {
+      __pyx_t_2 = (__Pyx_PySequence_ContainsTF(__pyx_v_string_name, __pyx_v_names, Py_NE)); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 185, __pyx_L1_error)
+      __pyx_t_4 = (__pyx_t_2 != 0);
+      if (__pyx_t_4) {
 
-        /* "epicsmacrolib/macro.pyx":185
+        /* "epicsmacrolib/macro.pyx":186
  *                 string_name = entry.name.decode(self.string_encoding)
  *                 if string_name not in names:
  *                     names.append(string_name)             # <<<<<<<<<<<<<<
  *             entry = <MAC_ENTRY*>entry.node.next
  *         return names
  */
-        __pyx_t_6 = __Pyx_PyList_Append(__pyx_v_names, __pyx_v_string_name); if (unlikely(__pyx_t_6 == ((int)-1))) __PYX_ERR(0, 185, __pyx_L1_error)
+        __pyx_t_7 = __Pyx_PyList_Append(__pyx_v_names, __pyx_v_string_name); if (unlikely(__pyx_t_7 == ((int)-1))) __PYX_ERR(0, 186, __pyx_L1_error)
 
-        /* "epicsmacrolib/macro.pyx":184
- *             if entry.name:
+        /* "epicsmacrolib/macro.pyx":185
+ *             if entry.name != NULL and entry.name not in ignored_names:
  *                 string_name = entry.name.decode(self.string_encoding)
  *                 if string_name not in names:             # <<<<<<<<<<<<<<
  *                     names.append(string_name)
@@ -3553,16 +3603,16 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_16_get_defined
  */
       }
 
-      /* "epicsmacrolib/macro.pyx":182
- *         cdef list names = []
+      /* "epicsmacrolib/macro.pyx":183
+ *         cdef set ignored_names = {b"", b"<scope>"}
  *         while entry != NULL:
- *             if entry.name:             # <<<<<<<<<<<<<<
+ *             if entry.name != NULL and entry.name not in ignored_names:             # <<<<<<<<<<<<<<
  *                 string_name = entry.name.decode(self.string_encoding)
  *                 if string_name not in names:
  */
     }
 
-    /* "epicsmacrolib/macro.pyx":186
+    /* "epicsmacrolib/macro.pyx":187
  *                 if string_name not in names:
  *                     names.append(string_name)
  *             entry = <MAC_ENTRY*>entry.node.next             # <<<<<<<<<<<<<<
@@ -3572,12 +3622,12 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_16_get_defined
     __pyx_v_entry = ((__pyx_t_14_epicsmacrolib_5macro_MAC_ENTRY *)__pyx_v_entry->node.next);
   }
 
-  /* "epicsmacrolib/macro.pyx":187
+  /* "epicsmacrolib/macro.pyx":188
  *                     names.append(string_name)
  *             entry = <MAC_ENTRY*>entry.node.next
  *         return names             # <<<<<<<<<<<<<<
  *
- *     def __len__(self):
+ *     def _get_unique_names(self):
  */
   __Pyx_XDECREF(__pyx_r);
   __Pyx_INCREF(__pyx_v_names);
@@ -3595,59 +3645,113 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_16_get_defined
   /* function exit code */
   __pyx_L1_error:;
   __Pyx_XDECREF(__pyx_t_1);
-  __Pyx_XDECREF(__pyx_t_3);
-  __Pyx_XDECREF(__pyx_t_4);
+  __Pyx_XDECREF(__pyx_t_5);
+  __Pyx_XDECREF(__pyx_t_6);
   __Pyx_AddTraceback("_epicsmacrolib.macro._MacroContext._get_defined_names", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __pyx_r = NULL;
   __pyx_L0:;
   __Pyx_XDECREF(__pyx_v_names);
+  __Pyx_XDECREF(__pyx_v_ignored_names);
   __Pyx_XDECREF(__pyx_v_string_name);
   __Pyx_XGIVEREF(__pyx_r);
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
+static PyObject *__pyx_gb_14_epicsmacrolib_5macro_13_MacroContext_20generator(__pyx_CoroutineObject *__pyx_generator, CYTHON_UNUSED PyThreadState *__pyx_tstate, PyObject *__pyx_sent_value); /* proto */
 
-/* "epicsmacrolib/macro.pyx":189
+/* "epicsmacrolib/macro.pyx":190
  *         return names
  *
- *     def __len__(self):             # <<<<<<<<<<<<<<
- *         return len(self._get_defined_names())
- *
+ *     def _get_unique_names(self):             # <<<<<<<<<<<<<<
+ *         defined_names = self._get_defined_names()
+ *         yield from defined_names
  */
 
 /* Python wrapper */
-static Py_ssize_t __pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_19__len__(PyObject *__pyx_v_self); /*proto*/
-static Py_ssize_t __pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_19__len__(PyObject *__pyx_v_self) {
-  Py_ssize_t __pyx_r;
+static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_19_get_unique_names(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_14_epicsmacrolib_5macro_13_MacroContext_18_get_unique_names[] = "_MacroContext._get_unique_names(self)";
+static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_19_get_unique_names(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+  PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
-  __Pyx_RefNannySetupContext("__len__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_18__len__(((struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *)__pyx_v_self));
+  __Pyx_RefNannySetupContext("_get_unique_names (wrapper)", 0);
+  __pyx_r = __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_18_get_unique_names(((struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static Py_ssize_t __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_18__len__(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self) {
-  Py_ssize_t __pyx_r;
+static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_18_get_unique_names(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self) {
+  struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names *__pyx_cur_scope;
+  PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
-  PyObject *__pyx_t_1 = NULL;
-  PyObject *__pyx_t_2 = NULL;
-  PyObject *__pyx_t_3 = NULL;
-  Py_ssize_t __pyx_t_4;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
-  __Pyx_RefNannySetupContext("__len__", 0);
+  __Pyx_RefNannySetupContext("_get_unique_names", 0);
+  __pyx_cur_scope = (struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names *)__pyx_tp_new_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names(__pyx_ptype_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names, __pyx_empty_tuple, NULL);
+  if (unlikely(!__pyx_cur_scope)) {
+    __pyx_cur_scope = ((struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names *)Py_None);
+    __Pyx_INCREF(Py_None);
+    __PYX_ERR(0, 190, __pyx_L1_error)
+  } else {
+    __Pyx_GOTREF(__pyx_cur_scope);
+  }
+  __pyx_cur_scope->__pyx_v_self = __pyx_v_self;
+  __Pyx_INCREF((PyObject *)__pyx_cur_scope->__pyx_v_self);
+  __Pyx_GIVEREF((PyObject *)__pyx_cur_scope->__pyx_v_self);
+  {
+    __pyx_CoroutineObject *gen = __Pyx_Generator_New((__pyx_coroutine_body_t) __pyx_gb_14_epicsmacrolib_5macro_13_MacroContext_20generator, NULL, (PyObject *) __pyx_cur_scope, __pyx_n_s_get_unique_names, __pyx_n_s_MacroContext__get_unique_names, __pyx_n_s_epicsmacrolib_macro); if (unlikely(!gen)) __PYX_ERR(0, 190, __pyx_L1_error)
+    __Pyx_DECREF(__pyx_cur_scope);
+    __Pyx_RefNannyFinishContext();
+    return (PyObject *) gen;
+  }
 
-  /* "epicsmacrolib/macro.pyx":190
+  /* function exit code */
+  __pyx_L1_error:;
+  __Pyx_AddTraceback("_epicsmacrolib.macro._MacroContext._get_unique_names", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_r = NULL;
+  __Pyx_DECREF(((PyObject *)__pyx_cur_scope));
+  __Pyx_XGIVEREF(__pyx_r);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static PyObject *__pyx_gb_14_epicsmacrolib_5macro_13_MacroContext_20generator(__pyx_CoroutineObject *__pyx_generator, CYTHON_UNUSED PyThreadState *__pyx_tstate, PyObject *__pyx_sent_value) /* generator body */
+{
+  struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names *__pyx_cur_scope = ((struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names *)__pyx_generator->closure);
+  PyObject *__pyx_r = NULL;
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  int __pyx_t_4;
+  Py_ssize_t __pyx_t_5;
+  PyObject *(*__pyx_t_6)(PyObject *);
+  int __pyx_t_7;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("_get_unique_names", 0);
+  switch (__pyx_generator->resume_label) {
+    case 0: goto __pyx_L3_first_run;
+    case 1: goto __pyx_L4_resume_from_yield_from;
+    case 2: goto __pyx_L9_resume_from_yield;
+    default: /* CPython raises the right error here */
+    __Pyx_RefNannyFinishContext();
+    return NULL;
+  }
+  __pyx_L3_first_run:;
+  if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 190, __pyx_L1_error)
+
+  /* "epicsmacrolib/macro.pyx":191
  *
- *     def __len__(self):
- *         return len(self._get_defined_names())             # <<<<<<<<<<<<<<
+ *     def _get_unique_names(self):
+ *         defined_names = self._get_defined_names()             # <<<<<<<<<<<<<<
+ *         yield from defined_names
  *
- *     def __iter__(self):
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_defined_names); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 190, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_cur_scope->__pyx_v_self), __pyx_n_s_get_defined_names); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 191, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -3661,19 +3765,270 @@ static Py_ssize_t __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_18__len__(str
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 190, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 191, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = PyObject_Length(__pyx_t_1); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 190, __pyx_L1_error)
+  __Pyx_GIVEREF(__pyx_t_1);
+  __pyx_cur_scope->__pyx_v_defined_names = __pyx_t_1;
+  __pyx_t_1 = 0;
+
+  /* "epicsmacrolib/macro.pyx":192
+ *     def _get_unique_names(self):
+ *         defined_names = self._get_defined_names()
+ *         yield from defined_names             # <<<<<<<<<<<<<<
+ *
+ *         if self.use_environment:
+ */
+  __pyx_r = __Pyx_Generator_Yield_From(__pyx_generator, __pyx_cur_scope->__pyx_v_defined_names);
+  __Pyx_XGOTREF(__pyx_r);
+  if (likely(__pyx_r)) {
+    __Pyx_XGIVEREF(__pyx_r);
+    __Pyx_RefNannyFinishContext();
+    __Pyx_Coroutine_ResetAndClearException(__pyx_generator);
+    /* return from generator, yielding value */
+    __pyx_generator->resume_label = 1;
+    return __pyx_r;
+    __pyx_L4_resume_from_yield_from:;
+    if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 192, __pyx_L1_error)
+  } else {
+    PyObject* exc_type = __Pyx_PyErr_Occurred();
+    if (exc_type) {
+      if (likely(exc_type == PyExc_StopIteration || (exc_type != PyExc_GeneratorExit && __Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration)))) PyErr_Clear();
+      else __PYX_ERR(0, 192, __pyx_L1_error)
+    }
+  }
+
+  /* "epicsmacrolib/macro.pyx":194
+ *         yield from defined_names
+ *
+ *         if self.use_environment:             # <<<<<<<<<<<<<<
+ *             for name in os.environ:
+ *                 if name not in defined_names:
+ */
+  __pyx_t_4 = (__pyx_cur_scope->__pyx_v_self->use_environment != 0);
+  if (__pyx_t_4) {
+
+    /* "epicsmacrolib/macro.pyx":195
+ *
+ *         if self.use_environment:
+ *             for name in os.environ:             # <<<<<<<<<<<<<<
+ *                 if name not in defined_names:
+ *                     yield name
+ */
+    __Pyx_GetModuleGlobalName(__pyx_t_1, __pyx_n_s_os); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 195, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_1);
+    __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_t_1, __pyx_n_s_environ); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 195, __pyx_L1_error)
+    __Pyx_GOTREF(__pyx_t_2);
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+    if (likely(PyList_CheckExact(__pyx_t_2)) || PyTuple_CheckExact(__pyx_t_2)) {
+      __pyx_t_1 = __pyx_t_2; __Pyx_INCREF(__pyx_t_1); __pyx_t_5 = 0;
+      __pyx_t_6 = NULL;
+    } else {
+      __pyx_t_5 = -1; __pyx_t_1 = PyObject_GetIter(__pyx_t_2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 195, __pyx_L1_error)
+      __Pyx_GOTREF(__pyx_t_1);
+      __pyx_t_6 = Py_TYPE(__pyx_t_1)->tp_iternext; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 195, __pyx_L1_error)
+    }
+    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+    for (;;) {
+      if (likely(!__pyx_t_6)) {
+        if (likely(PyList_CheckExact(__pyx_t_1))) {
+          if (__pyx_t_5 >= PyList_GET_SIZE(__pyx_t_1)) break;
+          #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+          __pyx_t_2 = PyList_GET_ITEM(__pyx_t_1, __pyx_t_5); __Pyx_INCREF(__pyx_t_2); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 195, __pyx_L1_error)
+          #else
+          __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 195, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_2);
+          #endif
+        } else {
+          if (__pyx_t_5 >= PyTuple_GET_SIZE(__pyx_t_1)) break;
+          #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
+          __pyx_t_2 = PyTuple_GET_ITEM(__pyx_t_1, __pyx_t_5); __Pyx_INCREF(__pyx_t_2); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 195, __pyx_L1_error)
+          #else
+          __pyx_t_2 = PySequence_ITEM(__pyx_t_1, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 195, __pyx_L1_error)
+          __Pyx_GOTREF(__pyx_t_2);
+          #endif
+        }
+      } else {
+        __pyx_t_2 = __pyx_t_6(__pyx_t_1);
+        if (unlikely(!__pyx_t_2)) {
+          PyObject* exc_type = PyErr_Occurred();
+          if (exc_type) {
+            if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
+            else __PYX_ERR(0, 195, __pyx_L1_error)
+          }
+          break;
+        }
+        __Pyx_GOTREF(__pyx_t_2);
+      }
+      __Pyx_XGOTREF(__pyx_cur_scope->__pyx_v_name);
+      __Pyx_XDECREF_SET(__pyx_cur_scope->__pyx_v_name, __pyx_t_2);
+      __Pyx_GIVEREF(__pyx_t_2);
+      __pyx_t_2 = 0;
+
+      /* "epicsmacrolib/macro.pyx":196
+ *         if self.use_environment:
+ *             for name in os.environ:
+ *                 if name not in defined_names:             # <<<<<<<<<<<<<<
+ *                     yield name
+ *
+ */
+      __pyx_t_4 = (__Pyx_PySequence_ContainsTF(__pyx_cur_scope->__pyx_v_name, __pyx_cur_scope->__pyx_v_defined_names, Py_NE)); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 196, __pyx_L1_error)
+      __pyx_t_7 = (__pyx_t_4 != 0);
+      if (__pyx_t_7) {
+
+        /* "epicsmacrolib/macro.pyx":197
+ *             for name in os.environ:
+ *                 if name not in defined_names:
+ *                     yield name             # <<<<<<<<<<<<<<
+ *
+ *     def __len__(self):
+ */
+        __Pyx_INCREF(__pyx_cur_scope->__pyx_v_name);
+        __pyx_r = __pyx_cur_scope->__pyx_v_name;
+        __Pyx_XGIVEREF(__pyx_t_1);
+        __pyx_cur_scope->__pyx_t_0 = __pyx_t_1;
+        __pyx_cur_scope->__pyx_t_1 = __pyx_t_5;
+        __pyx_cur_scope->__pyx_t_2 = __pyx_t_6;
+        __Pyx_XGIVEREF(__pyx_r);
+        __Pyx_RefNannyFinishContext();
+        __Pyx_Coroutine_ResetAndClearException(__pyx_generator);
+        /* return from generator, yielding value */
+        __pyx_generator->resume_label = 2;
+        return __pyx_r;
+        __pyx_L9_resume_from_yield:;
+        __pyx_t_1 = __pyx_cur_scope->__pyx_t_0;
+        __pyx_cur_scope->__pyx_t_0 = 0;
+        __Pyx_XGOTREF(__pyx_t_1);
+        __pyx_t_5 = __pyx_cur_scope->__pyx_t_1;
+        __pyx_t_6 = __pyx_cur_scope->__pyx_t_2;
+        if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 197, __pyx_L1_error)
+
+        /* "epicsmacrolib/macro.pyx":196
+ *         if self.use_environment:
+ *             for name in os.environ:
+ *                 if name not in defined_names:             # <<<<<<<<<<<<<<
+ *                     yield name
+ *
+ */
+      }
+
+      /* "epicsmacrolib/macro.pyx":195
+ *
+ *         if self.use_environment:
+ *             for name in os.environ:             # <<<<<<<<<<<<<<
+ *                 if name not in defined_names:
+ *                     yield name
+ */
+    }
+    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+
+    /* "epicsmacrolib/macro.pyx":194
+ *         yield from defined_names
+ *
+ *         if self.use_environment:             # <<<<<<<<<<<<<<
+ *             for name in os.environ:
+ *                 if name not in defined_names:
+ */
+  }
+  CYTHON_MAYBE_UNUSED_VAR(__pyx_cur_scope);
+
+  /* "epicsmacrolib/macro.pyx":190
+ *         return names
+ *
+ *     def _get_unique_names(self):             # <<<<<<<<<<<<<<
+ *         defined_names = self._get_defined_names()
+ *         yield from defined_names
+ */
+
+  /* function exit code */
+  PyErr_SetNone(PyExc_StopIteration);
+  goto __pyx_L0;
+  __pyx_L1_error:;
+  __Pyx_XDECREF(__pyx_t_1);
+  __Pyx_XDECREF(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3);
+  __Pyx_AddTraceback("_get_unique_names", __pyx_clineno, __pyx_lineno, __pyx_filename);
+  __pyx_L0:;
+  __Pyx_XDECREF(__pyx_r); __pyx_r = 0;
+  #if !CYTHON_USE_EXC_INFO_STACK
+  __Pyx_Coroutine_ResetAndClearException(__pyx_generator);
+  #endif
+  __pyx_generator->resume_label = -1;
+  __Pyx_Coroutine_clear((PyObject*)__pyx_generator);
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+/* "epicsmacrolib/macro.pyx":199
+ *                     yield name
+ *
+ *     def __len__(self):             # <<<<<<<<<<<<<<
+ *         return len(list(self._get_unique_names()))
+ *
+ */
+
+/* Python wrapper */
+static Py_ssize_t __pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_22__len__(PyObject *__pyx_v_self); /*proto*/
+static Py_ssize_t __pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_22__len__(PyObject *__pyx_v_self) {
+  Py_ssize_t __pyx_r;
+  __Pyx_RefNannyDeclarations
+  __Pyx_RefNannySetupContext("__len__ (wrapper)", 0);
+  __pyx_r = __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_21__len__(((struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *)__pyx_v_self));
+
+  /* function exit code */
+  __Pyx_RefNannyFinishContext();
+  return __pyx_r;
+}
+
+static Py_ssize_t __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_21__len__(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self) {
+  Py_ssize_t __pyx_r;
+  __Pyx_RefNannyDeclarations
+  PyObject *__pyx_t_1 = NULL;
+  PyObject *__pyx_t_2 = NULL;
+  PyObject *__pyx_t_3 = NULL;
+  Py_ssize_t __pyx_t_4;
+  int __pyx_lineno = 0;
+  const char *__pyx_filename = NULL;
+  int __pyx_clineno = 0;
+  __Pyx_RefNannySetupContext("__len__", 0);
+
+  /* "epicsmacrolib/macro.pyx":200
+ *
+ *     def __len__(self):
+ *         return len(list(self._get_unique_names()))             # <<<<<<<<<<<<<<
+ *
+ *     def __iter__(self):
+ */
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_get_unique_names); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 200, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_t_3 = NULL;
+  if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
+    __pyx_t_3 = PyMethod_GET_SELF(__pyx_t_2);
+    if (likely(__pyx_t_3)) {
+      PyObject* function = PyMethod_GET_FUNCTION(__pyx_t_2);
+      __Pyx_INCREF(__pyx_t_3);
+      __Pyx_INCREF(function);
+      __Pyx_DECREF_SET(__pyx_t_2, function);
+    }
+  }
+  __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
+  __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 200, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
+  __pyx_t_2 = PySequence_List(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 200, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_2);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
+  __pyx_t_4 = PyList_GET_SIZE(__pyx_t_2); if (unlikely(__pyx_t_4 == ((Py_ssize_t)-1))) __PYX_ERR(0, 200, __pyx_L1_error)
+  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_r = __pyx_t_4;
   goto __pyx_L0;
 
-  /* "epicsmacrolib/macro.pyx":189
- *         return names
+  /* "epicsmacrolib/macro.pyx":199
+ *                     yield name
  *
  *     def __len__(self):             # <<<<<<<<<<<<<<
- *         return len(self._get_defined_names())
+ *         return len(list(self._get_unique_names()))
  *
  */
 
@@ -3688,42 +4043,42 @@ static Py_ssize_t __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_18__len__(str
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
-static PyObject *__pyx_gb_14_epicsmacrolib_5macro_13_MacroContext_22generator(__pyx_CoroutineObject *__pyx_generator, CYTHON_UNUSED PyThreadState *__pyx_tstate, PyObject *__pyx_sent_value); /* proto */
+static PyObject *__pyx_gb_14_epicsmacrolib_5macro_13_MacroContext_25generator1(__pyx_CoroutineObject *__pyx_generator, CYTHON_UNUSED PyThreadState *__pyx_tstate, PyObject *__pyx_sent_value); /* proto */
 
-/* "epicsmacrolib/macro.pyx":192
- *         return len(self._get_defined_names())
+/* "epicsmacrolib/macro.pyx":202
+ *         return len(list(self._get_unique_names()))
  *
  *     def __iter__(self):             # <<<<<<<<<<<<<<
- *         names = self._get_defined_names()
- *         print("Names", names)
+ *         yield from self._get_unique_names()
+ *
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_21__iter__(PyObject *__pyx_v_self); /*proto*/
-static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_21__iter__(PyObject *__pyx_v_self) {
+static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_24__iter__(PyObject *__pyx_v_self); /*proto*/
+static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_24__iter__(PyObject *__pyx_v_self) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__iter__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_20__iter__(((struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *)__pyx_v_self));
+  __pyx_r = __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_23__iter__(((struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_20__iter__(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self) {
-  struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct____iter__ *__pyx_cur_scope;
+static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_23__iter__(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self) {
+  struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__ *__pyx_cur_scope;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__iter__", 0);
-  __pyx_cur_scope = (struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct____iter__ *)__pyx_tp_new_14_epicsmacrolib_5macro___pyx_scope_struct____iter__(__pyx_ptype_14_epicsmacrolib_5macro___pyx_scope_struct____iter__, __pyx_empty_tuple, NULL);
+  __pyx_cur_scope = (struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__ *)__pyx_tp_new_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__(__pyx_ptype_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__, __pyx_empty_tuple, NULL);
   if (unlikely(!__pyx_cur_scope)) {
-    __pyx_cur_scope = ((struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct____iter__ *)Py_None);
+    __pyx_cur_scope = ((struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__ *)Py_None);
     __Pyx_INCREF(Py_None);
-    __PYX_ERR(0, 192, __pyx_L1_error)
+    __PYX_ERR(0, 202, __pyx_L1_error)
   } else {
     __Pyx_GOTREF(__pyx_cur_scope);
   }
@@ -3731,7 +4086,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_20__iter__(str
   __Pyx_INCREF((PyObject *)__pyx_cur_scope->__pyx_v_self);
   __Pyx_GIVEREF((PyObject *)__pyx_cur_scope->__pyx_v_self);
   {
-    __pyx_CoroutineObject *gen = __Pyx_Generator_New((__pyx_coroutine_body_t) __pyx_gb_14_epicsmacrolib_5macro_13_MacroContext_22generator, NULL, (PyObject *) __pyx_cur_scope, __pyx_n_s_iter, __pyx_n_s_MacroContext___iter, __pyx_n_s_epicsmacrolib_macro); if (unlikely(!gen)) __PYX_ERR(0, 192, __pyx_L1_error)
+    __pyx_CoroutineObject *gen = __Pyx_Generator_New((__pyx_coroutine_body_t) __pyx_gb_14_epicsmacrolib_5macro_13_MacroContext_25generator1, NULL, (PyObject *) __pyx_cur_scope, __pyx_n_s_iter, __pyx_n_s_MacroContext___iter, __pyx_n_s_epicsmacrolib_macro); if (unlikely(!gen)) __PYX_ERR(0, 202, __pyx_L1_error)
     __Pyx_DECREF(__pyx_cur_scope);
     __Pyx_RefNannyFinishContext();
     return (PyObject *) gen;
@@ -3747,17 +4102,13 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_20__iter__(str
   return __pyx_r;
 }
 
-static PyObject *__pyx_gb_14_epicsmacrolib_5macro_13_MacroContext_22generator(__pyx_CoroutineObject *__pyx_generator, CYTHON_UNUSED PyThreadState *__pyx_tstate, PyObject *__pyx_sent_value) /* generator body */
+static PyObject *__pyx_gb_14_epicsmacrolib_5macro_13_MacroContext_25generator1(__pyx_CoroutineObject *__pyx_generator, CYTHON_UNUSED PyThreadState *__pyx_tstate, PyObject *__pyx_sent_value) /* generator body */
 {
-  struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct____iter__ *__pyx_cur_scope = ((struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct____iter__ *)__pyx_generator->closure);
+  struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__ *__pyx_cur_scope = ((struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__ *)__pyx_generator->closure);
   PyObject *__pyx_r = NULL;
   PyObject *__pyx_t_1 = NULL;
   PyObject *__pyx_t_2 = NULL;
   PyObject *__pyx_t_3 = NULL;
-  int __pyx_t_4;
-  Py_ssize_t __pyx_t_5;
-  PyObject *(*__pyx_t_6)(PyObject *);
-  int __pyx_t_7;
   int __pyx_lineno = 0;
   const char *__pyx_filename = NULL;
   int __pyx_clineno = 0;
@@ -3766,22 +4117,21 @@ static PyObject *__pyx_gb_14_epicsmacrolib_5macro_13_MacroContext_22generator(__
   switch (__pyx_generator->resume_label) {
     case 0: goto __pyx_L3_first_run;
     case 1: goto __pyx_L4_resume_from_yield_from;
-    case 2: goto __pyx_L9_resume_from_yield;
     default: /* CPython raises the right error here */
     __Pyx_RefNannyFinishContext();
     return NULL;
   }
   __pyx_L3_first_run:;
-  if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 192, __pyx_L1_error)
+  if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 202, __pyx_L1_error)
 
-  /* "epicsmacrolib/macro.pyx":193
+  /* "epicsmacrolib/macro.pyx":203
  *
  *     def __iter__(self):
- *         names = self._get_defined_names()             # <<<<<<<<<<<<<<
- *         print("Names", names)
- *         yield from names
+ *         yield from self._get_unique_names()             # <<<<<<<<<<<<<<
+ *
+ *     def __getitem__(self, item):
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_cur_scope->__pyx_v_self), __pyx_n_s_get_defined_names); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 193, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_cur_scope->__pyx_v_self), __pyx_n_s_get_unique_names); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 203, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -3795,41 +4145,11 @@ static PyObject *__pyx_gb_14_epicsmacrolib_5macro_13_MacroContext_22generator(__
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_t_3) : __Pyx_PyObject_CallNoArg(__pyx_t_2);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 193, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 203, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __Pyx_GIVEREF(__pyx_t_1);
-  __pyx_cur_scope->__pyx_v_names = __pyx_t_1;
-  __pyx_t_1 = 0;
-
-  /* "epicsmacrolib/macro.pyx":194
- *     def __iter__(self):
- *         names = self._get_defined_names()
- *         print("Names", names)             # <<<<<<<<<<<<<<
- *         yield from names
- *         if self.use_environment:
- */
-  __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 194, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_1);
-  __Pyx_INCREF(__pyx_n_u_Names);
-  __Pyx_GIVEREF(__pyx_n_u_Names);
-  PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_n_u_Names);
-  __Pyx_INCREF(__pyx_cur_scope->__pyx_v_names);
-  __Pyx_GIVEREF(__pyx_cur_scope->__pyx_v_names);
-  PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_cur_scope->__pyx_v_names);
-  __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_print, __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 194, __pyx_L1_error)
-  __Pyx_GOTREF(__pyx_t_2);
+  __pyx_r = __Pyx_Generator_Yield_From(__pyx_generator, __pyx_t_1);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-  __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-  /* "epicsmacrolib/macro.pyx":195
- *         names = self._get_defined_names()
- *         print("Names", names)
- *         yield from names             # <<<<<<<<<<<<<<
- *         if self.use_environment:
- *             print("env", list(os.environ))
- */
-  __pyx_r = __Pyx_Generator_Yield_From(__pyx_generator, __pyx_cur_scope->__pyx_v_names);
   __Pyx_XGOTREF(__pyx_r);
   if (likely(__pyx_r)) {
     __Pyx_XGIVEREF(__pyx_r);
@@ -3839,183 +4159,22 @@ static PyObject *__pyx_gb_14_epicsmacrolib_5macro_13_MacroContext_22generator(__
     __pyx_generator->resume_label = 1;
     return __pyx_r;
     __pyx_L4_resume_from_yield_from:;
-    if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 195, __pyx_L1_error)
+    if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 203, __pyx_L1_error)
   } else {
     PyObject* exc_type = __Pyx_PyErr_Occurred();
     if (exc_type) {
       if (likely(exc_type == PyExc_StopIteration || (exc_type != PyExc_GeneratorExit && __Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration)))) PyErr_Clear();
-      else __PYX_ERR(0, 195, __pyx_L1_error)
+      else __PYX_ERR(0, 203, __pyx_L1_error)
     }
-  }
-
-  /* "epicsmacrolib/macro.pyx":196
- *         print("Names", names)
- *         yield from names
- *         if self.use_environment:             # <<<<<<<<<<<<<<
- *             print("env", list(os.environ))
- *             for name in os.environ:
- */
-  __pyx_t_4 = (__pyx_cur_scope->__pyx_v_self->use_environment != 0);
-  if (__pyx_t_4) {
-
-    /* "epicsmacrolib/macro.pyx":197
- *         yield from names
- *         if self.use_environment:
- *             print("env", list(os.environ))             # <<<<<<<<<<<<<<
- *             for name in os.environ:
- *                 if name not in names:
- */
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_os); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 197, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_environ); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 197, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    __pyx_t_2 = PySequence_List(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 197, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __pyx_t_1 = PyTuple_New(2); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 197, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_INCREF(__pyx_n_u_env);
-    __Pyx_GIVEREF(__pyx_n_u_env);
-    PyTuple_SET_ITEM(__pyx_t_1, 0, __pyx_n_u_env);
-    __Pyx_GIVEREF(__pyx_t_2);
-    PyTuple_SET_ITEM(__pyx_t_1, 1, __pyx_t_2);
-    __pyx_t_2 = 0;
-    __pyx_t_2 = __Pyx_PyObject_Call(__pyx_builtin_print, __pyx_t_1, NULL); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 197, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-    /* "epicsmacrolib/macro.pyx":198
- *         if self.use_environment:
- *             print("env", list(os.environ))
- *             for name in os.environ:             # <<<<<<<<<<<<<<
- *                 if name not in names:
- *                     yield name
- */
-    __Pyx_GetModuleGlobalName(__pyx_t_2, __pyx_n_s_os); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 198, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_2);
-    __pyx_t_1 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_environ); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 198, __pyx_L1_error)
-    __Pyx_GOTREF(__pyx_t_1);
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-    if (likely(PyList_CheckExact(__pyx_t_1)) || PyTuple_CheckExact(__pyx_t_1)) {
-      __pyx_t_2 = __pyx_t_1; __Pyx_INCREF(__pyx_t_2); __pyx_t_5 = 0;
-      __pyx_t_6 = NULL;
-    } else {
-      __pyx_t_5 = -1; __pyx_t_2 = PyObject_GetIter(__pyx_t_1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 198, __pyx_L1_error)
-      __Pyx_GOTREF(__pyx_t_2);
-      __pyx_t_6 = Py_TYPE(__pyx_t_2)->tp_iternext; if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 198, __pyx_L1_error)
-    }
-    __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    for (;;) {
-      if (likely(!__pyx_t_6)) {
-        if (likely(PyList_CheckExact(__pyx_t_2))) {
-          if (__pyx_t_5 >= PyList_GET_SIZE(__pyx_t_2)) break;
-          #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_1 = PyList_GET_ITEM(__pyx_t_2, __pyx_t_5); __Pyx_INCREF(__pyx_t_1); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 198, __pyx_L1_error)
-          #else
-          __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 198, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_1);
-          #endif
-        } else {
-          if (__pyx_t_5 >= PyTuple_GET_SIZE(__pyx_t_2)) break;
-          #if CYTHON_ASSUME_SAFE_MACROS && !CYTHON_AVOID_BORROWED_REFS
-          __pyx_t_1 = PyTuple_GET_ITEM(__pyx_t_2, __pyx_t_5); __Pyx_INCREF(__pyx_t_1); __pyx_t_5++; if (unlikely(0 < 0)) __PYX_ERR(0, 198, __pyx_L1_error)
-          #else
-          __pyx_t_1 = PySequence_ITEM(__pyx_t_2, __pyx_t_5); __pyx_t_5++; if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 198, __pyx_L1_error)
-          __Pyx_GOTREF(__pyx_t_1);
-          #endif
-        }
-      } else {
-        __pyx_t_1 = __pyx_t_6(__pyx_t_2);
-        if (unlikely(!__pyx_t_1)) {
-          PyObject* exc_type = PyErr_Occurred();
-          if (exc_type) {
-            if (likely(__Pyx_PyErr_GivenExceptionMatches(exc_type, PyExc_StopIteration))) PyErr_Clear();
-            else __PYX_ERR(0, 198, __pyx_L1_error)
-          }
-          break;
-        }
-        __Pyx_GOTREF(__pyx_t_1);
-      }
-      __Pyx_XGOTREF(__pyx_cur_scope->__pyx_v_name);
-      __Pyx_XDECREF_SET(__pyx_cur_scope->__pyx_v_name, __pyx_t_1);
-      __Pyx_GIVEREF(__pyx_t_1);
-      __pyx_t_1 = 0;
-
-      /* "epicsmacrolib/macro.pyx":199
- *             print("env", list(os.environ))
- *             for name in os.environ:
- *                 if name not in names:             # <<<<<<<<<<<<<<
- *                     yield name
- *
- */
-      __pyx_t_4 = (__Pyx_PySequence_ContainsTF(__pyx_cur_scope->__pyx_v_name, __pyx_cur_scope->__pyx_v_names, Py_NE)); if (unlikely(__pyx_t_4 < 0)) __PYX_ERR(0, 199, __pyx_L1_error)
-      __pyx_t_7 = (__pyx_t_4 != 0);
-      if (__pyx_t_7) {
-
-        /* "epicsmacrolib/macro.pyx":200
- *             for name in os.environ:
- *                 if name not in names:
- *                     yield name             # <<<<<<<<<<<<<<
- *
- *     def __getitem__(self, item):
- */
-        __Pyx_INCREF(__pyx_cur_scope->__pyx_v_name);
-        __pyx_r = __pyx_cur_scope->__pyx_v_name;
-        __Pyx_XGIVEREF(__pyx_t_2);
-        __pyx_cur_scope->__pyx_t_0 = __pyx_t_2;
-        __pyx_cur_scope->__pyx_t_1 = __pyx_t_5;
-        __pyx_cur_scope->__pyx_t_2 = __pyx_t_6;
-        __Pyx_XGIVEREF(__pyx_r);
-        __Pyx_RefNannyFinishContext();
-        __Pyx_Coroutine_ResetAndClearException(__pyx_generator);
-        /* return from generator, yielding value */
-        __pyx_generator->resume_label = 2;
-        return __pyx_r;
-        __pyx_L9_resume_from_yield:;
-        __pyx_t_2 = __pyx_cur_scope->__pyx_t_0;
-        __pyx_cur_scope->__pyx_t_0 = 0;
-        __Pyx_XGOTREF(__pyx_t_2);
-        __pyx_t_5 = __pyx_cur_scope->__pyx_t_1;
-        __pyx_t_6 = __pyx_cur_scope->__pyx_t_2;
-        if (unlikely(!__pyx_sent_value)) __PYX_ERR(0, 200, __pyx_L1_error)
-
-        /* "epicsmacrolib/macro.pyx":199
- *             print("env", list(os.environ))
- *             for name in os.environ:
- *                 if name not in names:             # <<<<<<<<<<<<<<
- *                     yield name
- *
- */
-      }
-
-      /* "epicsmacrolib/macro.pyx":198
- *         if self.use_environment:
- *             print("env", list(os.environ))
- *             for name in os.environ:             # <<<<<<<<<<<<<<
- *                 if name not in names:
- *                     yield name
- */
-    }
-    __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-
-    /* "epicsmacrolib/macro.pyx":196
- *         print("Names", names)
- *         yield from names
- *         if self.use_environment:             # <<<<<<<<<<<<<<
- *             print("env", list(os.environ))
- *             for name in os.environ:
- */
   }
   CYTHON_MAYBE_UNUSED_VAR(__pyx_cur_scope);
 
-  /* "epicsmacrolib/macro.pyx":192
- *         return len(self._get_defined_names())
+  /* "epicsmacrolib/macro.pyx":202
+ *         return len(list(self._get_unique_names()))
  *
  *     def __iter__(self):             # <<<<<<<<<<<<<<
- *         names = self._get_defined_names()
- *         print("Names", names)
+ *         yield from self._get_unique_names()
+ *
  */
 
   /* function exit code */
@@ -4037,8 +4196,8 @@ static PyObject *__pyx_gb_14_epicsmacrolib_5macro_13_MacroContext_22generator(__
   return __pyx_r;
 }
 
-/* "epicsmacrolib/macro.pyx":202
- *                     yield name
+/* "epicsmacrolib/macro.pyx":205
+ *         yield from self._get_unique_names()
  *
  *     def __getitem__(self, item):             # <<<<<<<<<<<<<<
  *         encoding = self.string_encoding
@@ -4046,19 +4205,19 @@ static PyObject *__pyx_gb_14_epicsmacrolib_5macro_13_MacroContext_22generator(__
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_24__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_item); /*proto*/
-static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_24__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_item) {
+static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_27__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_item); /*proto*/
+static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_27__getitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_item) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__getitem__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_23__getitem__(((struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *)__pyx_v_self), ((PyObject *)__pyx_v_item));
+  __pyx_r = __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_26__getitem__(((struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *)__pyx_v_self), ((PyObject *)__pyx_v_item));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_23__getitem__(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self, PyObject *__pyx_v_item) {
+static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_26__getitem__(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self, PyObject *__pyx_v_item) {
   PyObject *__pyx_v_encoding = NULL;
   __pyx_t_14_epicsmacrolib_5macro_MAC_ENTRY *__pyx_v_entry;
   PyObject *__pyx_v_name = NULL;
@@ -4081,7 +4240,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_23__getitem__(
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__getitem__", 0);
 
-  /* "epicsmacrolib/macro.pyx":203
+  /* "epicsmacrolib/macro.pyx":206
  *
  *     def __getitem__(self, item):
  *         encoding = self.string_encoding             # <<<<<<<<<<<<<<
@@ -4093,7 +4252,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_23__getitem__(
   __pyx_v_encoding = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
 
-  /* "epicsmacrolib/macro.pyx":205
+  /* "epicsmacrolib/macro.pyx":208
  *         encoding = self.string_encoding
  *         # Start at the end for scoping
  *         cdef MAC_ENTRY* entry = <MAC_ENTRY*>self.handle.list.node.previous             # <<<<<<<<<<<<<<
@@ -4102,7 +4261,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_23__getitem__(
  */
   __pyx_v_entry = ((__pyx_t_14_epicsmacrolib_5macro_MAC_ENTRY *)__pyx_v_self->handle->list.node.previous);
 
-  /* "epicsmacrolib/macro.pyx":207
+  /* "epicsmacrolib/macro.pyx":210
  *         cdef MAC_ENTRY* entry = <MAC_ENTRY*>self.handle.list.node.previous
  *
  *         while entry != NULL:             # <<<<<<<<<<<<<<
@@ -4113,7 +4272,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_23__getitem__(
     __pyx_t_2 = ((__pyx_v_entry != NULL) != 0);
     if (!__pyx_t_2) break;
 
-    /* "epicsmacrolib/macro.pyx":208
+    /* "epicsmacrolib/macro.pyx":211
  *
  *         while entry != NULL:
  *             if entry.name:             # <<<<<<<<<<<<<<
@@ -4123,7 +4282,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_23__getitem__(
     __pyx_t_2 = (__pyx_v_entry->name != 0);
     if (__pyx_t_2) {
 
-      /* "epicsmacrolib/macro.pyx":209
+      /* "epicsmacrolib/macro.pyx":212
  *         while entry != NULL:
  *             if entry.name:
  *                 name = (entry.name or b"").decode(encoding)             # <<<<<<<<<<<<<<
@@ -4132,7 +4291,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_23__getitem__(
  */
       if (!__pyx_v_entry->name) {
       } else {
-        __pyx_t_4 = __Pyx_PyBytes_FromString(__pyx_v_entry->name); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 209, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyBytes_FromString(__pyx_v_entry->name); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 212, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
         __pyx_t_3 = __pyx_t_4;
         __pyx_t_4 = 0;
@@ -4141,7 +4300,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_23__getitem__(
       __Pyx_INCREF(__pyx_kp_b__2);
       __pyx_t_3 = __pyx_kp_b__2;
       __pyx_L6_bool_binop_done:;
-      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_decode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 209, __pyx_L1_error)
+      __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_3, __pyx_n_s_decode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 212, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_4);
       __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
       __pyx_t_3 = NULL;
@@ -4156,25 +4315,25 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_23__getitem__(
       }
       __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_3, __pyx_v_encoding) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_encoding);
       __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 209, __pyx_L1_error)
+      if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 212, __pyx_L1_error)
       __Pyx_GOTREF(__pyx_t_1);
       __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
       __Pyx_XDECREF_SET(__pyx_v_name, __pyx_t_1);
       __pyx_t_1 = 0;
 
-      /* "epicsmacrolib/macro.pyx":210
+      /* "epicsmacrolib/macro.pyx":213
  *             if entry.name:
  *                 name = (entry.name or b"").decode(encoding)
  *                 if name == item:             # <<<<<<<<<<<<<<
  *                     string_value = (entry.rawval or b"").decode(self.string_encoding)
  *                     return self.expand(
  */
-      __pyx_t_1 = PyObject_RichCompare(__pyx_v_name, __pyx_v_item, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 210, __pyx_L1_error)
-      __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 210, __pyx_L1_error)
+      __pyx_t_1 = PyObject_RichCompare(__pyx_v_name, __pyx_v_item, Py_EQ); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 213, __pyx_L1_error)
+      __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 213, __pyx_L1_error)
       __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
       if (__pyx_t_2) {
 
-        /* "epicsmacrolib/macro.pyx":211
+        /* "epicsmacrolib/macro.pyx":214
  *                 name = (entry.name or b"").decode(encoding)
  *                 if name == item:
  *                     string_value = (entry.rawval or b"").decode(self.string_encoding)             # <<<<<<<<<<<<<<
@@ -4183,7 +4342,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_23__getitem__(
  */
         if (!__pyx_v_entry->rawval) {
         } else {
-          __pyx_t_3 = __Pyx_PyBytes_FromString(__pyx_v_entry->rawval); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 211, __pyx_L1_error)
+          __pyx_t_3 = __Pyx_PyBytes_FromString(__pyx_v_entry->rawval); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 214, __pyx_L1_error)
           __Pyx_GOTREF(__pyx_t_3);
           __pyx_t_4 = __pyx_t_3;
           __pyx_t_3 = 0;
@@ -4192,7 +4351,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_23__getitem__(
         __Pyx_INCREF(__pyx_kp_b__2);
         __pyx_t_4 = __pyx_kp_b__2;
         __pyx_L9_bool_binop_done:;
-        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_decode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 211, __pyx_L1_error)
+        __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_decode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 214, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
         __pyx_t_4 = NULL;
@@ -4207,13 +4366,13 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_23__getitem__(
         }
         __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_4, __pyx_v_self->string_encoding) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_self->string_encoding);
         __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 211, __pyx_L1_error)
+        if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 214, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
         __pyx_v_string_value = __pyx_t_1;
         __pyx_t_1 = 0;
 
-        /* "epicsmacrolib/macro.pyx":212
+        /* "epicsmacrolib/macro.pyx":215
  *                 if name == item:
  *                     string_value = (entry.rawval or b"").decode(self.string_encoding)
  *                     return self.expand(             # <<<<<<<<<<<<<<
@@ -4221,37 +4380,37 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_23__getitem__(
  *                         max_length=max((1024, len(entry.rawval * 2)))
  */
         __Pyx_XDECREF(__pyx_r);
-        __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_expand); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 212, __pyx_L1_error)
+        __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_expand); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 215, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_1);
 
-        /* "epicsmacrolib/macro.pyx":213
+        /* "epicsmacrolib/macro.pyx":216
  *                     string_value = (entry.rawval or b"").decode(self.string_encoding)
  *                     return self.expand(
  *                         string_value,             # <<<<<<<<<<<<<<
  *                         max_length=max((1024, len(entry.rawval * 2)))
  *                     )
  */
-        __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 212, __pyx_L1_error)
+        __pyx_t_3 = PyTuple_New(1); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 215, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_3);
         __Pyx_INCREF(__pyx_v_string_value);
         __Pyx_GIVEREF(__pyx_v_string_value);
         PyTuple_SET_ITEM(__pyx_t_3, 0, __pyx_v_string_value);
 
-        /* "epicsmacrolib/macro.pyx":214
+        /* "epicsmacrolib/macro.pyx":217
  *                     return self.expand(
  *                         string_value,
  *                         max_length=max((1024, len(entry.rawval * 2)))             # <<<<<<<<<<<<<<
  *                     )
  *             entry = <MAC_ENTRY*>entry.node.previous
  */
-        __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 214, __pyx_L1_error)
+        __pyx_t_4 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 217, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_4);
-        __pyx_t_5 = __Pyx_PyBytes_FromString(__pyx_v_entry->rawval); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 214, __pyx_L1_error)
+        __pyx_t_5 = __Pyx_PyBytes_FromString(__pyx_v_entry->rawval); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 217, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_5);
-        __pyx_t_6 = PyNumber_Multiply(__pyx_t_5, __pyx_int_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 214, __pyx_L1_error)
+        __pyx_t_6 = PyNumber_Multiply(__pyx_t_5, __pyx_int_2); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 217, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
         __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-        __pyx_t_7 = PyObject_Length(__pyx_t_6); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 214, __pyx_L1_error)
+        __pyx_t_7 = PyObject_Length(__pyx_t_6); if (unlikely(__pyx_t_7 == ((Py_ssize_t)-1))) __PYX_ERR(0, 217, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
         __pyx_t_8 = 0x400;
         if (((__pyx_t_7 > __pyx_t_8) != 0)) {
@@ -4259,19 +4418,19 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_23__getitem__(
         } else {
           __pyx_t_9 = __pyx_t_8;
         }
-        __pyx_t_6 = PyInt_FromSsize_t(__pyx_t_9); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 214, __pyx_L1_error)
+        __pyx_t_6 = PyInt_FromSsize_t(__pyx_t_9); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 217, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
-        if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_max_length, __pyx_t_6) < 0) __PYX_ERR(0, 214, __pyx_L1_error)
+        if (PyDict_SetItem(__pyx_t_4, __pyx_n_s_max_length, __pyx_t_6) < 0) __PYX_ERR(0, 217, __pyx_L1_error)
         __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
 
-        /* "epicsmacrolib/macro.pyx":212
+        /* "epicsmacrolib/macro.pyx":215
  *                 if name == item:
  *                     string_value = (entry.rawval or b"").decode(self.string_encoding)
  *                     return self.expand(             # <<<<<<<<<<<<<<
  *                         string_value,
  *                         max_length=max((1024, len(entry.rawval * 2)))
  */
-        __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 212, __pyx_L1_error)
+        __pyx_t_6 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_t_3, __pyx_t_4); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 215, __pyx_L1_error)
         __Pyx_GOTREF(__pyx_t_6);
         __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
         __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
@@ -4280,7 +4439,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_23__getitem__(
         __pyx_t_6 = 0;
         goto __pyx_L0;
 
-        /* "epicsmacrolib/macro.pyx":210
+        /* "epicsmacrolib/macro.pyx":213
  *             if entry.name:
  *                 name = (entry.name or b"").decode(encoding)
  *                 if name == item:             # <<<<<<<<<<<<<<
@@ -4289,7 +4448,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_23__getitem__(
  */
       }
 
-      /* "epicsmacrolib/macro.pyx":208
+      /* "epicsmacrolib/macro.pyx":211
  *
  *         while entry != NULL:
  *             if entry.name:             # <<<<<<<<<<<<<<
@@ -4298,7 +4457,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_23__getitem__(
  */
     }
 
-    /* "epicsmacrolib/macro.pyx":216
+    /* "epicsmacrolib/macro.pyx":219
  *                         max_length=max((1024, len(entry.rawval * 2)))
  *                     )
  *             entry = <MAC_ENTRY*>entry.node.previous             # <<<<<<<<<<<<<<
@@ -4308,7 +4467,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_23__getitem__(
     __pyx_v_entry = ((__pyx_t_14_epicsmacrolib_5macro_MAC_ENTRY *)__pyx_v_entry->node.previous);
   }
 
-  /* "epicsmacrolib/macro.pyx":218
+  /* "epicsmacrolib/macro.pyx":221
  *             entry = <MAC_ENTRY*>entry.node.previous
  *
  *         if self.use_environment and item in os.environ:             # <<<<<<<<<<<<<<
@@ -4321,19 +4480,19 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_23__getitem__(
     __pyx_t_2 = __pyx_t_10;
     goto __pyx_L12_bool_binop_done;
   }
-  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_os); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 218, __pyx_L1_error)
+  __Pyx_GetModuleGlobalName(__pyx_t_6, __pyx_n_s_os); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 221, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_6);
-  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_environ); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 218, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_t_6, __pyx_n_s_environ); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 221, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
-  __pyx_t_10 = (__Pyx_PySequence_ContainsTF(__pyx_v_item, __pyx_t_4, Py_EQ)); if (unlikely(__pyx_t_10 < 0)) __PYX_ERR(0, 218, __pyx_L1_error)
+  __pyx_t_10 = (__Pyx_PySequence_ContainsTF(__pyx_v_item, __pyx_t_4, Py_EQ)); if (unlikely(__pyx_t_10 < 0)) __PYX_ERR(0, 221, __pyx_L1_error)
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
   __pyx_t_11 = (__pyx_t_10 != 0);
   __pyx_t_2 = __pyx_t_11;
   __pyx_L12_bool_binop_done:;
   if (__pyx_t_2) {
 
-    /* "epicsmacrolib/macro.pyx":219
+    /* "epicsmacrolib/macro.pyx":222
  *
  *         if self.use_environment and item in os.environ:
  *             return os.environ[item]             # <<<<<<<<<<<<<<
@@ -4341,19 +4500,19 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_23__getitem__(
  *         raise KeyError(item)
  */
     __Pyx_XDECREF(__pyx_r);
-    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_os); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 219, __pyx_L1_error)
+    __Pyx_GetModuleGlobalName(__pyx_t_4, __pyx_n_s_os); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 222, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_environ); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 219, __pyx_L1_error)
+    __pyx_t_6 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_environ); if (unlikely(!__pyx_t_6)) __PYX_ERR(0, 222, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_6);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_4 = __Pyx_PyObject_GetItem(__pyx_t_6, __pyx_v_item); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 219, __pyx_L1_error)
+    __pyx_t_4 = __Pyx_PyObject_GetItem(__pyx_t_6, __pyx_v_item); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 222, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_4);
     __Pyx_DECREF(__pyx_t_6); __pyx_t_6 = 0;
     __pyx_r = __pyx_t_4;
     __pyx_t_4 = 0;
     goto __pyx_L0;
 
-    /* "epicsmacrolib/macro.pyx":218
+    /* "epicsmacrolib/macro.pyx":221
  *             entry = <MAC_ENTRY*>entry.node.previous
  *
  *         if self.use_environment and item in os.environ:             # <<<<<<<<<<<<<<
@@ -4362,21 +4521,21 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_23__getitem__(
  */
   }
 
-  /* "epicsmacrolib/macro.pyx":221
+  /* "epicsmacrolib/macro.pyx":224
  *             return os.environ[item]
  *
  *         raise KeyError(item)             # <<<<<<<<<<<<<<
  *
  *     def __setitem__(self, item, value):
  */
-  __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_builtin_KeyError, __pyx_v_item); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 221, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_CallOneArg(__pyx_builtin_KeyError, __pyx_v_item); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 224, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_4);
   __Pyx_Raise(__pyx_t_4, 0, 0, 0);
   __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-  __PYX_ERR(0, 221, __pyx_L1_error)
+  __PYX_ERR(0, 224, __pyx_L1_error)
 
-  /* "epicsmacrolib/macro.pyx":202
- *                     yield name
+  /* "epicsmacrolib/macro.pyx":205
+ *         yield from self._get_unique_names()
  *
  *     def __getitem__(self, item):             # <<<<<<<<<<<<<<
  *         encoding = self.string_encoding
@@ -4401,7 +4560,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_23__getitem__(
   return __pyx_r;
 }
 
-/* "epicsmacrolib/macro.pyx":223
+/* "epicsmacrolib/macro.pyx":226
  *         raise KeyError(item)
  *
  *     def __setitem__(self, item, value):             # <<<<<<<<<<<<<<
@@ -4410,19 +4569,19 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_23__getitem__(
  */
 
 /* Python wrapper */
-static int __pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_26__setitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_item, PyObject *__pyx_v_value); /*proto*/
-static int __pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_26__setitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_item, PyObject *__pyx_v_value) {
+static int __pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_29__setitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_item, PyObject *__pyx_v_value); /*proto*/
+static int __pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_29__setitem__(PyObject *__pyx_v_self, PyObject *__pyx_v_item, PyObject *__pyx_v_value) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__setitem__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_25__setitem__(((struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *)__pyx_v_self), ((PyObject *)__pyx_v_item), ((PyObject *)__pyx_v_value));
+  __pyx_r = __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_28__setitem__(((struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *)__pyx_v_self), ((PyObject *)__pyx_v_item), ((PyObject *)__pyx_v_value));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static int __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_25__setitem__(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self, PyObject *__pyx_v_item, PyObject *__pyx_v_value) {
+static int __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_28__setitem__(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self, PyObject *__pyx_v_item, PyObject *__pyx_v_value) {
   int __pyx_r;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -4433,29 +4592,29 @@ static int __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_25__setitem__(struct
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__setitem__", 0);
 
-  /* "epicsmacrolib/macro.pyx":224
+  /* "epicsmacrolib/macro.pyx":227
  *
  *     def __setitem__(self, item, value):
  *         self.define(**{item: value})             # <<<<<<<<<<<<<<
  *
  *     def _expand_with_length(
  */
-  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_define); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 224, __pyx_L1_error)
+  __pyx_t_1 = __Pyx_PyObject_GetAttrStr(((PyObject *)__pyx_v_self), __pyx_n_s_define); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 227, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
-  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 224, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyDict_NewPresized(1); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 227, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   if (unlikely(PyDict_Contains(__pyx_t_2, __pyx_v_item))) {
-    __Pyx_RaiseDoubleKeywordsError("function", __pyx_v_item); __PYX_ERR(0, 224, __pyx_L1_error)
+    __Pyx_RaiseDoubleKeywordsError("function", __pyx_v_item); __PYX_ERR(0, 227, __pyx_L1_error)
   } else {
-    if (PyDict_SetItem(__pyx_t_2, __pyx_v_item, __pyx_v_value) < 0) __PYX_ERR(0, 224, __pyx_L1_error)
+    if (PyDict_SetItem(__pyx_t_2, __pyx_v_item, __pyx_v_value) < 0) __PYX_ERR(0, 227, __pyx_L1_error)
   }
-  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 224, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_Call(__pyx_t_1, __pyx_empty_tuple, __pyx_t_2); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 227, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
 
-  /* "epicsmacrolib/macro.pyx":223
+  /* "epicsmacrolib/macro.pyx":226
  *         raise KeyError(item)
  *
  *     def __setitem__(self, item, value):             # <<<<<<<<<<<<<<
@@ -4477,7 +4636,7 @@ static int __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_25__setitem__(struct
   return __pyx_r;
 }
 
-/* "epicsmacrolib/macro.pyx":226
+/* "epicsmacrolib/macro.pyx":229
  *         self.define(**{item: value})
  *
  *     def _expand_with_length(             # <<<<<<<<<<<<<<
@@ -4486,9 +4645,9 @@ static int __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_25__setitem__(struct
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_28_expand_with_length(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_14_epicsmacrolib_5macro_13_MacroContext_27_expand_with_length[] = "_MacroContext._expand_with_length(self, unicode value: str, max_length: int = 1024, *, empty_on_failure: bool = False) -> str\n\n        Expand a string, specifying the maximum length of the buffer.\n\n        Trivia: 1024 is \"MY_BUFFER_SIZE\" in epics-base, believe it or not...\n        ";
-static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_28_expand_with_length(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_31_expand_with_length(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_14_epicsmacrolib_5macro_13_MacroContext_30_expand_with_length[] = "_MacroContext._expand_with_length(self, unicode value: str, max_length: int = 1024, *, empty_on_failure: bool = False) -> str\n\n        Expand a string, specifying the maximum length of the buffer.\n\n        Trivia: 1024 is \"MY_BUFFER_SIZE\" in epics-base, believe it or not...\n        ";
+static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_31_expand_with_length(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_value = 0;
   PyObject *__pyx_v_max_length = 0;
   PyObject *__pyx_v_empty_on_failure = 0;
@@ -4503,7 +4662,7 @@ static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_28_expand_with
     PyObject* values[3] = {0,0,0};
     values[1] = ((PyObject *)__pyx_int_1024);
 
-    /* "epicsmacrolib/macro.pyx":227
+    /* "epicsmacrolib/macro.pyx":230
  *
  *     def _expand_with_length(
  *         self, value: str, max_length: int = 1024, *, empty_on_failure: bool = False             # <<<<<<<<<<<<<<
@@ -4540,7 +4699,7 @@ static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_28_expand_with
         if (value) { values[index] = value; kw_args--; }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_expand_with_length") < 0)) __PYX_ERR(0, 226, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_expand_with_length") < 0)) __PYX_ERR(0, 229, __pyx_L3_error)
       }
     } else {
       switch (PyTuple_GET_SIZE(__pyx_args)) {
@@ -4557,16 +4716,16 @@ static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_28_expand_with
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("_expand_with_length", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 226, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("_expand_with_length", 0, 1, 2, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 229, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("_epicsmacrolib.macro._MacroContext._expand_with_length", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), (&PyUnicode_Type), 1, "value", 1))) __PYX_ERR(0, 227, __pyx_L1_error)
-  __pyx_r = __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_27_expand_with_length(((struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *)__pyx_v_self), __pyx_v_value, __pyx_v_max_length, __pyx_v_empty_on_failure);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), (&PyUnicode_Type), 1, "value", 1))) __PYX_ERR(0, 230, __pyx_L1_error)
+  __pyx_r = __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_30_expand_with_length(((struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *)__pyx_v_self), __pyx_v_value, __pyx_v_max_length, __pyx_v_empty_on_failure);
 
-  /* "epicsmacrolib/macro.pyx":226
+  /* "epicsmacrolib/macro.pyx":229
  *         self.define(**{item: value})
  *
  *     def _expand_with_length(             # <<<<<<<<<<<<<<
@@ -4583,7 +4742,7 @@ static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_28_expand_with
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_27_expand_with_length(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self, PyObject *__pyx_v_value, PyObject *__pyx_v_max_length, PyObject *__pyx_v_empty_on_failure) {
+static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_30_expand_with_length(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self, PyObject *__pyx_v_value, PyObject *__pyx_v_max_length, PyObject *__pyx_v_empty_on_failure) {
   char *__pyx_v_buf;
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -4609,7 +4768,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_27_expand_with
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_expand_with_length", 0);
 
-  /* "epicsmacrolib/macro.pyx":234
+  /* "epicsmacrolib/macro.pyx":237
  *         Trivia: 1024 is "MY_BUFFER_SIZE" in epics-base, believe it or not...
  *         """
  *         assert max_length > 0             # <<<<<<<<<<<<<<
@@ -4618,27 +4777,27 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_27_expand_with
  */
   #ifndef CYTHON_WITHOUT_ASSERTIONS
   if (unlikely(!Py_OptimizeFlag)) {
-    __pyx_t_1 = PyObject_RichCompare(__pyx_v_max_length, __pyx_int_0, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 234, __pyx_L1_error)
-    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 234, __pyx_L1_error)
+    __pyx_t_1 = PyObject_RichCompare(__pyx_v_max_length, __pyx_int_0, Py_GT); __Pyx_XGOTREF(__pyx_t_1); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 237, __pyx_L1_error)
+    __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_t_1); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 237, __pyx_L1_error)
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     if (unlikely(!__pyx_t_2)) {
       PyErr_SetNone(PyExc_AssertionError);
-      __PYX_ERR(0, 234, __pyx_L1_error)
+      __PYX_ERR(0, 237, __pyx_L1_error)
     }
   }
   #endif
 
-  /* "epicsmacrolib/macro.pyx":235
+  /* "epicsmacrolib/macro.pyx":238
  *         """
  *         assert max_length > 0
  *         cdef char* buf = <char *>malloc(max_length)             # <<<<<<<<<<<<<<
  *         if not buf:
  *             raise MemoryError("Failed to allocate buffer")
  */
-  __pyx_t_3 = __Pyx_PyInt_As_size_t(__pyx_v_max_length); if (unlikely((__pyx_t_3 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 235, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyInt_As_size_t(__pyx_v_max_length); if (unlikely((__pyx_t_3 == (size_t)-1) && PyErr_Occurred())) __PYX_ERR(0, 238, __pyx_L1_error)
   __pyx_v_buf = ((char *)malloc(__pyx_t_3));
 
-  /* "epicsmacrolib/macro.pyx":236
+  /* "epicsmacrolib/macro.pyx":239
  *         assert max_length > 0
  *         cdef char* buf = <char *>malloc(max_length)
  *         if not buf:             # <<<<<<<<<<<<<<
@@ -4648,20 +4807,20 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_27_expand_with
   __pyx_t_2 = ((!(__pyx_v_buf != 0)) != 0);
   if (unlikely(__pyx_t_2)) {
 
-    /* "epicsmacrolib/macro.pyx":237
+    /* "epicsmacrolib/macro.pyx":240
  *         cdef char* buf = <char *>malloc(max_length)
  *         if not buf:
  *             raise MemoryError("Failed to allocate buffer")             # <<<<<<<<<<<<<<
  *         try:
  *             if macExpandString(self.handle, value.encode(self.string_encoding), buf, max_length) < 0:
  */
-    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 237, __pyx_L1_error)
+    __pyx_t_1 = __Pyx_PyObject_Call(__pyx_builtin_MemoryError, __pyx_tuple__3, NULL); if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 240, __pyx_L1_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_Raise(__pyx_t_1, 0, 0, 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
-    __PYX_ERR(0, 237, __pyx_L1_error)
+    __PYX_ERR(0, 240, __pyx_L1_error)
 
-    /* "epicsmacrolib/macro.pyx":236
+    /* "epicsmacrolib/macro.pyx":239
  *         assert max_length > 0
  *         cdef char* buf = <char *>malloc(max_length)
  *         if not buf:             # <<<<<<<<<<<<<<
@@ -4670,7 +4829,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_27_expand_with
  */
   }
 
-  /* "epicsmacrolib/macro.pyx":238
+  /* "epicsmacrolib/macro.pyx":241
  *         if not buf:
  *             raise MemoryError("Failed to allocate buffer")
  *         try:             # <<<<<<<<<<<<<<
@@ -4679,14 +4838,14 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_27_expand_with
  */
   /*try:*/ {
 
-    /* "epicsmacrolib/macro.pyx":239
+    /* "epicsmacrolib/macro.pyx":242
  *             raise MemoryError("Failed to allocate buffer")
  *         try:
  *             if macExpandString(self.handle, value.encode(self.string_encoding), buf, max_length) < 0:             # <<<<<<<<<<<<<<
  *                 if empty_on_failure:
  *                     return ""
  */
-    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_value, __pyx_n_s_encode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 239, __pyx_L5_error)
+    __pyx_t_4 = __Pyx_PyObject_GetAttrStr(__pyx_v_value, __pyx_n_s_encode); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 242, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_4);
     __pyx_t_5 = NULL;
     if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_4))) {
@@ -4700,26 +4859,26 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_27_expand_with
     }
     __pyx_t_1 = (__pyx_t_5) ? __Pyx_PyObject_Call2Args(__pyx_t_4, __pyx_t_5, __pyx_v_self->string_encoding) : __Pyx_PyObject_CallOneArg(__pyx_t_4, __pyx_v_self->string_encoding);
     __Pyx_XDECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 239, __pyx_L5_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 242, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
-    __pyx_t_6 = __Pyx_PyObject_AsString(__pyx_t_1); if (unlikely((!__pyx_t_6) && PyErr_Occurred())) __PYX_ERR(0, 239, __pyx_L5_error)
-    __pyx_t_7 = __Pyx_PyInt_As_long(__pyx_v_max_length); if (unlikely((__pyx_t_7 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 239, __pyx_L5_error)
+    __pyx_t_6 = __Pyx_PyObject_AsString(__pyx_t_1); if (unlikely((!__pyx_t_6) && PyErr_Occurred())) __PYX_ERR(0, 242, __pyx_L5_error)
+    __pyx_t_7 = __Pyx_PyInt_As_long(__pyx_v_max_length); if (unlikely((__pyx_t_7 == (long)-1) && PyErr_Occurred())) __PYX_ERR(0, 242, __pyx_L5_error)
     __pyx_t_2 = ((macExpandString(__pyx_v_self->handle, __pyx_t_6, __pyx_v_buf, __pyx_t_7) < 0) != 0);
     __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
     if (__pyx_t_2) {
 
-      /* "epicsmacrolib/macro.pyx":240
+      /* "epicsmacrolib/macro.pyx":243
  *         try:
  *             if macExpandString(self.handle, value.encode(self.string_encoding), buf, max_length) < 0:
  *                 if empty_on_failure:             # <<<<<<<<<<<<<<
  *                     return ""
  *             return buf.decode(self.string_encoding)
  */
-      __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_empty_on_failure); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 240, __pyx_L5_error)
+      __pyx_t_2 = __Pyx_PyObject_IsTrue(__pyx_v_empty_on_failure); if (unlikely(__pyx_t_2 < 0)) __PYX_ERR(0, 243, __pyx_L5_error)
       if (__pyx_t_2) {
 
-        /* "epicsmacrolib/macro.pyx":241
+        /* "epicsmacrolib/macro.pyx":244
  *             if macExpandString(self.handle, value.encode(self.string_encoding), buf, max_length) < 0:
  *                 if empty_on_failure:
  *                     return ""             # <<<<<<<<<<<<<<
@@ -4731,7 +4890,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_27_expand_with
         __pyx_r = __pyx_kp_u__2;
         goto __pyx_L4_return;
 
-        /* "epicsmacrolib/macro.pyx":240
+        /* "epicsmacrolib/macro.pyx":243
  *         try:
  *             if macExpandString(self.handle, value.encode(self.string_encoding), buf, max_length) < 0:
  *                 if empty_on_failure:             # <<<<<<<<<<<<<<
@@ -4740,7 +4899,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_27_expand_with
  */
       }
 
-      /* "epicsmacrolib/macro.pyx":239
+      /* "epicsmacrolib/macro.pyx":242
  *             raise MemoryError("Failed to allocate buffer")
  *         try:
  *             if macExpandString(self.handle, value.encode(self.string_encoding), buf, max_length) < 0:             # <<<<<<<<<<<<<<
@@ -4749,7 +4908,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_27_expand_with
  */
     }
 
-    /* "epicsmacrolib/macro.pyx":242
+    /* "epicsmacrolib/macro.pyx":245
  *                 if empty_on_failure:
  *                     return ""
  *             return buf.decode(self.string_encoding)             # <<<<<<<<<<<<<<
@@ -4757,9 +4916,9 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_27_expand_with
  *             free(buf)
  */
     __Pyx_XDECREF(__pyx_r);
-    __pyx_t_4 = __Pyx_PyBytes_FromString(__pyx_v_buf); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 242, __pyx_L5_error)
+    __pyx_t_4 = __Pyx_PyBytes_FromString(__pyx_v_buf); if (unlikely(!__pyx_t_4)) __PYX_ERR(0, 245, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_4);
-    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_decode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 242, __pyx_L5_error)
+    __pyx_t_5 = __Pyx_PyObject_GetAttrStr(__pyx_t_4, __pyx_n_s_decode); if (unlikely(!__pyx_t_5)) __PYX_ERR(0, 245, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_5);
     __Pyx_DECREF(__pyx_t_4); __pyx_t_4 = 0;
     __pyx_t_4 = NULL;
@@ -4774,16 +4933,16 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_27_expand_with
     }
     __pyx_t_1 = (__pyx_t_4) ? __Pyx_PyObject_Call2Args(__pyx_t_5, __pyx_t_4, __pyx_v_self->string_encoding) : __Pyx_PyObject_CallOneArg(__pyx_t_5, __pyx_v_self->string_encoding);
     __Pyx_XDECREF(__pyx_t_4); __pyx_t_4 = 0;
-    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 242, __pyx_L5_error)
+    if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 245, __pyx_L5_error)
     __Pyx_GOTREF(__pyx_t_1);
     __Pyx_DECREF(__pyx_t_5); __pyx_t_5 = 0;
-    if (!(likely(PyUnicode_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 242, __pyx_L5_error)
+    if (!(likely(PyUnicode_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 245, __pyx_L5_error)
     __pyx_r = ((PyObject*)__pyx_t_1);
     __pyx_t_1 = 0;
     goto __pyx_L4_return;
   }
 
-  /* "epicsmacrolib/macro.pyx":244
+  /* "epicsmacrolib/macro.pyx":247
  *             return buf.decode(self.string_encoding)
  *         finally:
  *             free(buf)             # <<<<<<<<<<<<<<
@@ -4835,7 +4994,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_27_expand_with
     }
   }
 
-  /* "epicsmacrolib/macro.pyx":226
+  /* "epicsmacrolib/macro.pyx":229
  *         self.define(**{item: value})
  *
  *     def _expand_with_length(             # <<<<<<<<<<<<<<
@@ -4856,7 +5015,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_27_expand_with
   return __pyx_r;
 }
 
-/* "epicsmacrolib/macro.pyx":246
+/* "epicsmacrolib/macro.pyx":249
  *             free(buf)
  *
  *     def _expand(self, value: str, *, empty_on_failure: bool = False) -> str:             # <<<<<<<<<<<<<<
@@ -4865,9 +5024,9 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_27_expand_with
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_30_expand(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
-static char __pyx_doc_14_epicsmacrolib_5macro_13_MacroContext_29_expand[] = "_MacroContext._expand(self, unicode value: str, *, empty_on_failure: bool = False) -> str\nExpand a string, using the implicit buffer length of 1024 used in EPICS.";
-static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_30_expand(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
+static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_33_expand(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds); /*proto*/
+static char __pyx_doc_14_epicsmacrolib_5macro_13_MacroContext_32_expand[] = "_MacroContext._expand(self, unicode value: str, *, empty_on_failure: bool = False) -> str\nExpand a string, using the implicit buffer length of 1024 used in EPICS.";
+static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_33_expand(PyObject *__pyx_v_self, PyObject *__pyx_args, PyObject *__pyx_kwds) {
   PyObject *__pyx_v_value = 0;
   PyObject *__pyx_v_empty_on_failure = 0;
   int __pyx_lineno = 0;
@@ -4901,7 +5060,7 @@ static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_30_expand(PyOb
         if (value) { values[index] = value; kw_args--; }
       }
       if (unlikely(kw_args > 0)) {
-        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_expand") < 0)) __PYX_ERR(0, 246, __pyx_L3_error)
+        if (unlikely(__Pyx_ParseOptionalKeywords(__pyx_kwds, __pyx_pyargnames, 0, values, pos_args, "_expand") < 0)) __PYX_ERR(0, 249, __pyx_L3_error)
       }
     } else if (PyTuple_GET_SIZE(__pyx_args) != 1) {
       goto __pyx_L5_argtuple_error;
@@ -4913,14 +5072,14 @@ static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_30_expand(PyOb
   }
   goto __pyx_L4_argument_unpacking_done;
   __pyx_L5_argtuple_error:;
-  __Pyx_RaiseArgtupleInvalid("_expand", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 246, __pyx_L3_error)
+  __Pyx_RaiseArgtupleInvalid("_expand", 1, 1, 1, PyTuple_GET_SIZE(__pyx_args)); __PYX_ERR(0, 249, __pyx_L3_error)
   __pyx_L3_error:;
   __Pyx_AddTraceback("_epicsmacrolib.macro._MacroContext._expand", __pyx_clineno, __pyx_lineno, __pyx_filename);
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
-  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), (&PyUnicode_Type), 1, "value", 1))) __PYX_ERR(0, 246, __pyx_L1_error)
-  __pyx_r = __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_29_expand(((struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *)__pyx_v_self), __pyx_v_value, __pyx_v_empty_on_failure);
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_value), (&PyUnicode_Type), 1, "value", 1))) __PYX_ERR(0, 249, __pyx_L1_error)
+  __pyx_r = __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_32_expand(((struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *)__pyx_v_self), __pyx_v_value, __pyx_v_empty_on_failure);
 
   /* function exit code */
   goto __pyx_L0;
@@ -4931,7 +5090,7 @@ static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_30_expand(PyOb
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_29_expand(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self, PyObject *__pyx_v_value, PyObject *__pyx_v_empty_on_failure) {
+static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_32_expand(struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self, PyObject *__pyx_v_value, PyObject *__pyx_v_empty_on_failure) {
   char __pyx_v_buf[0x400];
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
@@ -4945,14 +5104,14 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_29_expand(stru
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("_expand", 0);
 
-  /* "epicsmacrolib/macro.pyx":251
+  /* "epicsmacrolib/macro.pyx":254
  *         #         n = macExpandString(handle, str, dest, destCapacity);
  *         # return < 0? return NULL...
  *         if macExpandString(self.handle, value.encode(self.string_encoding), buf, 1024) < 0:             # <<<<<<<<<<<<<<
  *             if empty_on_failure:
  *                 return ""
  */
-  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_value, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 251, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_GetAttrStr(__pyx_v_value, __pyx_n_s_encode); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 254, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_t_3 = NULL;
   if (CYTHON_UNPACK_METHODS && likely(PyMethod_Check(__pyx_t_2))) {
@@ -4966,25 +5125,25 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_29_expand(stru
   }
   __pyx_t_1 = (__pyx_t_3) ? __Pyx_PyObject_Call2Args(__pyx_t_2, __pyx_t_3, __pyx_v_self->string_encoding) : __Pyx_PyObject_CallOneArg(__pyx_t_2, __pyx_v_self->string_encoding);
   __Pyx_XDECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 251, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 254, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
-  __pyx_t_4 = __Pyx_PyObject_AsString(__pyx_t_1); if (unlikely((!__pyx_t_4) && PyErr_Occurred())) __PYX_ERR(0, 251, __pyx_L1_error)
+  __pyx_t_4 = __Pyx_PyObject_AsString(__pyx_t_1); if (unlikely((!__pyx_t_4) && PyErr_Occurred())) __PYX_ERR(0, 254, __pyx_L1_error)
   __pyx_t_5 = ((macExpandString(__pyx_v_self->handle, __pyx_t_4, __pyx_v_buf, 0x400) < 0) != 0);
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   if (__pyx_t_5) {
 
-    /* "epicsmacrolib/macro.pyx":252
+    /* "epicsmacrolib/macro.pyx":255
  *         # return < 0? return NULL...
  *         if macExpandString(self.handle, value.encode(self.string_encoding), buf, 1024) < 0:
  *             if empty_on_failure:             # <<<<<<<<<<<<<<
  *                 return ""
  *         return buf.decode(self.string_encoding)
  */
-    __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_v_empty_on_failure); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 252, __pyx_L1_error)
+    __pyx_t_5 = __Pyx_PyObject_IsTrue(__pyx_v_empty_on_failure); if (unlikely(__pyx_t_5 < 0)) __PYX_ERR(0, 255, __pyx_L1_error)
     if (__pyx_t_5) {
 
-      /* "epicsmacrolib/macro.pyx":253
+      /* "epicsmacrolib/macro.pyx":256
  *         if macExpandString(self.handle, value.encode(self.string_encoding), buf, 1024) < 0:
  *             if empty_on_failure:
  *                 return ""             # <<<<<<<<<<<<<<
@@ -4995,7 +5154,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_29_expand(stru
       __pyx_r = __pyx_kp_u__2;
       goto __pyx_L0;
 
-      /* "epicsmacrolib/macro.pyx":252
+      /* "epicsmacrolib/macro.pyx":255
  *         # return < 0? return NULL...
  *         if macExpandString(self.handle, value.encode(self.string_encoding), buf, 1024) < 0:
  *             if empty_on_failure:             # <<<<<<<<<<<<<<
@@ -5004,7 +5163,7 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_29_expand(stru
  */
     }
 
-    /* "epicsmacrolib/macro.pyx":251
+    /* "epicsmacrolib/macro.pyx":254
  *         #         n = macExpandString(handle, str, dest, destCapacity);
  *         # return < 0? return NULL...
  *         if macExpandString(self.handle, value.encode(self.string_encoding), buf, 1024) < 0:             # <<<<<<<<<<<<<<
@@ -5013,15 +5172,15 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_29_expand(stru
  */
   }
 
-  /* "epicsmacrolib/macro.pyx":254
+  /* "epicsmacrolib/macro.pyx":257
  *             if empty_on_failure:
  *                 return ""
  *         return buf.decode(self.string_encoding)             # <<<<<<<<<<<<<<
  */
   __Pyx_XDECREF(__pyx_r);
-  __pyx_t_2 = __Pyx_PyObject_FromString(__pyx_v_buf); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 254, __pyx_L1_error)
+  __pyx_t_2 = __Pyx_PyObject_FromString(__pyx_v_buf); if (unlikely(!__pyx_t_2)) __PYX_ERR(0, 257, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_2);
-  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_decode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 254, __pyx_L1_error)
+  __pyx_t_3 = __Pyx_PyObject_GetAttrStr(__pyx_t_2, __pyx_n_s_decode); if (unlikely(!__pyx_t_3)) __PYX_ERR(0, 257, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_3);
   __Pyx_DECREF(__pyx_t_2); __pyx_t_2 = 0;
   __pyx_t_2 = NULL;
@@ -5036,15 +5195,15 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_29_expand(stru
   }
   __pyx_t_1 = (__pyx_t_2) ? __Pyx_PyObject_Call2Args(__pyx_t_3, __pyx_t_2, __pyx_v_self->string_encoding) : __Pyx_PyObject_CallOneArg(__pyx_t_3, __pyx_v_self->string_encoding);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
-  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 254, __pyx_L1_error)
+  if (unlikely(!__pyx_t_1)) __PYX_ERR(0, 257, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __Pyx_DECREF(__pyx_t_3); __pyx_t_3 = 0;
-  if (!(likely(PyUnicode_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 254, __pyx_L1_error)
+  if (!(likely(PyUnicode_CheckExact(__pyx_t_1))||((__pyx_t_1) == Py_None)||(PyErr_Format(PyExc_TypeError, "Expected %.16s, got %.200s", "unicode", Py_TYPE(__pyx_t_1)->tp_name), 0))) __PYX_ERR(0, 257, __pyx_L1_error)
   __pyx_r = ((PyObject*)__pyx_t_1);
   __pyx_t_1 = 0;
   goto __pyx_L0;
 
-  /* "epicsmacrolib/macro.pyx":246
+  /* "epicsmacrolib/macro.pyx":249
  *             free(buf)
  *
  *     def _expand(self, value: str, *, empty_on_failure: bool = False) -> str:             # <<<<<<<<<<<<<<
@@ -5262,20 +5421,20 @@ static int __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_15use_environment_2_
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_32__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
-static char __pyx_doc_14_epicsmacrolib_5macro_13_MacroContext_31__reduce_cython__[] = "_MacroContext.__reduce_cython__(self)";
-static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_32__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
+static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_35__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused); /*proto*/
+static char __pyx_doc_14_epicsmacrolib_5macro_13_MacroContext_34__reduce_cython__[] = "_MacroContext.__reduce_cython__(self)";
+static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_35__reduce_cython__(PyObject *__pyx_v_self, CYTHON_UNUSED PyObject *unused) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__reduce_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_31__reduce_cython__(((struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *)__pyx_v_self));
+  __pyx_r = __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_34__reduce_cython__(((struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *)__pyx_v_self));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_31__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self) {
+static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_34__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -5320,20 +5479,20 @@ static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_31__reduce_cyt
  */
 
 /* Python wrapper */
-static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_34__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
-static char __pyx_doc_14_epicsmacrolib_5macro_13_MacroContext_33__setstate_cython__[] = "_MacroContext.__setstate_cython__(self, __pyx_state)";
-static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_34__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_37__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state); /*proto*/
+static char __pyx_doc_14_epicsmacrolib_5macro_13_MacroContext_36__setstate_cython__[] = "_MacroContext.__setstate_cython__(self, __pyx_state)";
+static PyObject *__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_37__setstate_cython__(PyObject *__pyx_v_self, PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = 0;
   __Pyx_RefNannyDeclarations
   __Pyx_RefNannySetupContext("__setstate_cython__ (wrapper)", 0);
-  __pyx_r = __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_33__setstate_cython__(((struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
+  __pyx_r = __pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_36__setstate_cython__(((struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *)__pyx_v_self), ((PyObject *)__pyx_v___pyx_state));
 
   /* function exit code */
   __Pyx_RefNannyFinishContext();
   return __pyx_r;
 }
 
-static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_33__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
+static PyObject *__pyx_pf_14_epicsmacrolib_5macro_13_MacroContext_36__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_14_epicsmacrolib_5macro__MacroContext *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state) {
   PyObject *__pyx_r = NULL;
   __Pyx_RefNannyDeclarations
   PyObject *__pyx_t_1 = NULL;
@@ -5439,7 +5598,7 @@ static PyObject *__pyx_sq_item_14_epicsmacrolib_5macro__MacroContext(PyObject *o
 
 static int __pyx_mp_ass_subscript_14_epicsmacrolib_5macro__MacroContext(PyObject *o, PyObject *i, PyObject *v) {
   if (v) {
-    return __pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_26__setitem__(o, i, v);
+    return __pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_29__setitem__(o, i, v);
   }
   else {
     PyErr_Format(PyExc_NotImplementedError,
@@ -5496,10 +5655,11 @@ static PyMethodDef __pyx_methods_14_epicsmacrolib_5macro__MacroContext[] = {
   {"define", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_13define, METH_VARARGS|METH_KEYWORDS, __pyx_doc_14_epicsmacrolib_5macro_13_MacroContext_12define},
   {"get_macro_details", (PyCFunction)__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_15get_macro_details, METH_NOARGS, __pyx_doc_14_epicsmacrolib_5macro_13_MacroContext_14get_macro_details},
   {"_get_defined_names", (PyCFunction)__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_17_get_defined_names, METH_NOARGS, __pyx_doc_14_epicsmacrolib_5macro_13_MacroContext_16_get_defined_names},
-  {"_expand_with_length", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_28_expand_with_length, METH_VARARGS|METH_KEYWORDS, __pyx_doc_14_epicsmacrolib_5macro_13_MacroContext_27_expand_with_length},
-  {"_expand", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_30_expand, METH_VARARGS|METH_KEYWORDS, __pyx_doc_14_epicsmacrolib_5macro_13_MacroContext_29_expand},
-  {"__reduce_cython__", (PyCFunction)__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_32__reduce_cython__, METH_NOARGS, __pyx_doc_14_epicsmacrolib_5macro_13_MacroContext_31__reduce_cython__},
-  {"__setstate_cython__", (PyCFunction)__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_34__setstate_cython__, METH_O, __pyx_doc_14_epicsmacrolib_5macro_13_MacroContext_33__setstate_cython__},
+  {"_get_unique_names", (PyCFunction)__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_19_get_unique_names, METH_NOARGS, __pyx_doc_14_epicsmacrolib_5macro_13_MacroContext_18_get_unique_names},
+  {"_expand_with_length", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_31_expand_with_length, METH_VARARGS|METH_KEYWORDS, __pyx_doc_14_epicsmacrolib_5macro_13_MacroContext_30_expand_with_length},
+  {"_expand", (PyCFunction)(void*)(PyCFunctionWithKeywords)__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_33_expand, METH_VARARGS|METH_KEYWORDS, __pyx_doc_14_epicsmacrolib_5macro_13_MacroContext_32_expand},
+  {"__reduce_cython__", (PyCFunction)__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_35__reduce_cython__, METH_NOARGS, __pyx_doc_14_epicsmacrolib_5macro_13_MacroContext_34__reduce_cython__},
+  {"__setstate_cython__", (PyCFunction)__pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_37__setstate_cython__, METH_O, __pyx_doc_14_epicsmacrolib_5macro_13_MacroContext_36__setstate_cython__},
   {0, 0, 0, 0}
 };
 
@@ -5511,7 +5671,7 @@ static struct PyGetSetDef __pyx_getsets_14_epicsmacrolib_5macro__MacroContext[] 
 };
 
 static PySequenceMethods __pyx_tp_as_sequence__MacroContext = {
-  __pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_19__len__, /*sq_length*/
+  __pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_22__len__, /*sq_length*/
   0, /*sq_concat*/
   0, /*sq_repeat*/
   __pyx_sq_item_14_epicsmacrolib_5macro__MacroContext, /*sq_item*/
@@ -5524,8 +5684,8 @@ static PySequenceMethods __pyx_tp_as_sequence__MacroContext = {
 };
 
 static PyMappingMethods __pyx_tp_as_mapping__MacroContext = {
-  __pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_19__len__, /*mp_length*/
-  __pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_24__getitem__, /*mp_subscript*/
+  __pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_22__len__, /*mp_length*/
+  __pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_27__getitem__, /*mp_subscript*/
   __pyx_mp_ass_subscript_14_epicsmacrolib_5macro__MacroContext, /*mp_ass_subscript*/
 };
 
@@ -5565,7 +5725,7 @@ static PyTypeObject __pyx_type_14_epicsmacrolib_5macro__MacroContext = {
   __pyx_tp_clear_14_epicsmacrolib_5macro__MacroContext, /*tp_clear*/
   0, /*tp_richcompare*/
   0, /*tp_weaklistoffset*/
-  __pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_21__iter__, /*tp_iter*/
+  __pyx_pw_14_epicsmacrolib_5macro_13_MacroContext_24__iter__, /*tp_iter*/
   0, /*tp_iternext*/
   __pyx_methods_14_epicsmacrolib_5macro__MacroContext, /*tp_methods*/
   0, /*tp_members*/
@@ -5601,14 +5761,14 @@ static PyTypeObject __pyx_type_14_epicsmacrolib_5macro__MacroContext = {
   #endif
 };
 
-static struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct____iter__ *__pyx_freelist_14_epicsmacrolib_5macro___pyx_scope_struct____iter__[8];
-static int __pyx_freecount_14_epicsmacrolib_5macro___pyx_scope_struct____iter__ = 0;
+static struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names *__pyx_freelist_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names[8];
+static int __pyx_freecount_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names = 0;
 
-static PyObject *__pyx_tp_new_14_epicsmacrolib_5macro___pyx_scope_struct____iter__(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
+static PyObject *__pyx_tp_new_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
   PyObject *o;
-  if (CYTHON_COMPILING_IN_CPYTHON && likely((__pyx_freecount_14_epicsmacrolib_5macro___pyx_scope_struct____iter__ > 0) & (t->tp_basicsize == sizeof(struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct____iter__)))) {
-    o = (PyObject*)__pyx_freelist_14_epicsmacrolib_5macro___pyx_scope_struct____iter__[--__pyx_freecount_14_epicsmacrolib_5macro___pyx_scope_struct____iter__];
-    memset(o, 0, sizeof(struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct____iter__));
+  if (CYTHON_COMPILING_IN_CPYTHON && likely((__pyx_freecount_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names > 0) & (t->tp_basicsize == sizeof(struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names)))) {
+    o = (PyObject*)__pyx_freelist_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names[--__pyx_freecount_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names];
+    memset(o, 0, sizeof(struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names));
     (void) PyObject_INIT(o, t);
     PyObject_GC_Track(o);
   } else {
@@ -5618,28 +5778,28 @@ static PyObject *__pyx_tp_new_14_epicsmacrolib_5macro___pyx_scope_struct____iter
   return o;
 }
 
-static void __pyx_tp_dealloc_14_epicsmacrolib_5macro___pyx_scope_struct____iter__(PyObject *o) {
-  struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct____iter__ *p = (struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct____iter__ *)o;
+static void __pyx_tp_dealloc_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names(PyObject *o) {
+  struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names *p = (struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names *)o;
   PyObject_GC_UnTrack(o);
+  Py_CLEAR(p->__pyx_v_defined_names);
   Py_CLEAR(p->__pyx_v_name);
-  Py_CLEAR(p->__pyx_v_names);
   Py_CLEAR(p->__pyx_v_self);
   Py_CLEAR(p->__pyx_t_0);
-  if (CYTHON_COMPILING_IN_CPYTHON && ((__pyx_freecount_14_epicsmacrolib_5macro___pyx_scope_struct____iter__ < 8) & (Py_TYPE(o)->tp_basicsize == sizeof(struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct____iter__)))) {
-    __pyx_freelist_14_epicsmacrolib_5macro___pyx_scope_struct____iter__[__pyx_freecount_14_epicsmacrolib_5macro___pyx_scope_struct____iter__++] = ((struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct____iter__ *)o);
+  if (CYTHON_COMPILING_IN_CPYTHON && ((__pyx_freecount_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names < 8) & (Py_TYPE(o)->tp_basicsize == sizeof(struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names)))) {
+    __pyx_freelist_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names[__pyx_freecount_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names++] = ((struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names *)o);
   } else {
     (*Py_TYPE(o)->tp_free)(o);
   }
 }
 
-static int __pyx_tp_traverse_14_epicsmacrolib_5macro___pyx_scope_struct____iter__(PyObject *o, visitproc v, void *a) {
+static int __pyx_tp_traverse_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names(PyObject *o, visitproc v, void *a) {
   int e;
-  struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct____iter__ *p = (struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct____iter__ *)o;
+  struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names *p = (struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names *)o;
+  if (p->__pyx_v_defined_names) {
+    e = (*v)(p->__pyx_v_defined_names, a); if (e) return e;
+  }
   if (p->__pyx_v_name) {
     e = (*v)(p->__pyx_v_name, a); if (e) return e;
-  }
-  if (p->__pyx_v_names) {
-    e = (*v)(p->__pyx_v_names, a); if (e) return e;
   }
   if (p->__pyx_v_self) {
     e = (*v)(((PyObject *)p->__pyx_v_self), a); if (e) return e;
@@ -5650,12 +5810,12 @@ static int __pyx_tp_traverse_14_epicsmacrolib_5macro___pyx_scope_struct____iter_
   return 0;
 }
 
-static PyTypeObject __pyx_type_14_epicsmacrolib_5macro___pyx_scope_struct____iter__ = {
+static PyTypeObject __pyx_type_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names = {
   PyVarObject_HEAD_INIT(0, 0)
-  "_epicsmacrolib.macro.__pyx_scope_struct____iter__", /*tp_name*/
-  sizeof(struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct____iter__), /*tp_basicsize*/
+  "_epicsmacrolib.macro.__pyx_scope_struct___get_unique_names", /*tp_name*/
+  sizeof(struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names), /*tp_basicsize*/
   0, /*tp_itemsize*/
-  __pyx_tp_dealloc_14_epicsmacrolib_5macro___pyx_scope_struct____iter__, /*tp_dealloc*/
+  __pyx_tp_dealloc_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names, /*tp_dealloc*/
   #if PY_VERSION_HEX < 0x030800b4
   0, /*tp_print*/
   #endif
@@ -5682,7 +5842,7 @@ static PyTypeObject __pyx_type_14_epicsmacrolib_5macro___pyx_scope_struct____ite
   0, /*tp_as_buffer*/
   Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_HAVE_GC, /*tp_flags*/
   0, /*tp_doc*/
-  __pyx_tp_traverse_14_epicsmacrolib_5macro___pyx_scope_struct____iter__, /*tp_traverse*/
+  __pyx_tp_traverse_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names, /*tp_traverse*/
   0, /*tp_clear*/
   0, /*tp_richcompare*/
   0, /*tp_weaklistoffset*/
@@ -5698,7 +5858,116 @@ static PyTypeObject __pyx_type_14_epicsmacrolib_5macro___pyx_scope_struct____ite
   0, /*tp_dictoffset*/
   0, /*tp_init*/
   0, /*tp_alloc*/
-  __pyx_tp_new_14_epicsmacrolib_5macro___pyx_scope_struct____iter__, /*tp_new*/
+  __pyx_tp_new_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names, /*tp_new*/
+  0, /*tp_free*/
+  0, /*tp_is_gc*/
+  0, /*tp_bases*/
+  0, /*tp_mro*/
+  0, /*tp_cache*/
+  0, /*tp_subclasses*/
+  0, /*tp_weaklist*/
+  0, /*tp_del*/
+  0, /*tp_version_tag*/
+  #if PY_VERSION_HEX >= 0x030400a1
+  0, /*tp_finalize*/
+  #endif
+  #if PY_VERSION_HEX >= 0x030800b1
+  0, /*tp_vectorcall*/
+  #endif
+  #if PY_VERSION_HEX >= 0x030800b4 && PY_VERSION_HEX < 0x03090000
+  0, /*tp_print*/
+  #endif
+  #if CYTHON_COMPILING_IN_PYPY && PYPY_VERSION_NUM+0 >= 0x06000000
+  0, /*tp_pypy_flags*/
+  #endif
+};
+
+static struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__ *__pyx_freelist_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__[8];
+static int __pyx_freecount_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__ = 0;
+
+static PyObject *__pyx_tp_new_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__(PyTypeObject *t, CYTHON_UNUSED PyObject *a, CYTHON_UNUSED PyObject *k) {
+  PyObject *o;
+  if (CYTHON_COMPILING_IN_CPYTHON && likely((__pyx_freecount_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__ > 0) & (t->tp_basicsize == sizeof(struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__)))) {
+    o = (PyObject*)__pyx_freelist_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__[--__pyx_freecount_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__];
+    memset(o, 0, sizeof(struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__));
+    (void) PyObject_INIT(o, t);
+    PyObject_GC_Track(o);
+  } else {
+    o = (*t->tp_alloc)(t, 0);
+    if (unlikely(!o)) return 0;
+  }
+  return o;
+}
+
+static void __pyx_tp_dealloc_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__(PyObject *o) {
+  struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__ *p = (struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__ *)o;
+  PyObject_GC_UnTrack(o);
+  Py_CLEAR(p->__pyx_v_self);
+  if (CYTHON_COMPILING_IN_CPYTHON && ((__pyx_freecount_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__ < 8) & (Py_TYPE(o)->tp_basicsize == sizeof(struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__)))) {
+    __pyx_freelist_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__[__pyx_freecount_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__++] = ((struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__ *)o);
+  } else {
+    (*Py_TYPE(o)->tp_free)(o);
+  }
+}
+
+static int __pyx_tp_traverse_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__(PyObject *o, visitproc v, void *a) {
+  int e;
+  struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__ *p = (struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__ *)o;
+  if (p->__pyx_v_self) {
+    e = (*v)(((PyObject *)p->__pyx_v_self), a); if (e) return e;
+  }
+  return 0;
+}
+
+static PyTypeObject __pyx_type_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__ = {
+  PyVarObject_HEAD_INIT(0, 0)
+  "_epicsmacrolib.macro.__pyx_scope_struct_1___iter__", /*tp_name*/
+  sizeof(struct __pyx_obj_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__), /*tp_basicsize*/
+  0, /*tp_itemsize*/
+  __pyx_tp_dealloc_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__, /*tp_dealloc*/
+  #if PY_VERSION_HEX < 0x030800b4
+  0, /*tp_print*/
+  #endif
+  #if PY_VERSION_HEX >= 0x030800b4
+  0, /*tp_vectorcall_offset*/
+  #endif
+  0, /*tp_getattr*/
+  0, /*tp_setattr*/
+  #if PY_MAJOR_VERSION < 3
+  0, /*tp_compare*/
+  #endif
+  #if PY_MAJOR_VERSION >= 3
+  0, /*tp_as_async*/
+  #endif
+  0, /*tp_repr*/
+  0, /*tp_as_number*/
+  0, /*tp_as_sequence*/
+  0, /*tp_as_mapping*/
+  0, /*tp_hash*/
+  0, /*tp_call*/
+  0, /*tp_str*/
+  0, /*tp_getattro*/
+  0, /*tp_setattro*/
+  0, /*tp_as_buffer*/
+  Py_TPFLAGS_DEFAULT|Py_TPFLAGS_HAVE_VERSION_TAG|Py_TPFLAGS_CHECKTYPES|Py_TPFLAGS_HAVE_NEWBUFFER|Py_TPFLAGS_HAVE_GC, /*tp_flags*/
+  0, /*tp_doc*/
+  __pyx_tp_traverse_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__, /*tp_traverse*/
+  0, /*tp_clear*/
+  0, /*tp_richcompare*/
+  0, /*tp_weaklistoffset*/
+  0, /*tp_iter*/
+  0, /*tp_iternext*/
+  0, /*tp_methods*/
+  0, /*tp_members*/
+  0, /*tp_getset*/
+  0, /*tp_base*/
+  0, /*tp_dict*/
+  0, /*tp_descr_get*/
+  0, /*tp_descr_set*/
+  0, /*tp_dictoffset*/
+  0, /*tp_init*/
+  0, /*tp_alloc*/
+  __pyx_tp_new_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__, /*tp_new*/
   0, /*tp_free*/
   0, /*tp_is_gc*/
   0, /*tp_bases*/
@@ -5774,10 +6043,10 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_KeyError, __pyx_k_KeyError, sizeof(__pyx_k_KeyError), 0, 0, 1, 1},
   {&__pyx_n_s_MacroContext, __pyx_k_MacroContext, sizeof(__pyx_k_MacroContext), 0, 0, 1, 1},
   {&__pyx_n_s_MacroContext___iter, __pyx_k_MacroContext___iter, sizeof(__pyx_k_MacroContext___iter), 0, 0, 1, 1},
+  {&__pyx_n_s_MacroContext__get_unique_names, __pyx_k_MacroContext__get_unique_names, sizeof(__pyx_k_MacroContext__get_unique_names), 0, 0, 1, 1},
   {&__pyx_n_s_MacroEntry, __pyx_k_MacroEntry, sizeof(__pyx_k_MacroEntry), 0, 0, 1, 1},
   {&__pyx_n_u_MacroEntry, __pyx_k_MacroEntry, sizeof(__pyx_k_MacroEntry), 0, 1, 0, 1},
   {&__pyx_n_s_MemoryError, __pyx_k_MemoryError, sizeof(__pyx_k_MemoryError), 0, 0, 1, 1},
-  {&__pyx_n_u_Names, __pyx_k_Names, sizeof(__pyx_k_Names), 0, 1, 0, 1},
   {&__pyx_n_s_Optional, __pyx_k_Optional, sizeof(__pyx_k_Optional), 0, 0, 1, 1},
   {&__pyx_n_s_RuntimeError, __pyx_k_RuntimeError, sizeof(__pyx_k_RuntimeError), 0, 0, 1, 1},
   {&__pyx_n_s_TypeError, __pyx_k_TypeError, sizeof(__pyx_k_TypeError), 0, 0, 1, 1},
@@ -5794,12 +6063,12 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_defn, __pyx_k_defn, sizeof(__pyx_k_defn), 0, 0, 1, 1},
   {&__pyx_n_s_empty_on_failure, __pyx_k_empty_on_failure, sizeof(__pyx_k_empty_on_failure), 0, 0, 1, 1},
   {&__pyx_n_s_encode, __pyx_k_encode, sizeof(__pyx_k_encode), 0, 0, 1, 1},
-  {&__pyx_n_u_env, __pyx_k_env, sizeof(__pyx_k_env), 0, 1, 0, 1},
   {&__pyx_n_s_environ, __pyx_k_environ, sizeof(__pyx_k_environ), 0, 0, 1, 1},
   {&__pyx_n_s_epicsmacrolib_macro, __pyx_k_epicsmacrolib_macro, sizeof(__pyx_k_epicsmacrolib_macro), 0, 0, 1, 1},
   {&__pyx_n_s_expand, __pyx_k_expand, sizeof(__pyx_k_expand), 0, 0, 1, 1},
   {&__pyx_n_s_frozen, __pyx_k_frozen, sizeof(__pyx_k_frozen), 0, 0, 1, 1},
   {&__pyx_n_s_get_defined_names, __pyx_k_get_defined_names, sizeof(__pyx_k_get_defined_names), 0, 0, 1, 1},
+  {&__pyx_n_s_get_unique_names, __pyx_k_get_unique_names, sizeof(__pyx_k_get_unique_names), 0, 0, 1, 1},
   {&__pyx_n_s_getstate, __pyx_k_getstate, sizeof(__pyx_k_getstate), 0, 0, 1, 1},
   {&__pyx_n_s_import, __pyx_k_import, sizeof(__pyx_k_import), 0, 0, 1, 1},
   {&__pyx_n_s_items, __pyx_k_items, sizeof(__pyx_k_items), 0, 0, 1, 1},
@@ -5813,7 +6082,6 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_name_2, __pyx_k_name_2, sizeof(__pyx_k_name_2), 0, 0, 1, 1},
   {&__pyx_kp_s_no_default___reduce___due_to_non, __pyx_k_no_default___reduce___due_to_non, sizeof(__pyx_k_no_default___reduce___due_to_non), 0, 0, 1, 0},
   {&__pyx_n_s_os, __pyx_k_os, sizeof(__pyx_k_os), 0, 0, 1, 1},
-  {&__pyx_n_s_print, __pyx_k_print, sizeof(__pyx_k_print), 0, 0, 1, 1},
   {&__pyx_n_s_pyx_vtable, __pyx_k_pyx_vtable, sizeof(__pyx_k_pyx_vtable), 0, 0, 1, 1},
   {&__pyx_n_s_range, __pyx_k_range, sizeof(__pyx_k_range), 0, 0, 1, 1},
   {&__pyx_n_s_rawval, __pyx_k_rawval, sizeof(__pyx_k_rawval), 0, 0, 1, 1},
@@ -5821,6 +6089,7 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
   {&__pyx_n_s_reduce, __pyx_k_reduce, sizeof(__pyx_k_reduce), 0, 0, 1, 1},
   {&__pyx_n_s_reduce_cython, __pyx_k_reduce_cython, sizeof(__pyx_k_reduce_cython), 0, 0, 1, 1},
   {&__pyx_n_s_reduce_ex, __pyx_k_reduce_ex, sizeof(__pyx_k_reduce_ex), 0, 0, 1, 1},
+  {&__pyx_kp_b_scope, __pyx_k_scope, sizeof(__pyx_k_scope), 0, 0, 0, 0},
   {&__pyx_n_s_send, __pyx_k_send, sizeof(__pyx_k_send), 0, 0, 1, 1},
   {&__pyx_n_s_setstate, __pyx_k_setstate, sizeof(__pyx_k_setstate), 0, 0, 1, 1},
   {&__pyx_n_s_setstate_cython, __pyx_k_setstate_cython, sizeof(__pyx_k_setstate_cython), 0, 0, 1, 1},
@@ -5839,9 +6108,8 @@ static __Pyx_StringTabEntry __pyx_string_tab[] = {
 static CYTHON_SMALL_CODE int __Pyx_InitCachedBuiltins(void) {
   __pyx_builtin_RuntimeError = __Pyx_GetBuiltinName(__pyx_n_s_RuntimeError); if (!__pyx_builtin_RuntimeError) __PYX_ERR(0, 90, __pyx_L1_error)
   __pyx_builtin_range = __Pyx_GetBuiltinName(__pyx_n_s_range); if (!__pyx_builtin_range) __PYX_ERR(0, 135, __pyx_L1_error)
-  __pyx_builtin_print = __Pyx_GetBuiltinName(__pyx_n_s_print); if (!__pyx_builtin_print) __PYX_ERR(0, 194, __pyx_L1_error)
-  __pyx_builtin_KeyError = __Pyx_GetBuiltinName(__pyx_n_s_KeyError); if (!__pyx_builtin_KeyError) __PYX_ERR(0, 221, __pyx_L1_error)
-  __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) __PYX_ERR(0, 237, __pyx_L1_error)
+  __pyx_builtin_KeyError = __Pyx_GetBuiltinName(__pyx_n_s_KeyError); if (!__pyx_builtin_KeyError) __PYX_ERR(0, 224, __pyx_L1_error)
+  __pyx_builtin_MemoryError = __Pyx_GetBuiltinName(__pyx_n_s_MemoryError); if (!__pyx_builtin_MemoryError) __PYX_ERR(0, 240, __pyx_L1_error)
   __pyx_builtin_TypeError = __Pyx_GetBuiltinName(__pyx_n_s_TypeError); if (!__pyx_builtin_TypeError) __PYX_ERR(1, 2, __pyx_L1_error)
   return 0;
   __pyx_L1_error:;
@@ -5863,14 +6131,14 @@ static CYTHON_SMALL_CODE int __Pyx_InitCachedConstants(void) {
   __Pyx_GOTREF(__pyx_tuple_);
   __Pyx_GIVEREF(__pyx_tuple_);
 
-  /* "epicsmacrolib/macro.pyx":237
+  /* "epicsmacrolib/macro.pyx":240
  *         cdef char* buf = <char *>malloc(max_length)
  *         if not buf:
  *             raise MemoryError("Failed to allocate buffer")             # <<<<<<<<<<<<<<
  *         try:
  *             if macExpandString(self.handle, value.encode(self.string_encoding), buf, max_length) < 0:
  */
-  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_kp_u_Failed_to_allocate_buffer); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 237, __pyx_L1_error)
+  __pyx_tuple__3 = PyTuple_Pack(1, __pyx_kp_u_Failed_to_allocate_buffer); if (unlikely(!__pyx_tuple__3)) __PYX_ERR(0, 240, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_tuple__3);
   __Pyx_GIVEREF(__pyx_tuple__3);
 
@@ -5962,14 +6230,22 @@ static int __Pyx_modinit_type_init_code(void) {
   if (PyObject_SetAttr(__pyx_m, __pyx_n_s_MacroContext, (PyObject *)&__pyx_type_14_epicsmacrolib_5macro__MacroContext) < 0) __PYX_ERR(0, 75, __pyx_L1_error)
   if (__Pyx_setup_reduce((PyObject*)&__pyx_type_14_epicsmacrolib_5macro__MacroContext) < 0) __PYX_ERR(0, 75, __pyx_L1_error)
   __pyx_ptype_14_epicsmacrolib_5macro__MacroContext = &__pyx_type_14_epicsmacrolib_5macro__MacroContext;
-  if (PyType_Ready(&__pyx_type_14_epicsmacrolib_5macro___pyx_scope_struct____iter__) < 0) __PYX_ERR(0, 192, __pyx_L1_error)
+  if (PyType_Ready(&__pyx_type_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names) < 0) __PYX_ERR(0, 190, __pyx_L1_error)
   #if PY_VERSION_HEX < 0x030800B1
-  __pyx_type_14_epicsmacrolib_5macro___pyx_scope_struct____iter__.tp_print = 0;
+  __pyx_type_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names.tp_print = 0;
   #endif
-  if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_14_epicsmacrolib_5macro___pyx_scope_struct____iter__.tp_dictoffset && __pyx_type_14_epicsmacrolib_5macro___pyx_scope_struct____iter__.tp_getattro == PyObject_GenericGetAttr)) {
-    __pyx_type_14_epicsmacrolib_5macro___pyx_scope_struct____iter__.tp_getattro = __Pyx_PyObject_GenericGetAttrNoDict;
+  if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names.tp_dictoffset && __pyx_type_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names.tp_getattro == PyObject_GenericGetAttr)) {
+    __pyx_type_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names.tp_getattro = __Pyx_PyObject_GenericGetAttrNoDict;
   }
-  __pyx_ptype_14_epicsmacrolib_5macro___pyx_scope_struct____iter__ = &__pyx_type_14_epicsmacrolib_5macro___pyx_scope_struct____iter__;
+  __pyx_ptype_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names = &__pyx_type_14_epicsmacrolib_5macro___pyx_scope_struct___get_unique_names;
+  if (PyType_Ready(&__pyx_type_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__) < 0) __PYX_ERR(0, 202, __pyx_L1_error)
+  #if PY_VERSION_HEX < 0x030800B1
+  __pyx_type_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__.tp_print = 0;
+  #endif
+  if ((CYTHON_USE_TYPE_SLOTS && CYTHON_USE_PYTYPE_LOOKUP) && likely(!__pyx_type_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__.tp_dictoffset && __pyx_type_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__.tp_getattro == PyObject_GenericGetAttr)) {
+    __pyx_type_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__.tp_getattro = __Pyx_PyObject_GenericGetAttrNoDict;
+  }
+  __pyx_ptype_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__ = &__pyx_type_14_epicsmacrolib_5macro___pyx_scope_struct_1___iter__;
   __Pyx_RefNannyFinishContext();
   return 0;
   __pyx_L1_error:;
@@ -7754,6 +8030,60 @@ static CYTHON_INLINE PyObject *__Pyx__GetModuleGlobalName(PyObject *name)
     PyErr_Clear();
 #endif
     return __Pyx_GetBuiltinName(name);
+}
+
+/* pyfrozenset_new */
+static CYTHON_INLINE PyObject* __Pyx_PyFrozenSet_New(PyObject* it) {
+    if (it) {
+        PyObject* result;
+#if CYTHON_COMPILING_IN_PYPY
+        PyObject* args;
+        args = PyTuple_Pack(1, it);
+        if (unlikely(!args))
+            return NULL;
+        result = PyObject_Call((PyObject*)&PyFrozenSet_Type, args, NULL);
+        Py_DECREF(args);
+        return result;
+#else
+        if (PyFrozenSet_CheckExact(it)) {
+            Py_INCREF(it);
+            return it;
+        }
+        result = PyFrozenSet_New(it);
+        if (unlikely(!result))
+            return NULL;
+        if ((PY_VERSION_HEX >= 0x031000A1) || likely(PySet_GET_SIZE(result)))
+            return result;
+        Py_DECREF(result);
+#endif
+    }
+#if CYTHON_USE_TYPE_SLOTS
+    return PyFrozenSet_Type.tp_new(&PyFrozenSet_Type, __pyx_empty_tuple, NULL);
+#else
+    return PyObject_Call((PyObject*)&PyFrozenSet_Type, __pyx_empty_tuple, NULL);
+#endif
+}
+
+/* PySetContains */
+static int __Pyx_PySet_ContainsUnhashable(PyObject *set, PyObject *key) {
+    int result = -1;
+    if (PySet_Check(key) && PyErr_ExceptionMatches(PyExc_TypeError)) {
+        PyObject *tmpkey;
+        PyErr_Clear();
+        tmpkey = __Pyx_PyFrozenSet_New(key);
+        if (tmpkey != NULL) {
+            result = PySet_Contains(set, tmpkey);
+            Py_DECREF(tmpkey);
+        }
+    }
+    return result;
+}
+static CYTHON_INLINE int __Pyx_PySet_ContainsTF(PyObject* key, PyObject* set, int eq) {
+    int result = PySet_Contains(set, key);
+    if (unlikely(result < 0)) {
+        result = __Pyx_PySet_ContainsUnhashable(set, key);
+    }
+    return unlikely(result < 0) ? result : (result == (eq == Py_EQ));
 }
 
 /* FetchCommonType */

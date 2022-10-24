@@ -311,3 +311,27 @@ def test_readme_example():
 
     for key, info in ctx.get_macro_details().items():
         print(key, info, dataclasses.asdict(info))
+
+
+def test_length_env():
+    ctx = MacroContext(use_environment=True)
+    assert len(ctx) == len(os.environ)
+
+
+def test_length_defined():
+    os.environ.pop("AA", None)
+    ctx = MacroContext(use_environment=True)
+    ctx.define_from_string("AA=5")
+    assert len(ctx) == len(os.environ) + 1
+
+
+def test_length_with_scoped():
+    os.environ.pop("AA", None)
+    os.environ.pop("BB", None)
+    ctx = MacroContext(use_environment=True)
+    ctx.define_from_string("AA=5,BB=0")
+    assert len(ctx) == len(os.environ) + 2
+    with ctx.scoped(AA="10", BB="0"):
+        print("ctx", len(ctx), list(ctx._get_unique_names()))
+        print("env", len(os.environ))
+        assert len(ctx) == len(os.environ) + 2

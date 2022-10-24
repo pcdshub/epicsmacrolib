@@ -178,24 +178,29 @@ cdef class _MacroContext:
     def _get_defined_names(self):
         cdef MAC_ENTRY* entry = <MAC_ENTRY*>self.handle.list.node.next
         cdef list names = []
+        cdef set ignored_names = {b"", b"<scope>"}
         while entry != NULL:
-            if entry.name:
+            if entry.name != NULL and entry.name not in ignored_names:
                 string_name = entry.name.decode(self.string_encoding)
                 if string_name not in names:
                     names.append(string_name)
             entry = <MAC_ENTRY*>entry.node.next
         return names
 
-    def __len__(self):
-        return len(self._get_defined_names())
+    def _get_unique_names(self):
+        defined_names = self._get_defined_names()
+        yield from defined_names
 
-    def __iter__(self):
-        names = self._get_defined_names()
-        yield from names
         if self.use_environment:
             for name in os.environ:
-                if name not in names:
+                if name not in defined_names:
                     yield name
+
+    def __len__(self):
+        return len(list(self._get_unique_names()))
+
+    def __iter__(self):
+        yield from self._get_unique_names()
 
     def __getitem__(self, item):
         encoding = self.string_encoding
