@@ -7,6 +7,7 @@ from .. import MacroContext
 
 
 def test_env():
+    test_keys = "ABCDE"
     os.environ["C"] = "3"
     os.environ["D"] = "4"
     os.environ["E"] = "5"
@@ -20,7 +21,8 @@ def test_env():
     assert ctx["D"] == "4"
     assert ctx["E"] == "15"
 
-    assert set(list(ctx.items())[-6:]) == {
+    items = [(key, value) for key, value in ctx.items() if key in test_keys]
+    assert set(items) == {
         ("A", "1"),
         ("B", "2"),
         ("C", "3"),
@@ -309,3 +311,27 @@ def test_readme_example():
 
     for key, info in ctx.get_macro_details().items():
         print(key, info, dataclasses.asdict(info))
+
+
+def test_length_env():
+    ctx = MacroContext(use_environment=True)
+    assert len(ctx) == len(os.environ)
+
+
+def test_length_defined():
+    os.environ.pop("AA", None)
+    ctx = MacroContext(use_environment=True)
+    ctx.define_from_string("AA=5")
+    assert len(ctx) == len(os.environ) + 1
+
+
+def test_length_with_scoped():
+    os.environ.pop("AA", None)
+    os.environ.pop("BB", None)
+    ctx = MacroContext(use_environment=True)
+    ctx.define_from_string("AA=5,BB=0")
+    assert len(ctx) == len(os.environ) + 2
+    with ctx.scoped(AA="10", BB="0"):
+        print("ctx", len(ctx), list(ctx._get_unique_names()))
+        print("env", len(os.environ))
+        assert len(ctx) == len(os.environ) + 2

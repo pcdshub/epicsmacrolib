@@ -175,23 +175,32 @@ cdef class _MacroContext:
             entry = <MAC_ENTRY*>entry.node.next
         return result
 
-    def __len__(self):
+    def _get_defined_names(self):
         cdef MAC_ENTRY* entry = <MAC_ENTRY*>self.handle.list.node.next
-        cdef int count = 0
+        cdef list names = []
+        cdef set ignored_names = {b"", b"<scope>"}
         while entry != NULL:
-            if entry.name:
-                count += 1
+            if entry.name != NULL and entry.name not in ignored_names:
+                string_name = entry.name.decode(self.string_encoding)
+                if string_name not in names:
+                    names.append(string_name)
             entry = <MAC_ENTRY*>entry.node.next
-        return count
+        return names
+
+    def _get_unique_names(self):
+        defined_names = self._get_defined_names()
+        yield from defined_names
+
+        if self.use_environment:
+            for name in os.environ:
+                if name not in defined_names:
+                    yield name
+
+    def __len__(self):
+        return len(list(self._get_unique_names()))
 
     def __iter__(self):
-        cdef MAC_ENTRY* entry = <MAC_ENTRY*>self.handle.list.node.next
-        if self.use_environment:
-            yield from os.environ
-        while entry != NULL:
-            if entry.name:
-                yield (entry.name or b"").decode(self.string_encoding)
-            entry = <MAC_ENTRY*>entry.node.next
+        yield from self._get_unique_names()
 
     def __getitem__(self, item):
         encoding = self.string_encoding
@@ -202,7 +211,11 @@ cdef class _MacroContext:
             if entry.name:
                 name = (entry.name or b"").decode(encoding)
                 if name == item:
-                    return self.expand((entry.rawval or b"").decode(encoding))
+                    string_value = (entry.rawval or b"").decode(self.string_encoding)
+                    return self.expand(
+                        string_value,
+                        max_length=max((1024, len(entry.rawval * 2)))
+                    )
             entry = <MAC_ENTRY*>entry.node.previous
 
         if self.use_environment and item in os.environ:
@@ -235,7 +248,6 @@ cdef class _MacroContext:
 
     def _expand(self, value: str, *, empty_on_failure: bool = False) -> str:
         """Expand a string, using the implicit buffer length of 1024 used in EPICS."""
-        assert len(value) < 1024, "For large strings, use `expand_with_length`"
         cdef char buf[1024]
         #         n = macExpandString(handle, str, dest, destCapacity);
         # return < 0? return NULL...
