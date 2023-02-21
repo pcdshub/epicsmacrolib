@@ -1,7 +1,7 @@
 import collections.abc
 import contextlib
 import dataclasses
-from typing import Dict, Optional, Union
+from typing import Optional, Union
 
 from _epicsmacrolib.macro import _MacroContext
 
