@@ -10,9 +10,6 @@ keywords = []
 name = "epicsmacrolib"
 requires-python = ">=3.9"
 
-[tool.setuptools.cmdclass]
-build_py = "_custom_build.build_py"
-
 [[project.authors]]
 name = "SLAC National Accelerator Laboratory"
 
@@ -26,13 +23,16 @@ file = "LICENSE"
 [project.scripts]
 epicsmacrolib = "epicsmacrolib.bin.main:main"
 
+[tool.setuptools.cmdclass]
+build_py = "_custom_build.build_py"
+
 [tool.setuptools_scm]
 write_to = "epicsmacrolib/_version.py"
 
 [tool.setuptools.packages.find]
 where = [ ".",]
-include = [ "epicsmacrolib*",]
-namespaces = false
+include = [ "_epicsmacrolib*", "epicsmacrolib*",]
+namespaces = true
 
 [tool.setuptools.dynamic.readme]
 file = "README.rst"
