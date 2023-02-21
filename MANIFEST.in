@@ -2,6 +2,7 @@ include AUTHORS.rst
 include CONTRIBUTING.rst
 include LICENSE
 include README.rst
+include _custom_build.py
 include pyproject.toml
 include requirements.txt
 
