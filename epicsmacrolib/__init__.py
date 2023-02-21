@@ -1,6 +1,5 @@
-from . import _version
+from .version import __version__  # noqa: F401
 
-__version__ = _version.get_versions()['version']
 
 from .iocsh import IocshRedirect as IocshRedirect  # noqa
 from .iocsh import IocshSplit as IocshSplit  # noqa
