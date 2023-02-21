@@ -8,6 +8,9 @@ on:
     types:
       - published
 
+env:
+  CIBW_BUILD_VERBOSITY: 1
+
 jobs:
   build_wheels:
     name: Build wheels on ${{ matrix.os }}
