@@ -6,6 +6,7 @@ include _custom_build.py
 
 include requirements.txt
 include dev-requirements.txt
+include docs-requirements.txt
 
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
