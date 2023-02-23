@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Optional, TypedDict, cast
 
-from _epicsmacrolib.iocsh import split_iocsh_line as _split_iocsh_line
+from ._iocsh import split_iocsh_line as _split_iocsh_line
 
 
 @dataclass

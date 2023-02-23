@@ -3,7 +3,7 @@ import contextlib
 import dataclasses
 from typing import Optional, Union
 
-from _epicsmacrolib.macro import _MacroContext
+from ._macro import _MacroContext
 
 
 @dataclasses.dataclass(frozen=True)

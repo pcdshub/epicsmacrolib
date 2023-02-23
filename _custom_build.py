@@ -23,10 +23,14 @@ def get_extensions():
 
     macro_lib_sources = list(str(path) for path in SRC_DIR.glob("*.c"))
     extensions = [
-        Extension("_epicsmacrolib.iocsh", ["epicsmacrolib/iocsh.pyx"], **ext_options),
         Extension(
-            "_epicsmacrolib.macro",
-            ["epicsmacrolib/macro.pyx"] + macro_lib_sources,
+            name="epicsmacrolib._iocsh",
+            sources=["epicsmacrolib/_iocsh_src.pyx"],
+            **ext_options
+        ),
+        Extension(
+            name="epicsmacrolib._macro",
+            sources=["epicsmacrolib/_macro_src.pyx"] + macro_lib_sources,
             **ext_options,
         ),
     ]
