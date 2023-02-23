@@ -24,7 +24,7 @@ file = "LICENSE"
 epicsmacrolib = "epicsmacrolib.bin.main:main"
 
 [tool.setuptools.cmdclass]
-build_py = "_custom_build.build_py"
+build_py = "_custom_build.BuildWithExtensions"
 
 [tool.setuptools_scm]
 write_to = "epicsmacrolib/_version.py"

@@ -3,8 +3,8 @@ import pathlib
 import sys
 
 from Cython.Build import cythonize
-from setuptools import Extension
-from setuptools.command.build_py import build_py as _build_py
+from setuptools import Distribution, Extension
+from setuptools.command.build_py import build_py
 
 if sys.platform == "darwin":
     # Required for building on macOS - an appropriate deployment target:
@@ -39,7 +39,7 @@ def get_extensions():
     return cythonize(extensions, compiler_directives=compiler_directives)
 
 
-class build_py(_build_py):
+class BuildWithExtensions(build_py):
     def run(self):
         self.run_command("build_ext")
         return super().run()
@@ -47,3 +47,11 @@ class build_py(_build_py):
     def initialize_options(self):
         super().initialize_options()
         self.distribution.ext_modules = (self.distribution.ext_modules or []) + get_extensions()
+
+
+def _has_ext_modules(self):
+    print("** Distribution monkeypatch called to ensure per-platform wheels are generated **")
+    return True
+
+
+Distribution.has_ext_modules = _has_ext_modules
