@@ -31,7 +31,7 @@ write_to = "epicsmacrolib/_version.py"
 
 [tool.setuptools.packages.find]
 where = [ ".",]
-include = [ "_epicsmacrolib*", "epicsmacrolib*",]
+include = [ "epicsmacrolib*",]
 namespaces = true
 
 [tool.setuptools.dynamic.readme]
