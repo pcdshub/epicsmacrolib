@@ -1,12 +1,12 @@
 name: Build and upload to PyPI
 
 # Publish when a (published) GitHub Release is created:
-# on:
-#   push:
-#   pull_request:
-#   release:
-#     types:
-#       - published
+on:
+  push:
+  pull_request:
+  release:
+    types:
+      - published
 
 env:
   CIBW_BUILD_VERBOSITY: 1
