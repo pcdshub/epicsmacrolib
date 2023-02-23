@@ -9,10 +9,10 @@
 #    define epicsStdCall __stdcall
 #  endif
 
-#  if defined(BUILDING_${stem}_API) && defined(EPICS_BUILD_DLL)
+#  if defined(BUILDING_LIBCOM_API) && defined(EPICS_BUILD_DLL)
 /* Building library as dll */
 #    define LIBCOM_API __declspec(dllexport)
-#  elif !defined(BUILDING_${stem}_API) && defined(EPICS_CALL_DLL)
+#  elif !defined(BUILDING_LIBCOM_API) && defined(EPICS_CALL_DLL)
 /* Calling library in dll form */
 #    define LIBCOM_API __declspec(dllimport)
 #  endif
