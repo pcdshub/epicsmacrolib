@@ -4,7 +4,7 @@
 
 import argparse
 import sys
-from typing import List, Optional
+from typing import Optional
 
 from ..macro import MacroContext
 
@@ -61,7 +61,7 @@ def build_arg_parser(argparser=None):
 def main(
     filename: Optional[str] = None,
     text_string: Optional[str] = None,
-    macros: Optional[List[str]] = None,
+    macros: Optional[list[str]] = None,
     use_env: bool = False,
     delimiter: str = "\n",
 ):
@@ -69,7 +69,7 @@ def main(
     if filename == "-":
         text_string = sys.stdin.read()
     elif filename is not None:
-        with open(filename, "rt") as fp:
+        with open(filename) as fp:
             text_string = fp.read()
 
     if text_string is None:

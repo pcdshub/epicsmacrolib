@@ -1,9 +1,9 @@
 import collections.abc
 import contextlib
 import dataclasses
-from typing import Dict, Optional, Union
+from typing import Optional, Union
 
-from _epicsmacrolib.macro import _MacroContext
+from ._macro import _MacroContext
 
 
 @dataclasses.dataclass(frozen=True)
@@ -47,7 +47,7 @@ class MacroContext(_MacroContext, collections.abc.MutableMapping):
         show_warnings: bool = False,
         string_encoding: str = "latin-1",
         macro_string: Optional[str] = None,
-        macros: Optional[Dict[str, str]] = None,
+        macros: Optional[dict[str, str]] = None,
     ):
         super().__init__(
             use_environment=use_environment,
@@ -75,7 +75,7 @@ class MacroContext(_MacroContext, collections.abc.MutableMapping):
         self,
         defn: Union[str, bytes],
         string_encoding: str = ""
-    ) -> Dict[str, str]:
+    ) -> dict[str, str]:
         """
         Convert a definition string of the form ``A=value_a,B=value_a`` to a
         dictionary.
@@ -98,17 +98,17 @@ class MacroContext(_MacroContext, collections.abc.MutableMapping):
             string_encoding=string_encoding or self.string_encoding,
         )
 
-    def define_from_string(self, macro_string: str) -> Dict[str, str]:
+    def define_from_string(self, macro_string: str) -> dict[str, str]:
         """Define macros with the standard VAR=VALUE syntax."""
         definitions = self.definitions_to_dict(macro_string)
         self.define(**definitions)
         return definitions
 
-    def define(self, **macros: str) -> Dict[str, str]:
+    def define(self, **macros: str) -> dict[str, str]:
         """Use kwargs to define macros."""
         return super().define(**macros)
 
-    def get_macro_details(self) -> Dict[str, MacroEntry]:
+    def get_macro_details(self) -> dict[str, MacroEntry]:
         """
         Get a dictionary of all MacroEntry items.
 
@@ -118,12 +118,12 @@ class MacroContext(_MacroContext, collections.abc.MutableMapping):
         """
         return super().get_macro_details()
 
-    def get_macros(self) -> Dict[str, str]:
+    def get_macros(self) -> dict[str, str]:
         """Get macros as a dictionary."""
-        return dict(
-            (macro.name, macro.value)
+        return {
+            macro.name: macro.value
             for macro in self.get_macro_details().values()
-        )
+        }
 
     def expand(
         self,
@@ -189,7 +189,7 @@ class MacroContext(_MacroContext, collections.abc.MutableMapping):
 def macros_from_string(
     macro_string: str,
     use_environment: bool = False
-) -> Dict[str, str]:
+) -> dict[str, str]:
     """
     Get a macro dictionary from a macro string.
 

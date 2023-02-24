@@ -1,7 +1,7 @@
 from dataclasses import dataclass
-from typing import Dict, List, Optional, TypedDict, cast
+from typing import Optional, TypedDict, cast
 
-from _epicsmacrolib.iocsh import split_iocsh_line as _split_iocsh_line
+from ._iocsh import split_iocsh_line as _split_iocsh_line
 
 
 @dataclass
@@ -13,8 +13,8 @@ class IocshRedirect:
 
 @dataclass
 class IocshSplit:
-    argv: List[str]
-    redirects: Optional[Dict[int, IocshRedirect]] = None
+    argv: list[str]
+    redirects: Optional[dict[int, IocshRedirect]] = None
     error: Optional[str] = None
 
 
@@ -56,7 +56,7 @@ def split_iocsh_line(
 
     redirects = res["redirects"]
     if redirects is not None:
-        redirects = cast(Dict[int, _IocshRedirect], redirects)
+        redirects = cast(dict[int, _IocshRedirect], redirects)
         split.redirects = {
             idx: IocshRedirect(**redirect)
             for idx, redirect in redirects.items()

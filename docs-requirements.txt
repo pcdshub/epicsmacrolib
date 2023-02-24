@@ -1,0 +1,7 @@
+docs-versions-menu
+numpydoc
+recommonmark
+sphinx
+sphinx-copybutton
+sphinx_rtd_theme
+sphinxcontrib-jquery
