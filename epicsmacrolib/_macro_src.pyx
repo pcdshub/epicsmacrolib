@@ -214,7 +214,7 @@ cdef class _MacroContext:
                     string_value = (entry.rawval or b"").decode(self.string_encoding)
                     return self.expand(
                         string_value,
-                        max_length=max((1024, len(entry.rawval * 2)))
+                        max_length=max((1024, len(entry.rawval) * 2))
                     )
             entry = <MAC_ENTRY*>entry.node.previous
 
