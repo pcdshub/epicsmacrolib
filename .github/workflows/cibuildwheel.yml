@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-11]
+        os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
       - uses: actions/checkout@v4
@@ -28,10 +28,13 @@ jobs:
 
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.21.3
+        env:
+          CIBW_SKIP: pp*
 
       - uses: actions/upload-artifact@v4
         with:
           path: ./wheelhouse/*.whl
+          name: ${{ matrix.os }}_cibuildwheel_artifact
 
   build_sdist:
     name: Build source distribution
@@ -48,6 +51,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           path: dist/*.tar.gz
+          name: buildsdist_artifact
 
   upload_pypi:
     needs: [build_wheels, build_sdist]
@@ -59,7 +63,7 @@ jobs:
         with:
           # unpacks default artifact into dist/
           # if `name: artifact` is omitted, the action will create extra parent dir
-          name: artifact
+          pattern: "*artifact"
           path: dist
 
       - uses: pypa/gh-action-pypi-publish@v1.5.0
